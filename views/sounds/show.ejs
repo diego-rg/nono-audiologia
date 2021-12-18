@@ -7,12 +7,15 @@
     <title>NoNo Audiología</title>
 </head>
 <body>
-    <h1>Todos los sonidos</h1>
+    <h1>Datos del sonido</h1>
     <ul>
-        <% for(let sound of sounds) { %>
-            <li><a href="/sounds/show/<%= sound._id %>"><%= sound.name %></a></li>
-        <% }  %>
+        <li><%= sound.minFrec %> Hz</li>
+        <li><%= sound.maxFrec %> Hz</li>
+        <li><%= sound.minInt %> dB</li>
+        <li><%= sound.maxInt %> dB</li>
+        <li><%= sound.category %></li>
     </ul>
+    <a href="/sounds">Todos</a>
     <a href="/categories">Categorías</a>
 </body>
 </html>

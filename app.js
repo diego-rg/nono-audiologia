@@ -17,6 +17,7 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+
 //Facer sons desde a web a mongo
 // app.get("/makesound", async (req, res) => {
 //     const sound = new Sound({name: "Teclado", minFrec: 1000, maxFrec: 2000, minInt: 50, maxInt: 60, category: "ocio"});
@@ -34,9 +35,23 @@ app.get("/categories", async (req, res) => {
 
 //Ver todos os sons
 app.get("/sounds", async (req, res) => {
-    const sounds = await Sound.find({});
+    const sounds = await Sound.find({}).sort({ name: 'asc'});//Añadimos sort para orden alfabético
     res.render("sounds/sounds", { sounds });
 });
+
+//Ver sons de cada categoría
+app.get("/sounds/:category", async (req, res) => {
+    const sounds = await Sound.find({ category: 'Ocio' }).sort({ name: 'asc'});//Añadimos sort para orden alfabético
+    console.log(req.params.category);
+    console.log(sounds);
+    res.render("sounds/category", { sounds });
+});
+
+//Ver cada son
+app.get("/sounds/show/:id", async (req, res) => {
+    const sound = await Sound.findById(req.params.id);
+    res.render("sounds/show", { sound });
+})
 
 
 app.listen(3000, () => {
