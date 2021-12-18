@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
-const { Sound, Categories } = require("./models/sound");
+const { Sound, Categories } = require("./models/sound");//Requerimos as dúas constantes de sound (para modelo e categorías)
 
 mongoose.connect('mongodb://localhost:27017/nono', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -17,7 +17,7 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-//Facer campground desde a web a mongo
+//Facer sons desde a web a mongo
 // app.get("/makesound", async (req, res) => {
 //     const sound = new Sound({name: "Teclado", minFrec: 1000, maxFrec: 2000, minInt: 50, maxInt: 60, category: "ocio"});
 //     await sound.save();
@@ -25,15 +25,19 @@ app.set("views", path.join(__dirname, "views"));
 
 // })
 
+
+//Ver todas as categorías
 app.get("/categories", async (req, res) => {
     const categs = await Categories;
-    res.render("sounds/index", { categs });
+    res.render("sounds/categories", { categs });
 });
 
+//Ver todos os sons
 app.get("/sounds", async (req, res) => {
     const sounds = await Sound.find({});
     res.render("sounds/sounds", { sounds });
 });
+
 
 app.listen(3000, () => {
     console.log("Listening on port 3000");
