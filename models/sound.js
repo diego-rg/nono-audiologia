@@ -26,8 +26,12 @@ const SoundSchema = new Schema({
         type: String,
         lowercase: true,
         required: true,
-        enum: ["hogar", "naturaleza", "conversación", "ocio", "lugares", "ciudad"]
+        enum: ["Hogar", "Naturaleza", "Conversación", "Ocio", "Lugares", "Ciudad"]
     }
 });
 
-module.exports = mongoose.model("Sound", SoundSchema);
+const Sound = mongoose.model("Sound", SoundSchema);//Gardamos o modelo nunha constante para exportalo xunto as categorías
+
+const Categories = Sound.schema.path('category').enumValues;//Sacamos o valor das categorías para o noso índice
+
+module.exports = { Sound, Categories };//Así podemos exportar as dúas co esta sintaxis, coa outra solo exportaba o modelo

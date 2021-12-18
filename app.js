@@ -1,8 +1,7 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
-const Sound = require("./models/sound");
-const { render } = require("express/lib/response");
+const { Sound, Categories } = require("./models/sound");
 
 mongoose.connect('mongodb://localhost:27017/nono', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -18,15 +17,22 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-app.get("/makesound", async (req, res) => {
-    const sound = new Sound({name: "Teclado", minFrec: 1000, maxFrec: 2000, minInt: 50, maxInt: 60, category: "ocio"});
-    await sound.save();
-    res.send(sound);
+//Facer campground desde a web a mongo
+// app.get("/makesound", async (req, res) => {
+//     const sound = new Sound({name: "Teclado", minFrec: 1000, maxFrec: 2000, minInt: 50, maxInt: 60, category: "ocio"});
+//     await sound.save();
+//     res.send(sound);
 
-})
+// })
 
-app.get("/", (req, res) => {
-    res.render("proba");
+app.get("/categories", async (req, res) => {
+    const categs = await Categories;
+    res.render("sounds/index", { categs });
+});
+
+app.get("/sounds", async (req, res) => {
+    const sounds = await Sound.find({});
+    res.render("sounds/sounds", { sounds });
 });
 
 app.listen(3000, () => {
