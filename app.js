@@ -28,7 +28,6 @@ app.use(express.urlencoded({ extended: true }));//Para req.body en CREATE
 
 // })
 
-
 //Ver todas as categorías
 app.get("/categories", async (req, res) => {
     const categs = await Categories;
