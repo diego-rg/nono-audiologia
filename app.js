@@ -18,9 +18,9 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 
-//Facer sons desde a web a mongo
+// //Facer sons desde a web a mongo
 // app.get("/makesound", async (req, res) => {
-//     const sound = new Sound({name: "Teclado", minFrec: 1000, maxFrec: 2000, minInt: 50, maxInt: 60, category: "ocio"});
+//     const sound = new Sound({name: "Can", minFrec: 500, maxFrec: 400, minInt: 40, maxInt: 50, category: "Naturaleza"});
 //     await sound.save();
 //     res.send(sound);
 
@@ -35,16 +35,15 @@ app.get("/categories", async (req, res) => {
 
 //Ver todos os sons
 app.get("/sounds", async (req, res) => {
-    const sounds = await Sound.find({}).sort({ name: 'asc'});//Añadimos sort para orden alfabético
+    const sounds = await Sound.find({}).sort({ name: "asc"});//Añadimos sort para orden alfabético
     res.render("sounds/sounds", { sounds });
 });
 
 //Ver sons de cada categoría
 app.get("/sounds/:category", async (req, res) => {
-    const sounds = await Sound.find({ category: 'Ocio' }).sort({ name: 'asc'});//Añadimos sort para orden alfabético
-    console.log(req.params.category);
-    console.log(sounds);
-    res.render("sounds/category", { sounds });
+    const sounds = await Sound.find({ category: req.params.category }).sort({ name: "asc"});//Añadimos sort para orden alfabético
+    const CategSounds = req.params.category;//Pasamos como variable a categoría que corresponde para eseñala no correspondente ejs
+    res.render("sounds/category", { sounds, CategSounds });
 });
 
 //Ver cada son
