@@ -1,8 +1,8 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
+const methodOverride = require("method-override");
 const { Sound, Categories } = require("./models/sound");//Requerimos as dúas constantes de sound (para modelo e categorías)
-const res = require("express/lib/response");
 
 mongoose.connect('mongodb://localhost:27017/nono', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -19,6 +19,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 app.use(express.urlencoded({ extended: true }));//Para req.body en CREATE
+app.use(methodOverride("_method"));//Para poder crear DELETE e UPDATE/EDIT
 
 // //Facer sons desde a web a mongo
 // app.get("/makesound", async (req, res) => {
@@ -48,7 +49,7 @@ app.get("/sounds/new", (req, res) => {
 app.post("/sounds", async (req, res) => {
     const sound = new Sound(req.body.sound);//requiere extended: true
     await sound.save();
-    res.redirect(`sounds/show/${sound._id}`);
+    res.redirect(`/sounds/show/${sound._id}`);
 });
 
 //Ver sons de cada categoría
@@ -63,6 +64,25 @@ app.get("/sounds/show/:id", async (req, res) => {
     const sound = await Sound.findById(req.params.id);
     res.render("sounds/show", { sound });
 })
+
+//EDIT
+app.get("/sounds/show/:id/edit", async (req, res) => {
+    const sound = await Sound.findById(req.params.id);
+    res.render("sounds/edit", { sound, Categories });
+})
+
+app.put("/sounds/show/:id", async (req, res) => {
+    const { id } = req.params;
+    const sound = await Sound.findByIdAndUpdate(id, { ...req.body.sound });
+    res.redirect(`/sounds/show/${sound._id}`);
+})
+
+app.delete("/sounds/show/:id", async (req, res) => {
+    const { id } = req.params;
+    await Sound.findByIdAndDelete(id);
+    res.redirect("/sounds");
+})
+
 
 app.listen(3000, () => {
     console.log("Listening on port 3000");

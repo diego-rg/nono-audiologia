@@ -20,6 +20,12 @@
             <%= capitalizeFirstLetter(sound.category) %>
         </li>
     </ul>
+
+    <form action="/sounds/show/<%= sound._id %>?_method=DELETE" method="POST">
+        <button type="submit">Eliminar</button>
+    </form>
+
+    <a href="/sounds/show/<%= sound._id %>/edit">Editar</a>
     <a href="/sounds">Todos</a>
     <a href="/categories">Categorías</a>
 </body>
