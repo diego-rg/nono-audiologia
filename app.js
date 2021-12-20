@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
+const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
 const { Sound, Categories } = require("./models/sound");//Requerimos as dúas constantes de sound (para modelo e categorías)
 
@@ -15,6 +16,7 @@ mongoose.connect('mongodb://localhost:27017/nono', { useNewUrlParser: true, useU
 
 const app = express();
 
+app.engine("ejs", ejsMate);//Para usar o egine de ejs e non o default
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 

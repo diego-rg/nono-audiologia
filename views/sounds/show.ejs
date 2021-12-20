@@ -1,32 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NoNo Audiología</title>
-</head>
-<body>
-    <h1><%= sound.name %></h1>
-    <ul>
-        <li><%= sound.minFrec %> Hz</li>
-        <li><%= sound.maxFrec %> Hz</li>
-        <li><%= sound.minInt %> dB</li>
-        <li><%= sound.maxInt %> dB</li>
-        <li>
-            <% function capitalizeFirstLetter(string) { %>
-            <%    return string.charAt(0).toUpperCase() + string.slice(1); %>
-            <%  } %>
-            <%= capitalizeFirstLetter(sound.category) %>
-        </li>
-    </ul>
+<% layout("layouts/boilerplate") %> 
+<h1><%= sound.name %></h1>
+<ul>
+    <li><%= sound.minFrec %> Hz</li>
+    <li><%= sound.maxFrec %> Hz</li>
+    <li><%= sound.minInt %> dB</li>
+    <li><%= sound.maxInt %> dB</li>
+    <li>
+        <% function capitalizeFirstLetter(string) { %>
+        <%    return string.charAt(0).toUpperCase() + string.slice(1); %>
+        <%  } %>
+        <%= capitalizeFirstLetter(sound.category) %>
+    </li>
+</ul>
 
-    <form action="/sounds/show/<%= sound._id %>?_method=DELETE" method="POST">
-        <button type="submit">Eliminar</button>
-    </form>
+<form action="/sounds/show/<%= sound._id %>?_method=DELETE" method="POST">
+    <button type="submit">Eliminar</button>
+</form>
 
-    <a href="/sounds/show/<%= sound._id %>/edit">Editar</a>
-    <a href="/sounds">Todos</a>
-    <a href="/categories">Categorías</a>
-</body>
-</html>
+<a href="/sounds/show/<%= sound._id %>/edit">Editar</a>
+<a href="/sounds">Todos</a>
+<a href="/categories">Categorías</a>

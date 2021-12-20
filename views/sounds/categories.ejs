@@ -1,24 +1,14 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NoNo Audiología</title>
-</head>
-<body>
-    <h1>Categorías</h1>
-    <ul>
-        <% for(let categ of categs) { %>
-            <li><a href="/sounds/<%= categ %>">
-                <% function capitalizeFirstLetter(string) { %>
-                <%    return string.charAt(0).toUpperCase() + string.slice(1); %>
-                <%  } %>
-                <%= capitalizeFirstLetter(categ) %>
-            </a></li>
-        <% }  %>
-    </ul>
-    <a href="/sounds">Todos</a>
-    <a href="/sounds/new">Crear</a>
-</body>
-</html>
+<% layout("layouts/boilerplate") %> 
+<h1>Categorías</h1>
+<ul>
+    <% for(let categ of categs) { %>
+        <li><a href="/sounds/<%= categ %>">
+            <% function capitalizeFirstLetter(string) { %>
+            <%    return string.charAt(0).toUpperCase() + string.slice(1); %>
+            <%  } %>
+            <%= capitalizeFirstLetter(categ) %>
+        </a></li>
+    <% }  %>
+</ul>
+<a href="/sounds">Todos</a>
+<a href="/sounds/new">Crear</a>
