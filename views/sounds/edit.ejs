@@ -29,6 +29,14 @@
             <% } %>
         </select>
     </div>
+    <div>
+        <label for="audio">Audio del sonido:</label>
+        <input type="string" id="audio" placeholder="www.sonido.com" name="sound[audio]" value="<%= sound.audio %>">
+    </div>
+    <div>
+        <label for="image">Imagen:</label>
+        <input type="string" id="image" placeholder="www.imagen.com" name="sound[image]" value="<%= sound.image %>">
+    </div>
     <button type="submit">Guardar</button>
     <button type="reset">Limpiar</button>
 </form>

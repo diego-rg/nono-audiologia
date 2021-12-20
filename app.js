@@ -31,6 +31,10 @@ app.use(methodOverride("_method"));//Para poder crear DELETE e UPDATE/EDIT
 
 // })
 
+app.get("/home", (req, res) => {
+    res.render("sounds/home");
+});
+
 //Ver todas as categorías
 app.get("/categories", async (req, res) => {
     const categs = await Categories;

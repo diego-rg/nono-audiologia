@@ -27,6 +27,12 @@ const SoundSchema = new Schema({
         lowercase: true,
         required: true,
         enum: ["hogar", "naturaleza", "conversación", "ocio", "lugares", "ciudad"]
+    },
+    audio: {
+        type: String
+    },
+    image: {
+        type: String
     }
 });
 
