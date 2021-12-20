@@ -1,8 +1,11 @@
-<% layout("layouts/boilerplate") %> 
-<h1>Todos los sonidos</h1>
-<ul>
-    <% for(let sound of sounds) { %>
-        <li><a href="/sounds/show/<%= sound._id %>"><%= sound.name %></a></li>
-    <% }  %>
-</ul>
-<a href="/categories">Categorías</a>
+<% layout("layouts/boilerplate") %>
+<section>
+    <h1>Todos los sonidos</h1>
+    <ul>
+        <% for(let sound of sounds) { %>
+            <li><a href="/sounds/show/<%= sound._id %>"><%= sound.name %></a></li>
+        <% }  %>
+    </ul>
+    <a href="/categories">Categorías</a>
+    <a href="/sounds/new">Crear</a>
+</section>

@@ -1,14 +1,16 @@
-<% layout("layouts/boilerplate") %> 
-<h1>Categorías</h1>
-<ul>
-    <% for(let categ of categs) { %>
-        <li><a href="/sounds/<%= categ %>">
-            <% function capitalizeFirstLetter(string) { %>
-            <%    return string.charAt(0).toUpperCase() + string.slice(1); %>
-            <%  } %>
-            <%= capitalizeFirstLetter(categ) %>
-        </a></li>
-    <% }  %>
-</ul>
-<a href="/sounds">Todos</a>
-<a href="/sounds/new">Crear</a>
+<% layout("layouts/boilerplate") %>
+<section>
+    <h1>Categorías</h1>
+    <ul>
+        <% for(let categ of categs) { %>
+            <li><a href="/sounds/<%= categ %>">
+                <% function capitalizeFirstLetter(string) { %>
+                <%    return string.charAt(0).toUpperCase() + string.slice(1); %>
+                <%  } %>
+                <%= capitalizeFirstLetter(categ) %>
+            </a></li>
+        <% }  %>
+    </ul>
+    <a href="/sounds">Todos</a>
+    <a href="/sounds/new">Crear</a>
+</section>

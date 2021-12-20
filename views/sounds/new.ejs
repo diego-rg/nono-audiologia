@@ -1,36 +1,38 @@
-<% layout("layouts/boilerplate") %> 
-<h1>Añade un nuevo sonido</h1>
-<form action="/sounds" method="POST">
-    <div>
-        <label for="name">Nombre:</label>
-        <input type="text" id="name" placeholder="Sonido" name="sound[name]" required>
-    </div>
-    <div>
-        <label for="minFrec">Frecuencia mínima:</label>
-        <input type="numer" id="minFrec" placeholder="dB" name="sound[minFrec]" required>
-    </div>
-    <div>
-        <label for="maxFrec">Frecuencia máxima:</label>
-        <input type="number" id="maxFrec" placeholder="dB" name="sound[maxFrec]" required>
-    </div>
-    <div>
-        <label for="minInt">Intensidad mínima:</label>
-        <input type="number" id="minInt" placeholder="Hz" name="sound[minInt]" required>
-    </div>
-    <div>
-        <label for="maxInt">Intensidad máxima:</label>
-        <input type="number" id="maxInt" placeholder="Hz" name="sound[maxInt]" required>
-    </div>
-    <div>
-        <label for="category">Categoría:</label>
-        <select id="category" name="sound[category]" required>           
-            <% for(c = 0; c < Categories.length; c++) { %>
-                <option value="<%= Categories[c] %>"><%= Categories[c] %></option>
-            <% } %>
-        </select>
-    </div>
-    <button type="submit">Crear</button>
-    <button type="reset">Limpiar</button>
-</form>
-<a href="/sounds">Todos</a>
-<a href="/categories">Categorías</a>
+<% layout("layouts/boilerplate") %>
+<section>
+    <h1>Añade un nuevo sonido</h1>
+    <form action="/sounds" method="POST">
+        <div>
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" placeholder="Sonido" name="sound[name]" required>
+        </div>
+        <div>
+            <label for="minFrec">Frecuencia mínima:</label>
+            <input type="numer" id="minFrec" placeholder="dB" name="sound[minFrec]" required>
+        </div>
+        <div>
+            <label for="maxFrec">Frecuencia máxima:</label>
+            <input type="number" id="maxFrec" placeholder="dB" name="sound[maxFrec]" required>
+        </div>
+        <div>
+            <label for="minInt">Intensidad mínima:</label>
+            <input type="number" id="minInt" placeholder="Hz" name="sound[minInt]" required>
+        </div>
+        <div>
+            <label for="maxInt">Intensidad máxima:</label>
+            <input type="number" id="maxInt" placeholder="Hz" name="sound[maxInt]" required>
+        </div>
+        <div>
+            <label for="category">Categoría:</label>
+            <select id="category" name="sound[category]" required>           
+                <% for(c = 0; c < Categories.length; c++) { %>
+                    <option value="<%= Categories[c] %>"><%= Categories[c] %></option>
+                <% } %>
+            </select>
+        </div>
+        <button type="submit">Crear</button>
+        <button type="reset">Limpiar</button>
+    </form>
+    <a href="/sounds">Todos</a>
+    <a href="/categories">Categorías</a>
+</section>

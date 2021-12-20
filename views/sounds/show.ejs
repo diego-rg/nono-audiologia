@@ -1,31 +1,31 @@
 <% layout("layouts/boilerplate") %> 
-<h1><%= sound.name %></h1>
-<ul>
-    <li><%= sound.minFrec %> Hz</li>
-    <li><%= sound.maxFrec %> Hz</li>
-    <li><%= sound.minInt %> dB</li>
-    <li><%= sound.maxInt %> dB</li>
-    <li>
-        <% function capitalizeFirstLetter(string) { %>
-        <%    return string.charAt(0).toUpperCase() + string.slice(1); %>
-        <%  } %>
-        <%= capitalizeFirstLetter(sound.category) %>
-    </li>
-    <li>
+<section>
+    <h1><%= sound.name %></h1>
+    <ul>
+        <li><%= sound.minFrec %> Hz</li>
+        <li><%= sound.maxFrec %> Hz</li>
+        <li><%= sound.minInt %> dB</li>
+        <li><%= sound.maxInt %> dB</li>
+        <li>
+            <% function capitalizeFirstLetter(string) { %>
+            <%    return string.charAt(0).toUpperCase() + string.slice(1); %>
+            <%  } %>
+            <%= capitalizeFirstLetter(sound.category) %>
+        </li>
+    </ul>
+    <div>
         <audio controls>
             <source src="<%= sound.audio %>" type="audio/mpeg">
         Your browser does not support the audio element.
         </audio>
-    </li>
-    <li>
-        <img src="<%=sound.image%>" alt="sound.name" width="400px">
-    </li>
-</ul>
-
-<form action="/sounds/show/<%= sound._id %>?_method=DELETE" method="POST">
-    <button type="submit">Eliminar</button>
-</form>
-
-<a href="/sounds/show/<%= sound._id %>/edit">Editar</a>
+    </div>
+    <form action="/sounds/show/<%= sound._id %>?_method=DELETE" method="POST">
+        <button type="submit">Eliminar</button>
+    </form>
+ <a href="/sounds/show/<%= sound._id %>/edit">Editar</a>
 <a href="/sounds">Todos</a>
-<a href="/categories">Categorías</a>
+<a href="/categories">Categorías</a>   
+</section>
+<section>
+    <img src="<%=sound.image%>" alt="sound.name" width="400px">
+</section>
