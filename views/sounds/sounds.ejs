@@ -1,21 +1,19 @@
 <% layout("layouts/boilerplate") %>
-<section>
-    <h1>Todos los sonidos</h1> 
-            <div class="container">
-                <div class="row row-cols-auto">
-                <% for(let sound of sounds) { %>
-                  <div class="col">
-                    <div class="card" style="width: 14rem">
-                        <img src="<%= sound.image %>" class="card-img-top img-fluid" alt="<%= sound.name %>">
-                        <div class="card-body">
-                        <h5 class="card-title"><%= sound.name %></h5>
-                        <a href="/sounds/show/<%= sound._id %>" class="btn btn-success">Ver datos</a>
-                        </div>
-                    </div>
-                  </div>
-                <% }  %>
-                </div>
-              </div> 
-    <a href="/categories">Categorías</a>
-    <a href="/sounds/new">Crear</a>
-</section>
+<h1 class="text-center mb-4">Todos los sonidos</h1> 
+<div class="container">
+  <div class="row row-cols-auto">
+  <% for(let sound of sounds) { %>
+    <div class="col">
+      <div class="card mb-3" style="width: 14rem">
+        <img src="<%= sound.image %>" class="card-img-top" width="100" height="100" alt="<%= sound.name %>">
+        <div class="card-body">
+          <h5 class="card-title"><%= sound.name %></h5>
+          <a href="/sounds/show/<%= sound._id %>" class="btn btn-success">Ver datos</a>
+        </div>
+      </div>
+    </div>
+  <% }  %>
+  </div>
+    <a class="link-success" href="/categories">Categorías</a>
+    <a class="link-success" href="/sounds/new">Crear</a>
+</div>

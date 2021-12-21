@@ -1,16 +1,14 @@
 <% layout("layouts/boilerplate") %>
-<section>
-    <h1>
-        <% function capitalizeFirstLetter(string) { %>
-        <%    return string.charAt(0).toUpperCase() + string.slice(1); %>
-        <%  } %>
-        <%= capitalizeFirstLetter(CategSounds) %>
-    </h1>
-    <ul>
-        <% for(let sound of sounds) { %>
-            <li><a href="/sounds/show/<%= sound._id %>"><%= sound.name %></a></li>
-        <% }  %>
-    </ul>
-    <a href="/sounds">Todos</a>
-    <a href="/categories">Categorías</a>
-</section>
+<h1>
+    <% function capitalizeFirstLetter(string) { %>
+    <%    return string.charAt(0).toUpperCase() + string.slice(1); %>
+    <%  } %>
+    <%= capitalizeFirstLetter(CategSounds) %>
+</h1>
+<ul>
+    <% for(let sound of sounds) { %>
+        <li><a href="/sounds/show/<%= sound._id %>"><%= sound.name %></a></li>
+    <% }  %>
+</ul>
+<a class="link-success" href="/sounds">Todos</a>
+<a class="link-success" href="/categories">Categorías</a>
