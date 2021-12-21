@@ -1,27 +1,29 @@
 <% layout("layouts/boilerplate") %>
 <div class="d-flex flex-row align-items-center justify-content-evenly">
     <section>
-        <h1><%= sound.name %></h1>
-        <ul>
-            <li><%= sound.minFrec %> Hz</li>
-            <li><%= sound.maxFrec %> Hz</li>
-            <li><%= sound.minInt %> dB</li>
-            <li><%= sound.maxInt %> dB</li>
-            <li>
-                <% function capitalizeFirstLetter(string) { %>
-                <%    return string.charAt(0).toUpperCase() + string.slice(1); %>
-                <%  } %>
-                <%= capitalizeFirstLetter(sound.category) %>
-            </li>
-        </ul>
+        <div class="card m-auto" style="width: 18rem;">
+            <div class="card-header"><%= sound.name %></div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><%= sound.minFrec %> Hz</li>
+                <li class="list-group-item"><%= sound.maxFrec %> Hz</li>
+                <li class="list-group-item"><%= sound.minInt %> dB</li>
+                <li class="list-group-item"><%= sound.maxInt %> dB</li>
+                <li class="list-group-item">
+                    <% function capitalizeFirstLetter(string) { %>
+                    <%    return string.charAt(0).toUpperCase() + string.slice(1); %>
+                    <%  } %>
+                    <%= capitalizeFirstLetter(sound.category) %>
+                </li>
+            </ul>
+        </div>
         <div>
-            <audio controls>
+            <audio class="my-3" controls>
                 <source src="<%= sound.audio %>" type="audio/mpeg">
             Your browser does not support the audio element.
             </audio>
         </div>
         <form action="/sounds/show/<%= sound._id %>?_method=DELETE" method="POST">
-            <button type="submit" class="btn btn-success">Eliminar</button>
+            <button type="submit" class="btn btn-success mb-3">Eliminar</button>
         </form>
     <a class="link-success" href="/sounds/show/<%= sound._id %>/edit">Editar</a>
     <a class="link-success" href="/sounds">Todos</a>

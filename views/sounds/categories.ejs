@@ -1,9 +1,9 @@
 <% layout("layouts/boilerplate") %>
-<section class="m-auto">
-    <h1 class="text-center">Categorías</h1>
-    <ul>
+<div class="card m-auto" style="width: 18rem;">
+    <div class="card-header">Categorías</div>
+    <ul class="list-group list-group-flush">
         <% for(let categ of categs) { %>
-            <li><a class="link-success" href="/sounds/<%= categ %>">
+            <li class="list-group-item"><a class="link-success" href="/sounds/<%= categ %>">
                 <% function capitalizeFirstLetter(string) { %>
                 <%    return string.charAt(0).toUpperCase() + string.slice(1); %>
                 <%  } %>
@@ -11,6 +11,8 @@
             </a></li>
         <% }  %>
     </ul>
-    <a class="link-success" href="/sounds">Todos</a>
-    <a class="link-success" href="/sounds/new">Crear</a>
-</section>
+    <div class="card-footer">
+        <a class="link-success" href="/sounds">Todos</a>
+        <a class="link-success" href="/sounds/new">Crear</a>
+    </div>
+</div>
