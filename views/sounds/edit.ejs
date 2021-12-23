@@ -1,11 +1,12 @@
 <% layout("layouts/boilerplate") %>
 <section class="m-auto">
     <h1 class="mb-4">Edita un sonido existente</h1>
-    <form action="/sounds/show/<%=sound._id%>?_method=PUT" method="POST"><!--Para usar DELETE EDIT con method override-->
+    <form action="/sounds/show/<%=sound._id%>?_method=PUT" method="POST" novalidate class="validated-form"><!--Para usar DELETE EDIT con method override/NOVALIDATE para usar o validador de bootstrap--> 
         <div class="row mb-3">
             <label for="name" class="col-sm-2 col-form-label">Nombre:</label>
             <div class="col-sm-10">
                 <input type="text" id="name" placeholder="Sonido" name="sound[name]" class="form-control" required value="<%= sound.name %>">
+                <div class="valid-feedback">Válido!</div>
             </div>
         </div>
         <div class="row g-2 mb-3">
@@ -35,7 +36,8 @@
         <div class="row mb-3">
             <label for="category" class="col-sm-2 col-form-label">Categoría:</label>
             <div class="col-sm-10">
-            <select id="category" name="sound[category]" class="form-select" required>       
+            <select id="category" name="sound[category]" class="form-select" required>
+                <option disabled selected value>Selecciona la categoría</option>       
                 <% for(c = 0; c < Categories.length; c++) { %>
                     <option value="<%= Categories[c] %>"><%= Categories[c] %></option>
                 <% } %>
