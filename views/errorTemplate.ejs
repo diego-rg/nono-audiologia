@@ -1,0 +1,9 @@
+<% layout("layouts/boilerplate") %>
+<section class="d-flex flex-column align-items-center justify-content-center">
+    <div class="d-flex flex-column alert alert-danger" role="alert">
+        <h4 class="alert-heading text-center"><%= err.message %></h4>
+        <img src="https://media2.giphy.com/media/Rkis28kMJd1aE/giphy.gif?cid=ecf05e47jy6i2w90zf3cu7hbc5cy9vq6xhe7r7i021yd1bra&rid=giphy.gif&ct=g" 
+        class="d-block m-auto py-3" alt="Angry worker gif">
+        <h4 class="alert-heading text-center">Error <%= err.status %></h4>
+  </div>
+</section>

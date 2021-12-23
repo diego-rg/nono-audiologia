@@ -3,8 +3,10 @@ const path = require("path");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 const catchAsync = require("./utilities/catchAsync");
+const ExpressError = require("./utilities/ExpressError");
 const methodOverride = require("method-override");
 const { Sound, Categories } = require("./models/sound");//Requerimos as dúas constantes de sound (para modelo e categorías)
+const res = require("express/lib/response");
 
 mongoose.connect('mongodb://localhost:27017/nono', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -54,6 +56,7 @@ app.get("/sounds/new", (req, res) => {
 });
 
 app.post("/sounds", catchAsync(async (req, res) => {
+    if(!req.body.sound) throw new ExpressError("Los datos introducidos no son válidos", 400);//Por si salta a validación da form (ej: usando postman)
     const sound = new Sound(req.body.sound);//requiere extended: true
     await sound.save();
     res.redirect(`/sounds/show/${sound._id}`);
@@ -91,10 +94,16 @@ app.delete("/sounds/show/:id", catchAsync(async (req, res) => {
     res.redirect("/sounds");
 }));
 
+//Error 404 para TODOS os path que non existen (NON conta as ids, solo path base). Debe ir ao final. COn next pasa ao siguiente
+app.all("*", (req, res, next) => {
+    next(new ExpressError("La página que buscas no existe", 404));
+});
 
-//Base error handler
+//Base error handler. Encadena desde o anterior app.all. Levan valores por defecto por si acaso, no caso de message é condicional
 app.use((err, req, res, next) => {
-    res.send("There was an error!WOW!");
+    const { status = 500 } = err;
+   if(!err.message) err.message = "Ha habido un problema al cargar la página";
+    res.status(status).render("errorTemplate", { err });
 });
 
 
