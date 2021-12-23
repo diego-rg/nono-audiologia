@@ -84,7 +84,6 @@ app.put("/sounds/show/:id", catchAsync(async (req, res) => {
     res.redirect(`/sounds/show/${sound._id}`);
 }));
 
-
 //Delete
 app.delete("/sounds/show/:id", catchAsync(async (req, res) => {
     const { id } = req.params;
