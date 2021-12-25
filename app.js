@@ -5,8 +5,11 @@ const ejsMate = require("ejs-mate");
 const catchAsync = require("./utilities/catchAsync");
 const ExpressError = require("./utilities/ExpressError");
 const methodOverride = require("method-override");
+const Joi = require("joi");
 const { Sound, Categories } = require("./models/sound");//Requerimos as dúas constantes de sound (para modelo e categorías)
 const res = require("express/lib/response");
+const { resourceLimits } = require("worker_threads");
+const { valid } = require("joi");
 
 mongoose.connect('mongodb://localhost:27017/nono', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -56,7 +59,22 @@ app.get("/sounds/new", (req, res) => {
 });
 
 app.post("/sounds", catchAsync(async (req, res) => {
-    if(!req.body.sound) throw new ExpressError("Los datos introducidos no son válidos", 400);//Por si salta a validación da form (ej: usando postman)
+    // if(!req.body.sound) throw new ExpressError("Los datos introducidos no son válidos", 400);//Por si salta a validación da form (ej: usando postman)
+    const joiSoundSchema = Joi.object({
+        sound: Joi.object({
+            name: Joi.string().required(),
+            minFrec: Joi.number().required().min(0),
+            maxFrec: Joi.number().required().min(0),
+            minInt: Joi.number().required().min(0),
+            maxInt: Joi.number().required().min(0),
+            category: Joi.string().valid("hogar", "naturaleza", "conversación", "ocio", "lugares", "ciudad")
+        }).required()
+    });
+    const validation = joiSoundSchema.validate(req.body);
+    if(validation.error) {
+        const errorMsg = validation.error.details.map(msg => msg.message).join(",");//Como Joi mete os detalles do error nun array de objetos, hai q sacalo para enseñalo
+        throw new ExpressError(errorMsg, 400);
+    };
     const sound = new Sound(req.body.sound);//requiere extended: true
     await sound.save();
     res.redirect(`/sounds/show/${sound._id}`);
