@@ -5,11 +5,9 @@ const ejsMate = require("ejs-mate");
 const catchAsync = require("./utilities/catchAsync");
 const ExpressError = require("./utilities/ExpressError");
 const methodOverride = require("method-override");
-const Joi = require("joi");
+const Joi = require("joi");//Non faría falta xa ao usalo e exportalo de validationSchemas
 const { Sound, Categories } = require("./models/sound");//Requerimos as dúas constantes de sound (para modelo e categorías)
-const res = require("express/lib/response");
-const { resourceLimits } = require("worker_threads");
-const { valid } = require("joi");
+const joiSoundSchema = require("./validationSchemas");
 
 mongoose.connect('mongodb://localhost:27017/nono', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -29,13 +27,16 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));//Para req.body en CREATE
 app.use(methodOverride("_method"));//Para poder crear DELETE e UPDATE/EDIT
 
-// //Facer sons desde a web a mongo
-// app.get("/makesound", async (req, res) => {
-//     const sound = new Sound({name: "Can", minFrec: 500, maxFrec: 400, minInt: 40, maxInt: 50, category: "Naturaleza"});
-//     await sound.save();
-//     res.send(sound);
-
-// })
+//Sacamos a validación Server-Side con Joi para unha función e pasámola nas rutas de post e editar
+const joiValidation = (req, res, next) => {
+    const validation = joiSoundSchema.validate(req.body);
+    if(validation.error) {
+        const errorMsg = validation.error.details.map(msg => msg.message).join(",");//Como Joi mete os detalles do error nun array de objetos, hai q sacalo para enseñalo
+        throw new ExpressError(errorMsg, 400);
+    } else {
+        next();
+    };
+};
 
 app.get("/home", (req, res) => {
     res.render("sounds/home");
@@ -58,23 +59,8 @@ app.get("/sounds/new", (req, res) => {
     res.render("sounds/new", { Categories });
 });
 
-app.post("/sounds", catchAsync(async (req, res) => {
+app.post("/sounds", joiValidation, catchAsync(async (req, res) => {
     // if(!req.body.sound) throw new ExpressError("Los datos introducidos no son válidos", 400);//Por si salta a validación da form (ej: usando postman)
-    const joiSoundSchema = Joi.object({
-        sound: Joi.object({
-            name: Joi.string().required(),
-            minFrec: Joi.number().required().min(0),
-            maxFrec: Joi.number().required().min(0),
-            minInt: Joi.number().required().min(0),
-            maxInt: Joi.number().required().min(0),
-            category: Joi.string().valid("hogar", "naturaleza", "conversación", "ocio", "lugares", "ciudad")
-        }).required()
-    });
-    const validation = joiSoundSchema.validate(req.body);
-    if(validation.error) {
-        const errorMsg = validation.error.details.map(msg => msg.message).join(",");//Como Joi mete os detalles do error nun array de objetos, hai q sacalo para enseñalo
-        throw new ExpressError(errorMsg, 400);
-    };
     const sound = new Sound(req.body.sound);//requiere extended: true
     await sound.save();
     res.redirect(`/sounds/show/${sound._id}`);
@@ -99,7 +85,7 @@ app.get("/sounds/show/:id/edit", catchAsync(async (req, res) => {
     res.render("sounds/edit", { sound, Categories });
 }));
 
-app.put("/sounds/show/:id", catchAsync(async (req, res) => {
+app.put("/sounds/show/:id", joiValidation, catchAsync(async (req, res) => {
     const { id } = req.params;
     const sound = await Sound.findByIdAndUpdate(id, { ...req.body.sound });
     res.redirect(`/sounds/show/${sound._id}`);
