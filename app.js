@@ -9,7 +9,6 @@ const Joi = require("joi");//Non faría falta xa ao usalo e exportalo de validat
 const { Sound, Categories } = require("./models/sound");//Requerimos as dúas constantes de sound (para modelo e categorías)
 const joiSoundSchema = require("./validationSchemas");
 const soundsRoutes = require("./routes/sounds");//Importamos as rutas
-const categoriesRoutes = require("./routes/categories");//Importamos as rutas
 
 mongoose.connect('mongodb://localhost:27017/nono', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -29,7 +28,6 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));//Para req.body en CREATE
 app.use(methodOverride("_method"));//Para poder crear DELETE e UPDATE/EDIT
 app.use("/sounds", soundsRoutes);//Activamos as rutas
-app.use("/categories", categoriesRoutes);//Activamos as rutas
 
 app.get("/home", (req, res) => {
     res.render("sounds/home");
@@ -40,16 +38,12 @@ app.all("*", (req, res, next) => {
     next(new ExpressError("La página que buscas no existe", 404));
 });
 
-
-
 //Base error handler. Encadena desde o anterior app.all. Levan valores por defecto por si acaso, no caso de message é condicional
 app.use((err, req, res, next) => {
     const { status = 500 } = err;
    if(!err.message) err.message = "Ha habido un problema al cargar la página";
     res.status(status).render("errorTemplate", { err });
 });
-
-
 
 app.listen(3000, () => {
     console.log("Listening on port 3000");

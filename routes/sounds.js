@@ -60,4 +60,19 @@ router.delete("/:id", catchAsync(async (req, res) => {
     res.redirect("/sounds");
 }));
 
+//Ver todas as categorías
+router.get("./?category=Hogar", catchAsync(async (req, res) => {
+    const categs = await Categories;
+    res.render("sounds/categories", { categs });
+}));
+
+//Ver sons de cada categoría
+router.get("/category", catchAsync(async (req, res) => {
+    const sounds = await Sound.find({ category: req.params.category }).sort({ name: "asc"});//Añadimos sort para orden alfabético
+    const categSounds = req.params.category;//Pasamos como variable a categoría que corresponde para eseñala no correspondente ejs
+    res.render("sounds/category", { sounds, categSounds });
+}));
+
+
+
 module.exports = router;
