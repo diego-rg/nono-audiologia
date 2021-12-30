@@ -17,10 +17,10 @@
             Lo sentimos, tu navegador de internet no soporta los elementos de audio.
             </audio>
         </div>
-        <form action="/sounds/show/<%= sound._id %>?_method=DELETE" method="POST">
+        <form action="/sounds/<%= sound._id %>?_method=DELETE" method="POST">
             <button type="submit" class="btn btn-success mb-3">Eliminar</button>
         </form>
-    <a class="link-success" href="/sounds/show/<%= sound._id %>/edit">Editar</a>
+    <a class="link-success" href="/sounds/<%= sound._id %>/edit">Editar</a>
     <a class="link-success" href="/sounds">Todos</a>
     <a class="link-success" href="/categories">Categorías</a>   
     </section>

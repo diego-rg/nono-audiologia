@@ -29,19 +29,6 @@ app.use(express.urlencoded({ extended: true }));//Para req.body en CREATE
 app.use(methodOverride("_method"));//Para poder crear DELETE e UPDATE/EDIT
 app.use("/sounds", soundsRoutes);//Activamos as rutas
 
-
-
-//Sacamos a validación Server-Side con Joi para unha función e pasámola nas rutas de post e editar
-const joiValidation = (req, res, next) => {
-    const validation = joiSoundSchema.validate(req.body);
-    if(validation.error) {
-        const errorMsg = validation.error.details.map(msg => msg.message).join(",");//Como Joi mete os detalles do error nun array de objetos, hai q sacalo para enseñalo
-        throw new ExpressError(errorMsg, 400);
-    } else {
-        next();
-    };
-};
-
 app.get("/home", (req, res) => {
     res.render("sounds/home");
 });
