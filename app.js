@@ -9,6 +9,7 @@ const Joi = require("joi");//Non faría falta xa ao usalo e exportalo de validat
 const { Sound, Categories } = require("./models/sound");//Requerimos as dúas constantes de sound (para modelo e categorías)
 const joiSoundSchema = require("./validationSchemas");
 const soundsRoutes = require("./routes/sounds");//Importamos as rutas
+const categoriesRoutes = require("./routes/categories");//Importamos as rutas
 
 mongoose.connect('mongodb://localhost:27017/nono', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -28,6 +29,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));//Para req.body en CREATE
 app.use(methodOverride("_method"));//Para poder crear DELETE e UPDATE/EDIT
 app.use("/sounds", soundsRoutes);//Activamos as rutas
+app.use("/categories", categoriesRoutes);//Activamos as rutas
 
 app.get("/home", (req, res) => {
     res.render("sounds/home");

@@ -16,12 +16,6 @@ const joiValidationSounds = (req, res, next) => {
     };
 };
 
-//Ver todas as categorías
-// router.get("/categories", catchAsync(async (req, res) => {
-//     const categs = await Categories;
-//     res.render("sounds/categories", { categs });
-// }));
-
 //INDEX ROUTE. Ver todos os sons
 router.get("/", catchAsync(async (req, res, next) => {
     const sounds = await Sound.find({}).sort({ name: "asc"});//Añadimos sort para orden alfabético
@@ -40,13 +34,6 @@ router.post("/", joiValidationSounds, catchAsync(async (req, res) => {
     res.redirect(`/sounds/${sound._id}`);
 }));
 
-//Ver sons de cada categoría
-// router.get("/:category", catchAsync(async (req, res) => {
-//     const sounds = await Sound.find({ category: req.params.category }).sort({ name: "asc"});//Añadimos sort para orden alfabético
-//     const CategSounds = req.params.category;//Pasamos como variable a categoría que corresponde para eseñala no correspondente ejs
-//     res.render("sounds/category", { sounds, CategSounds });
-// }));
-
 //SHOW ROUTE. Ver cada son
 router.get("/:id", catchAsync(async (req, res, next) => {
     const sound = await Sound.findById(req.params.id);
@@ -63,7 +50,7 @@ router.get("/:id/edit", catchAsync(async (req, res) => {
 router.put("/:id", joiValidationSounds, catchAsync(async (req, res) => {
     const { id } = req.params;
     const sound = await Sound.findByIdAndUpdate(id, { ...req.body.sound });
-    res.redirect(`/sounds/show/${sound._id}`);
+    res.redirect(`/sounds/${sound._id}`);
 }));
 
 //DESTROY ROUTE. Elimina un son. Usa post modificado con method-override.
