@@ -2,13 +2,9 @@
 <div class="card m-auto" style="width: 18rem;">
     <div class="card-header">Categorías</div>
     <ul class="list-group list-group-flush">
+        <!--Loop para sacar a lista de enlaces de todas as categorías-->
         <% for(let categ of categs) { %>
-            <li class="list-group-item"><a class="link-success" href="/sounds/<%= categ %>">
-                <% function capitalizeFirstLetter(string) { %>
-                <%    return string.charAt(0).toUpperCase() + string.slice(1); %>
-                <%  } %>
-                <%= capitalizeFirstLetter(categ) %>
-            </a></li>
+            <li class="list-group-item"><a class="link-success" href="/sounds/<%= categ %>"><%= categ %></a></li>
         <% }  %>
     </ul>
     <div class="card-footer">

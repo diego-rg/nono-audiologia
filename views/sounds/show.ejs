@@ -8,18 +8,13 @@
                 <li class="list-group-item"><%= sound.maxFrec %> Hz</li>
                 <li class="list-group-item"><%= sound.minInt %> dB</li>
                 <li class="list-group-item"><%= sound.maxInt %> dB</li>
-                <li class="list-group-item">
-                    <% function capitalizeFirstLetter(string) { %>
-                    <%    return string.charAt(0).toUpperCase() + string.slice(1); %>
-                    <%  } %>
-                    <%= capitalizeFirstLetter(sound.category) %>
-                </li>
+                <li class="list-group-item"><%= sound.category %></li>
             </ul>
         </div>
         <div>
             <audio class="my-3" controls>
                 <source src="<%= sound.audio %>" type="audio/mpeg">
-            Your browser does not support the audio element.
+            Lo sentimos, tu navegador de internet no soporta los elementos de audio.
             </audio>
         </div>
         <form action="/sounds/show/<%= sound._id %>?_method=DELETE" method="POST">

@@ -1,3 +1,4 @@
+//Schema para os sons da nosa DB nono
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -24,9 +25,8 @@ const SoundSchema = new Schema({
     },
     category: {
         type: String,
-        lowercase: true,
         required: true,
-        enum: ["hogar", "naturaleza", "conversación", "ocio", "lugares", "ciudad"]
+        enum: ["Hogar", "Naturaleza", "Conversación", "Ocio", "Lugares", "Ciudad"]
     },
     audio: {
         type: String

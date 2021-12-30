@@ -37,7 +37,7 @@
             <label for="category" class="col-sm-2 col-form-label">Categoría:</label>
             <div class="col-sm-10">
             <select id="category" name="sound[category]" class="form-select" required>
-                <option disabled selected value>Selecciona la categoría</option>       
+                <option disabled selected value>Selecciona la categoría</option>
                 <% for(c = 0; c < Categories.length; c++) { %>
                     <option value="<%= Categories[c] %>"><%= Categories[c] %></option>
                 <% } %>

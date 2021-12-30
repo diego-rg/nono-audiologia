@@ -1,12 +1,10 @@
 <% layout("layouts/boilerplate") %>
 <div class="card m-auto" style="width: 18rem;">
     <div class="card-header">
-        <% function capitalizeFirstLetter(string) { %>
-        <%    return string.charAt(0).toUpperCase() + string.slice(1); %>
-        <%  } %>
-        <%= capitalizeFirstLetter(CategSounds) %>
+        <%= CategSounds %>
     </div>
     <ul class="list-group list-group-flush">
+        <!--Loop para facer unha lista de enlaces aos sons nesa categoría-->
         <% for(let sound of sounds) { %>
             <li class="list-group-item"><a class="link-success" href="/sounds/show/<%= sound._id %>"><%= sound.name %></a></li>
         <% }  %>
