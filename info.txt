@@ -1,0 +1,14 @@
+Node: entorno de execución
+Express: framework backend
+MongoDB: base de datos
+Nodemon: npm para reiniciar Node
+Postman: testeo de API REST
+EJS: templating
+EJS-mate: boilerplates
+REST routing
+Method-override: para PUT e DELETE
+Mongosh: shell de mongoDB
+MongoCompass: interfaz gráfica de MongoDB
+Mongoose: queries, validations, ...
+Bootstrap: frontend e validación no client-side
+Joi: validacións no server-side
