@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router();
+const router = express.Router();//En caso de ter avrias rutas, e que unha requira req.params de outra, hai que especificar express.Router({ mergeParams: true })
 const catchAsync = require("../utilities/catchAsync");
 const ExpressError = require("../utilities/ExpressError");
 const { Sound, Categories } = require("../models/sound");
@@ -31,8 +31,8 @@ router.get("/categories", catchAsync(async (req, res) => {
 //Ver sons de cada categoría
 router.get("/categories/:category", catchAsync(async (req, res) => {
     const sounds = await Sound.find({ category: req.params.category }).sort({ name: "asc"});//Añadimos sort para orden alfabético
-    const categSounds = req.params.category;//Pasamos como variable a categoría que corresponde para eseñala no correspondente ejs
-    res.render("sounds/category", { sounds, categSounds });
+    const soundCategory = req.params.category;//Pasamos como variable a categoría que corresponde para eseñala no correspondente ejs
+    res.render("sounds/category", { sounds, soundCategory });
 }));
 
 //NEW ROUTE. Envía a form para crear sons
@@ -50,15 +50,15 @@ router.post("/", joiValidationSounds, catchAsync(async (req, res) => {
 //SHOW ROUTE. Ver cada son
 router.get("/categories/:category/:id", catchAsync(async (req, res, next) => {
     const sound = await Sound.findById(req.params.id);
-    const categSounds = req.params.category;
-    res.render("sounds/show", { sound, categSounds });
+    const soundCategory = req.params.category;
+    res.render("sounds/show", { sound, soundCategory });
 }));
 
 //EDIT ROUTE. Envía a form para editar sons
 router.get("/categories/:category/:id/edit", catchAsync(async (req, res) => {
     const sound = await Sound.findById(req.params.id);
-    const categSounds = req.params.category;
-    res.render("sounds/edit", { sound, Categories, categSounds });
+    const soundCategory = req.params.category;
+    res.render("sounds/edit", { sound, Categories, soundCategory });
 }));
 //UPDATE ROUTE. Modifica o son no server. Usa post modificado con method-override. (PUT: "completo": envía un novo obxecto enteiro (se faltan datos quedan vacíos, devolve null (ej se falta name devolve name: null)).
 //PATCH: "parcial": envía só o modificado (se non se inclúen todos os datos, usa os que había antes en vez de "mandalos vacíos coma PUT)). Neste caso PUT xa que modificamos todo na form?

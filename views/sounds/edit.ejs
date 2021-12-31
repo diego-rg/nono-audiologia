@@ -2,7 +2,7 @@
 <section class="m-auto">
     <h1 class="mb-4">Edita un sonido existente</h1>
 
-    <form action="/sounds/categories/<%=categSounds%>/<%= sound._id %>?_method=PUT" method="POST" novalidate class="validated-form"><!--Para usar DELETE EDIT con method override/NOVALIDATE para usar o validador de bootstrap--> 
+    <form action="/sounds/categories/<%=soundCategory%>/<%= sound._id %>?_method=PUT" method="POST" novalidate class="validated-form"><!--Para usar DELETE EDIT con method override/NOVALIDATE para usar o validador de bootstrap--> 
         <div class="row mb-3">
             <label for="name" class="col-sm-2 col-form-label">Nombre:</label>
             <div class="col-sm-10">
@@ -69,5 +69,5 @@
         <button type="reset" class="btn btn-success">Limpiar</button>
     </form>
 
-    <a class="link-success" href="/sounds/categories/<%=categSounds%>/<%= sound._id %>">Atrás</a>
+    <a class="link-success" href="/sounds/categories/<%=soundCategory%>/<%= sound._id %>">Atrás</a>
 </section>
