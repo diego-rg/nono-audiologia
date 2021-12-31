@@ -28,6 +28,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));//Para req.body en CREATE
 app.use(methodOverride("_method"));//Para poder crear DELETE e UPDATE/EDIT
 app.use("/sounds", soundsRoutes);//Activamos as rutas
+app.use(express.static(path.join(__dirname, "public")));//Fai que a carpeta para servir imágenes, scripts, audio etc sea public por defecto
 
 app.get("/", (req, res) => {
     res.render("sounds/home");
