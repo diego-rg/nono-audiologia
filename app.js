@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: true }));//Para req.body en CREATE
 app.use(methodOverride("_method"));//Para poder crear DELETE e UPDATE/EDIT
 app.use("/sounds", soundsRoutes);//Activamos as rutas
 
-app.get("/home", (req, res) => {
+app.get("/", (req, res) => {
     res.render("sounds/home");
 });
 

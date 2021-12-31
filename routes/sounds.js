@@ -61,7 +61,7 @@ router.delete("/:id", catchAsync(async (req, res) => {
 }));
 
 //Ver todas as categorías
-router.get("./?category=Hogar", catchAsync(async (req, res) => {
+router.get("/categories", catchAsync(async (req, res) => {
     const categs = await Categories;
     res.render("sounds/categories", { categs });
 }));
