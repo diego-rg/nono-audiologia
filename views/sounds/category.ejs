@@ -6,11 +6,12 @@
     <ul class="list-group list-group-flush">
         <!--Loop para facer unha lista de enlaces aos sons nesa categoría-->
         <% for(let sound of sounds) { %>
-            <li class="list-group-item"><a class="link-success" href="/sounds/<%= sound._id %>"><%= sound.name %></a></li>
+            <li class="list-group-item"><a class="link-success" href="/sounds/categories/<%=categSounds%>/<%= sound._id %>"><%= sound.name %></a></li>
         <% }  %>
     </ul>
     <div class="card-footer">
-        <a class="link-success" href="/sounds">Todos</a>
-        <a class="link-success" href="/categories">Categorías</a>
+        <a class="link-success" href="/sounds">Sonidos</a>
+        <a class="link-success" href="/sounds/categories">Categorías</a>
+        <a class="link-success" href="/sounds/new">Añadir</a>
     </div>
 </div>

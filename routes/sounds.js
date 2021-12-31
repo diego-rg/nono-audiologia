@@ -22,6 +22,19 @@ router.get("/", catchAsync(async (req, res, next) => {
     res.render("sounds/sounds", { sounds });
 }));
 
+//Ver todas as categorías
+router.get("/categories", catchAsync(async (req, res) => {
+    const categs = await Categories;
+    res.render("sounds/categories", { categs });
+}));
+
+//Ver sons de cada categoría
+router.get("/categories/:category", catchAsync(async (req, res) => {
+    const sounds = await Sound.find({ category: req.params.category }).sort({ name: "asc"});//Añadimos sort para orden alfabético
+    const categSounds = req.params.category;//Pasamos como variable a categoría que corresponde para eseñala no correspondente ejs
+    res.render("sounds/category", { sounds, categSounds });
+}));
+
 //NEW ROUTE. Envía a form para crear sons
 router.get("/new", (req, res) => {
     res.render("sounds/new", { Categories });
@@ -31,48 +44,35 @@ router.post("/", joiValidationSounds, catchAsync(async (req, res) => {
     // if(!req.body.sound) throw new ExpressError("Los datos introducidos no son válidos", 400);//Por si salta a validación da form (ej: usando postman)
     const sound = new Sound(req.body.sound);//requiere extended: true
     await sound.save();
-    res.redirect(`/sounds/${sound._id}`);
+    res.redirect(`/sounds/categories/:category/${sound._id}`);
 }));
 
 //SHOW ROUTE. Ver cada son
-router.get("/:id", catchAsync(async (req, res, next) => {
+router.get("/categories/:category/:id", catchAsync(async (req, res, next) => {
     const sound = await Sound.findById(req.params.id);
-    res.render("sounds/show", { sound });
+    const categSounds = req.params.category;
+    res.render("sounds/show", { sound, categSounds });
 }));
 
 //EDIT ROUTE. Envía a form para editar sons
-router.get("/:id/edit", catchAsync(async (req, res) => {
+router.get("/categories/:category/:id/edit", catchAsync(async (req, res) => {
     const sound = await Sound.findById(req.params.id);
-    res.render("sounds/edit", { sound, Categories });
+    const categSounds = req.params.category;
+    res.render("sounds/edit", { sound, Categories, categSounds });
 }));
 //UPDATE ROUTE. Modifica o son no server. Usa post modificado con method-override. (PUT: "completo": envía un novo obxecto enteiro (se faltan datos quedan vacíos, devolve null (ej se falta name devolve name: null)).
 //PATCH: "parcial": envía só o modificado (se non se inclúen todos os datos, usa os que había antes en vez de "mandalos vacíos coma PUT)). Neste caso PUT xa que modificamos todo na form?
-router.put("/:id", joiValidationSounds, catchAsync(async (req, res) => {
+router.put("/categories/:category/:id", joiValidationSounds, catchAsync(async (req, res) => {
     const { id } = req.params;
     const sound = await Sound.findByIdAndUpdate(id, { ...req.body.sound });
-    res.redirect(`/sounds/${sound._id}`);
+    res.redirect(`/sounds/categories/:category/${sound._id}`);
 }));
 
 //DESTROY ROUTE. Elimina un son. Usa post modificado con method-override.
-router.delete("/:id", catchAsync(async (req, res) => {
+router.delete("/categories/:category/:id", catchAsync(async (req, res) => {
     const { id } = req.params;
     await Sound.findByIdAndDelete(id);
     res.redirect("/sounds");
 }));
-
-//Ver todas as categorías
-router.get("/categories", catchAsync(async (req, res) => {
-    const categs = await Categories;
-    res.render("sounds/categories", { categs });
-}));
-
-//Ver sons de cada categoría
-router.get("/category", catchAsync(async (req, res) => {
-    const sounds = await Sound.find({ category: req.params.category }).sort({ name: "asc"});//Añadimos sort para orden alfabético
-    const categSounds = req.params.category;//Pasamos como variable a categoría que corresponde para eseñala no correspondente ejs
-    res.render("sounds/category", { sounds, categSounds });
-}));
-
-
 
 module.exports = router;

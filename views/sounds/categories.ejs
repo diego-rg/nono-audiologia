@@ -4,11 +4,11 @@
     <ul class="list-group list-group-flush">
         <!--Loop para sacar a lista de enlaces de todas as categorías-->
         <% for(let categ of categs) { %>
-            <li class="list-group-item"><a class="link-success" href="/sounds/<%= categ %>"><%= categ %></a></li>
+            <li class="list-group-item"><a class="link-success" href="/sounds/categories/<%= categ %>"><%= categ %></a></li>
         <% }  %>
     </ul>
     <div class="card-footer">
-        <a class="link-success" href="/sounds">Todos</a>
-        <a class="link-success" href="/sounds/new">Crear</a>
+        <a class="link-success" href="/sounds">Sonidos</a>
+        <a class="link-success" href="/sounds/new">Añadir</a>
     </div>
 </div>
