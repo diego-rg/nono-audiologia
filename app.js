@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
+const session = require("express-session");
 const catchAsync = require("./utilities/catchAsync");
 const ExpressError = require("./utilities/ExpressError");
 const methodOverride = require("method-override");
@@ -29,6 +30,18 @@ app.use(express.urlencoded({ extended: true }));//Para req.body en CREATE
 app.use(methodOverride("_method"));//Para poder crear DELETE e UPDATE/EDIT
 app.use("/sounds", soundsRoutes);//Activamos as rutas
 app.use(express.static(path.join(__dirname, "public")));//Fai que a carpeta para servir imágenes, scripts, audio etc sea public por defecto
+
+const sessionConfig = {
+    secret: "secretSecret",                     //Clave que debe estar nunha variable de entorno por seguridad
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,                         //Seguridad. Evitar que os scripts do client-side poidan acceder ás cookies protegidas
+        expires: Date.now() + 1000*60*60*24*7,  //configura cando expira en milisegundos: 1000= 1seg, *60= 1 min etc
+        maxAge: 1000*60*60*24*7                 //antigüedad máxima
+    }
+};
+app.use(session(sessionConfig));
 
 app.get("/", (req, res) => {
     res.render("sounds/home");
