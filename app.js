@@ -66,7 +66,7 @@ app.all("*", (req, res, next) => {
 //Base error handler. Encadena desde o anterior app.all. Levan valores por defecto por si acaso, no caso de message é condicional
 app.use((err, req, res, next) => {
     const { status = 500 } = err;
-   if(!err.message) err.message = "Ha habido un problema al cargar la página.";
+    if(!err.message) err.message = "Ha habido un problema al cargar la página.";
     res.status(status).render("errorTemplate", { err });
 });
 

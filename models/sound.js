@@ -11,26 +11,26 @@ const SoundSchema = new Schema({
     minFrec: {
         type: Number,
         required: true,
-        min: 20,
-        max: 20000
+        min: [20, "El valor de la frecuencia debe estar entre 20 y 20.000 Hz"],
+        max: [20000, "El valor de la frecuencia debe estar entre 20 y 20.000 Hz"]
     },
     maxFrec:{
         type: Number,
         required: true,
-        min: 20,
-        max: 20000
+        min: [20, "El valor de la frecuencia debe estar entre 20 y 20.000 Hz"],
+        max: [20000, "El valor de la frecuencia debe estar entre 20 y 20.000 Hz"]
     },
     minInt:{
         type: Number,
         required: true,
-        min: 0,
-        max: 200
+        min: [0, "El valor de la intensidad debe estar entre 0 y 200 dB"],
+        max: [200, "El valor de la intensidad debe estar entre 0 y 200 dB"]
     },
     maxInt:{
         type: Number,
         required: true,
-        min: 0,
-        max: 200
+        min: [0, "El valor de la intensidad debe estar entre 0 y 200 dB"],
+        max: [200, "El valor de la intensidad debe estar entre 0 y 200 dB"]
     },
     category: {
         type: String,
