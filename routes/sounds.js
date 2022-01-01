@@ -53,7 +53,6 @@ router.post("/", joiValidationSounds, catchAsync(async (req, res) => {
 router.get("/categories/:category/:id", catchAsync(async (req, res, next) => {
     const sound = await Sound.findById(req.params.id);
     const soundCategory = req.params.category;
-    console.log(sound)
     if(!sound) {//Solo funciona cando a id foi eliminada ou cando  podería ser válida?
         req.flash("error", "El sonido que indica no existe.")
         return res.redirect("/sounds");
