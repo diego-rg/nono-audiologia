@@ -10,19 +10,27 @@ const SoundSchema = new Schema({
     },
     minFrec: {
         type: Number,
-        required: true
+        required: true,
+        min: 20,
+        max: 20000
     },
     maxFrec:{
         type: Number,
-        required: true
+        required: true,
+        min: 20,
+        max: 20000
     },
     minInt:{
         type: Number,
-        required: true
+        required: true,
+        min: 0,
+        max: 200
     },
     maxInt:{
         type: Number,
-        required: true
+        required: true,
+        min: 0,
+        max: 200
     },
     category: {
         type: String,
