@@ -3,6 +3,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 const session = require("express-session");
+const flash = require("connect-flash");
 const catchAsync = require("./utilities/catchAsync");
 const ExpressError = require("./utilities/ExpressError");
 const methodOverride = require("method-override");
@@ -28,7 +29,7 @@ app.set("views", path.join(__dirname, "views"));
 
 app.use(express.urlencoded({ extended: true }));//Para req.body en CREATE
 app.use(methodOverride("_method"));//Para poder crear DELETE e UPDATE/EDIT
-app.use("/sounds", soundsRoutes);//Activamos as rutas
+
 app.use(express.static(path.join(__dirname, "public")));//Fai que a carpeta para servir imágenes, scripts, audio etc sea public por defecto
 
 const sessionConfig = {
@@ -42,6 +43,16 @@ const sessionConfig = {
     }
 };
 app.use(session(sessionConfig));
+app.use(flash());
+
+//Middleware para mensaxes flash nas rutas. Debe ir antes delas
+app.use((req, res, next) => {
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    next();
+});
+
+app.use("/sounds", soundsRoutes);//Activamos as rutas
 
 app.get("/", (req, res) => {
     res.render("sounds/home");

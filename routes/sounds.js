@@ -44,6 +44,7 @@ router.post("/", joiValidationSounds, catchAsync(async (req, res) => {
     // if(!req.body.sound) throw new ExpressError("Los datos introducidos no son válidos", 400);//Por si salta a validación da form (ej: usando postman)
     const sound = new Sound(req.body.sound);//requiere extended: true
     await sound.save();
+    req.flash("success", "Se ha añadido un nuevo sonido");//Mensaxe flash ao crear son correctamente. Hai que pasala pola páxina a onde redirixe a ruta para vela (...:id)
     res.redirect(`/sounds/categories/:category/${sound._id}`);
 }));
 
@@ -51,7 +52,7 @@ router.post("/", joiValidationSounds, catchAsync(async (req, res) => {
 router.get("/categories/:category/:id", catchAsync(async (req, res, next) => {
     const sound = await Sound.findById(req.params.id);
     const soundCategory = req.params.category;
-    res.render("sounds/show", { sound, soundCategory });
+    res.render("sounds/show", { sound, soundCategory }); //Habería que pasar o flasha aquí con , msg: req.flash("success") , pero mellor usar middle
 }));
 
 //EDIT ROUTE. Envía a form para editar sons

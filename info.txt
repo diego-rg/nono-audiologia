@@ -1,7 +1,8 @@
 VisualStudioCode:(autoprefixer, beautify, EJS support, ES lint, GitHub pull request, Live server, npm, npm intelisense)
 Node: entorno de execución
 Express: framework backend
-Express-session: sesiones
+Express-session: sesións
+Connect-flash: mensaxes flash
 MongoDB: base de datos
 Nodemon: npm para reiniciar Node
 Postman: testeo de API REST
