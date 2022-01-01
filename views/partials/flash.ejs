@@ -1,0 +1,15 @@
+<!--Flash en caso de éxito-->
+<% if(success && success.length) { %> <!--Mostra o alert se succes ten contido, xa que existe sempre pero vacío se non hai flash-->
+<div class="alert alert-success text-center alert-dismissible fade show" role="alerrt">
+    <%= success %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<% } %>
+
+<!--Flash en caso de erro-->
+<% if(error && error.length) { %> <!--Mostra o alert se succes ten contido, xa que existe sempre pero vacío se non hai flash-->
+    <div class="alert alert-danger text-center alert-dismissible fade show" role="alerrt">
+        <%= error %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %> 

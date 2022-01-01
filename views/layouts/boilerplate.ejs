@@ -10,7 +10,7 @@
 <body class="d-flex flex-column vh-100">
   <%- include("../partials/navbar") -%> 
   <main class="container m-auto d-flex flex-column vh-100 justify-content-center">
-    <%= success %> 
+    <%- include("../partials/flash") -%> 
     <%- body %> <!--Inserta no body o contido de cada páxina e logo usa o resto de boilerplate comoestructura delas-->
   </main>
   <%- include("../partials/footer") -%> 

@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const router = express.Router();//En caso de ter avrias rutas, e que unha requira req.params de outra, hai que especificar express.Router({ mergeParams: true })
 const catchAsync = require("../utilities/catchAsync");
 const ExpressError = require("../utilities/ExpressError");
@@ -18,7 +19,7 @@ const joiValidationSounds = (req, res, next) => {
 
 //INDEX ROUTE. Ver todos os sons
 router.get("/", catchAsync(async (req, res, next) => {
-    const sounds = await Sound.find({}).sort({ name: "asc"});//Añadimos sort para orden alfabético
+    const sounds = await Sound.find({}).collation({ locale: "es" }).sort({ name: "asc"});//Añadimos sort para orden alfabético e collation para que non distinga minúsculas de maiúsculas
     res.render("sounds/sounds", { sounds });
 }));
 
@@ -44,7 +45,7 @@ router.post("/", joiValidationSounds, catchAsync(async (req, res) => {
     // if(!req.body.sound) throw new ExpressError("Los datos introducidos no son válidos", 400);//Por si salta a validación da form (ej: usando postman)
     const sound = new Sound(req.body.sound);//requiere extended: true
     await sound.save();
-    req.flash("success", "Se ha añadido un nuevo sonido");//Mensaxe flash ao crear son correctamente. Hai que pasala pola páxina a onde redirixe a ruta para vela (...:id)
+    req.flash("success", "Se ha añadido un nuevo sonido.");//Mensaxe flash ao crear son correctamente. Hai que pasala pola páxina a onde redirixe a ruta para vela (...:id)
     res.redirect(`/sounds/categories/:category/${sound._id}`);
 }));
 
@@ -52,6 +53,11 @@ router.post("/", joiValidationSounds, catchAsync(async (req, res) => {
 router.get("/categories/:category/:id", catchAsync(async (req, res, next) => {
     const sound = await Sound.findById(req.params.id);
     const soundCategory = req.params.category;
+    console.log(sound)
+    if(!sound) {//Solo funciona cando a id foi eliminada ou cando  podería ser válida?
+        req.flash("error", "El sonido que indica no existe.")
+        return res.redirect("/sounds");
+    };
     res.render("sounds/show", { sound, soundCategory }); //Habería que pasar o flasha aquí con , msg: req.flash("success") , pero mellor usar middle
 }));
 
@@ -59,6 +65,10 @@ router.get("/categories/:category/:id", catchAsync(async (req, res, next) => {
 router.get("/categories/:category/:id/edit", catchAsync(async (req, res) => {
     const sound = await Sound.findById(req.params.id);
     const soundCategory = req.params.category;
+    if(!sound) {
+        req.flash("error", "El sonido que indica no existe.")
+        return res.redirect("/sounds");
+    };
     res.render("sounds/edit", { sound, Categories, soundCategory });
 }));
 //UPDATE ROUTE. Modifica o son no server. Usa post modificado con method-override. (PUT: "completo": envía un novo obxecto enteiro (se faltan datos quedan vacíos, devolve null (ej se falta name devolve name: null)).
@@ -66,6 +76,11 @@ router.get("/categories/:category/:id/edit", catchAsync(async (req, res) => {
 router.put("/categories/:category/:id", joiValidationSounds, catchAsync(async (req, res) => {
     const { id } = req.params;
     const sound = await Sound.findByIdAndUpdate(id, { ...req.body.sound });
+    if(!sound) {
+        req.flash("error", "El sonido que indica no existe.")
+        return res.redirect("/sounds");
+    };
+    req.flash("success", "Datos del sonido modificados.");
     res.redirect(`/sounds/categories/:category/${sound._id}`);
 }));
 
@@ -73,6 +88,7 @@ router.put("/categories/:category/:id", joiValidationSounds, catchAsync(async (r
 router.delete("/categories/:category/:id", catchAsync(async (req, res) => {
     const { id } = req.params;
     await Sound.findByIdAndDelete(id);
+    req.flash("success", "Sonido eliminado.");
     res.redirect("/sounds");
 }));
 
