@@ -11,6 +11,9 @@ const Joi = require("joi");//Non faría falta xa ao usalo e exportalo de validat
 const { Sound, Categories } = require("./models/sound");//Requerimos as dúas constantes de sound (para modelo e categorías)
 const joiSoundSchema = require("./validationSchemas");
 const soundsRoutes = require("./routes/sounds");//Importamos as rutas
+const passport = require("passport");//Authentication
+const passportLocal = require("passport-local");//Authentication
+const User = require("./models.user");//Requerir o schema de user
 
 mongoose.connect('mongodb://localhost:27017/nono', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -44,6 +47,12 @@ const sessionConfig = {
 };
 app.use(session(sessionConfig));
 app.use(flash());
+
+app.use(passport.initialize());//Authentication. Despois de session
+app.use(passport.session());//Authentication. Despois de session
+passport.use(new passportLocal(User.authenticate()));//Authentication. Despois de session
+passport.serializeUser(User.serializeUser());//métodos de passport
+passport.deserializeUser(User.deserializeUser());//métodos de passport
 
 //Middleware para mensaxes flash nas rutas. Debe ir antes delas
 app.use((req, res, next) => {
