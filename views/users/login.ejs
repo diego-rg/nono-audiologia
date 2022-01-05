@@ -1,0 +1,26 @@
+<% layout("layouts/boilerplate") %>
+<section class="m-auto">
+    <h1 class="mb-4">Introduce tus datos de usuario</h1>
+
+    <form action="/login" method="POST" novalidate class="validated-form"><!--Para non usar validador estándar e usar o de bootstrap. Require función js-->
+        <div class="row g-2 mb-3">
+            <label for="name" class="col-sm-4 col-form-label">Usuario:</label>
+            <div class="col-sm-8">
+                <input type="text" id="username" placeholder="Usuario" name="username" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="row g-2 mb-3">
+            <label for="password" class="col-sm-4 col-form-label">Contraseña:</label>
+            <div class="col-sm-8">
+                <input type="password" id="password" placeholder="**********" name="password" class="form-control" required>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Conectar</button>
+        <button type="reset" class="btn btn-success">Limpiar</button>
+    </form>
+
+    <a class="link-success" href="/sounds">Sonidos</a>
+    <a class="link-success" href="/categories">Categorías</a>
+</section>

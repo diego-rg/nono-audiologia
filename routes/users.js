@@ -3,7 +3,9 @@ const mongoose = require("mongoose");
 const router = express.Router();
 const User = require("../models/user");
 const catchAsync = require("../utilities/catchAsync");
+const passport = require("passport");//Authentication
 
+//Register
 router.get("/register", (req, res) => {
     res.render("users/register");
 })
@@ -27,5 +29,15 @@ router.post("/register", catchAsync(async (req, res) => {
         }
     }
 }))
+
+//Login
+router.get("/login", (req, res) => {
+    res.render("users/login");
+})
+
+router.post("/login", passport.authenticate("local", { failureFlash: true, failureRedirect: "/login" }), (req, res) => {//Middleware de passport. Xa comproba él a authentication
+    req.flash("success", "Bienvenido a NoNo!");
+    res.redirect("/");
+})
 
 module.exports = router;
