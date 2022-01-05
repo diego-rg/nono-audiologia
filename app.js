@@ -11,9 +11,10 @@ const Joi = require("joi");//Non faría falta xa ao usalo e exportalo de validat
 const { Sound, Categories } = require("./models/sound");//Requerimos as dúas constantes de sound (para modelo e categorías)
 const joiSoundSchema = require("./validationSchemas");
 const soundsRoutes = require("./routes/sounds");//Importamos as rutas
+const usersRoutes = require("./routes/users");
 const passport = require("passport");//Authentication
 const passportLocal = require("passport-local");//Authentication
-const User = require("./models.user");//Requerir o schema de user
+const User = require("./models/user");//Requerir o schema de user
 
 mongoose.connect('mongodb://localhost:27017/nono', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -62,6 +63,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/sounds", soundsRoutes);//Activamos as rutas
+app.use("/", usersRoutes);//Deixamos a ruta con / para que sea nono/register solo
 
 app.get("/", (req, res) => {
     res.render("sounds/home");

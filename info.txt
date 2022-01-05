@@ -15,3 +15,4 @@ MongoCompass: interfaz gráfica de MongoDB
 Mongoose: queries, validations, ...
 Bootstrap: frontend e validación no client-side
 Joi: validacións no server-side
+Passport/Passport-local/Passport-local-mongoose": user authentication
