@@ -57,6 +57,9 @@ passport.deserializeUser(User.deserializeUser());//métodos de passport
 
 //Middleware para mensaxes flash nas rutas. Debe ir antes delas
 app.use((req, res, next) => {
+    if(!["/login", "/"].includes(req.originalUrl)) {//Pasamos parte de middleware.js: Ahora sempre te redirixe a última páxina visitada despois de rexistrarte.
+        req.session.returnTo = req.originalUrl;
+    }
     res.locals.currentUser = req.user;//Añadimos ao middle datos sobre o usuario logeado para acceder a eles para o front
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
