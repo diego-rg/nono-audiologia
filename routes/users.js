@@ -14,9 +14,12 @@ router.post("/register", catchAsync(async (req, res) => {
     try{
         const { username, email, password } = req.body;//Destructuramos o que necesitamos do body da form
         const user = new User({ email, username });
-        const registered = await User.register(user, password);
-        req.flash("success", "Bienvenido a NoNo!");
-        res.redirect("/");
+        const registeredUser = await User.register(user, password);
+        req.login(registeredUser, err => {
+            if(err) return next(err);
+            req.flash("success", "Bienvenido a NoNo!");
+            res.redirect("/");
+        })
     } catch(e) {//facemos un error handler extra para avisar se o nome de usuario xa está en uso e traducímolo
         let translatedError;
         if( e.message === "A user with the given username is already registered") {
