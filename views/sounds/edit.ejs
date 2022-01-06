@@ -58,14 +58,16 @@
         <div class="row mb-3">
             <label for="audio" class="col-sm-2 col-form-label">Audio:</label>
             <div class="col-sm-10">
-                <input type="string" id="audio" placeholder="www.sonido.com/sonido" name="sound[audio]" class="form-control" value="<%= sound.audio %>">
+                <input type="string" id="audio" placeholder="www.sonido.com/sonido" name="sound[audio]" class="form-control" aria-describedby="audioHelp" value="<%= sound.audio %>">
+                <small id="audiolHelp" class="form-text text-muted">Recomendado URL audio en formato mp3.</small>
             </div>
         </div>
 
         <div class="row mb-3">
             <label for="image" class="col-sm-2 col-form-label">Imagen:</label>
             <div class="col-sm-10">
-                <input type="string" id="image" placeholder="www.imagen.com/imagen" name="sound[image]" class="form-control" value="<%= sound.image %>">
+                <input type="string" id="image" placeholder="www.imagen.com/imagen" name="sound[image]" class="form-control" aria-describedby="imageHelp" value="<%= sound.image %>">
+                <small id="imagelHelp" class="form-text text-muted">Recomendado URL a imagen de 450 x 200px.</small>
             </div>
         </div>
 
