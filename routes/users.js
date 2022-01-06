@@ -40,7 +40,9 @@ router.get("/login", (req, res) => {
 
 router.post("/login", passport.authenticate("local", { failureFlash: true, failureRedirect: "/login" }), (req, res) => {//Middleware de passport. Xa comproba él a authentication
     req.flash("success", "Bienvenido a NoNo!");
-    res.redirect("/");
+    const redirectUrl = req.session.returnTo || "/";//Usamos o redirectUrl creado no middleware.js para que o devolva a onde estaba ou a /
+    delete req.session.returnTo;//Eliminamos despois de usalo para que non de problemas
+    res.redirect(redirectUrl);//Rediriximos a url na que estaba despois de login
 })
 
 //Logout
