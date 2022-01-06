@@ -18,17 +18,21 @@
       </ul>
     </div>
 
+    <!--Usamos na función de middle de app.js o método de user de passport para enseñar login/register se non logeado, ou salir se logeado-->
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
+        <% if(!currentUser) { %> 
         <li class="nav-item">
           <a class="nav-link" href="/login">Conectarse</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/register">Registro</a>
         </li>
+          <% } else { %>
         <li class="nav-item">
           <a class="nav-link" href="/logout">Salir</a>
         </li>
+        <% } %> 
       </ul>
     </div>
   </div>
