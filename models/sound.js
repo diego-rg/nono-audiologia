@@ -8,6 +8,10 @@ const SoundSchema = new Schema({
         required: true,
         unique: true
     },
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    },
     minFrec: {
         type: Number,
         required: true,

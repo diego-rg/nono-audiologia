@@ -6,6 +6,7 @@ const ExpressError = require("../utilities/ExpressError");
 const { Sound, Categories } = require("../models/sound");
 const joiSoundSchema = require("../validationSchemas");
 const  { isLoggedIn } = require("../middleware");//Se non se garda co const =... hay que destructurar
+const { populate } = require("../models/user");
 
 //Sacamos a validación Server-Side con Joi para unha función e pasámola nas rutas de post e editar
 const joiValidationSounds = (req, res, next) => {
@@ -49,6 +50,7 @@ router.get("/new", isLoggedIn, (req, res) => {
 router.post("/", isLoggedIn, joiValidationSounds, catchAsync(async (req, res) => {
     // if(!req.body.sound) throw new ExpressError("Los datos introducidos no son válidos", 400);//Por si salta a validación da form (ej: usando postman)
     const sound = new Sound(req.body.sound);//requiere extended: true
+    sound.author = req.user._id;
     await sound.save();
     req.flash("success", "Se ha añadido un nuevo sonido.");//Mensaxe flash ao crear son correctamente. Hai que pasala pola páxina a onde redirixe a ruta para vela (...:id)
     res.redirect(`/sounds/categories/:category/${sound._id}`);
@@ -56,7 +58,7 @@ router.post("/", isLoggedIn, joiValidationSounds, catchAsync(async (req, res) =>
 
 //SHOW ROUTE. Ver cada son
 router.get("/categories/:category/:id", catchAsync(async (req, res, next) => {
-    const sound = await Sound.findById(req.params.id);
+    const sound = await Sound.findById(req.params.id).populate("author");//Asociar co author como está no model
     const soundCategory = req.params.category;
     if(!sound) {//Solo funciona cando a id foi eliminada ou cando  podería ser válida?
         req.flash("error", "El sonido que indica no existe.")
