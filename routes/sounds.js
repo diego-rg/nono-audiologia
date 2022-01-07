@@ -81,6 +81,11 @@ router.get("/categories/:category/:id/edit", isLoggedIn, catchAsync(async (req, 
 //PATCH: "parcial": envía só o modificado (se non se inclúen todos os datos, usa os que había antes en vez de "mandalos vacíos coma PUT)). Neste caso PUT xa que modificamos todo na form?
 router.put("/categories/:category/:id", isLoggedIn, joiValidationSounds, catchAsync(async (req, res) => {
     const { id } = req.params;
+    const soundIfAuthor = await Sound.findById(id);
+    if(!soundIfAuthor.author.equals(req.user._id)) {
+        req.flash("error", "No tienes permiso para realizar esta acción.");
+        return res.redirect(`/sounds/categories/:category/${sound._id}`);
+    }
     const sound = await Sound.findByIdAndUpdate(id, { ...req.body.sound });
     if(!sound) {
         req.flash("error", "El sonido que indica no existe.")
