@@ -5,19 +5,9 @@ const catchAsync = require("../utilities/catchAsync");
 const ExpressError = require("../utilities/ExpressError");
 const { Sound, Categories } = require("../models/sound");
 const joiSoundSchema = require("../validationSchemas");
-const  { isLoggedIn } = require("../middleware");//Se non se garda co const =... hay que destructurar
-const { populate } = require("../models/user");
+const  { isLoggedIn, joiValidationSounds, isAuthor } = require("../middleware");//Se non se garda co const =... hay que destructurar
 
-//Sacamos a validación Server-Side con Joi para unha función e pasámola nas rutas de post e editar
-const joiValidationSounds = (req, res, next) => {
-    const validation = joiSoundSchema.validate(req.body);
-    if(validation.error) {
-        const errorMsg = validation.error.details.map(msg => msg.message).join(",");//Como Joi mete os detalles do error nun array de objetos, hai q sacalo para enseñalo
-        throw new ExpressError(errorMsg, 400);
-    } else {
-        next();
-    };
-};
+
 
 //INDEX ROUTE. Ver todos os sons
 router.get("/", catchAsync(async (req, res, next) => {
@@ -68,35 +58,27 @@ router.get("/categories/:category/:id", catchAsync(async (req, res, next) => {
 }));
 
 //EDIT ROUTE. Envía a form para editar sons
-router.get("/categories/:category/:id/edit", isLoggedIn, catchAsync(async (req, res) => {
+router.get("/categories/:category/:id/edit", isLoggedIn, isAuthor, catchAsync(async (req, res) => {//Primeiro pasar isLoggedIn para comprobar e ter acceso a user
     const sound = await Sound.findById(req.params.id);
     const soundCategory = req.params.category;
     if(!sound) {
         req.flash("error", "El sonido que indica no existe.")
         return res.redirect("/sounds");
-    };
+    }
     res.render("sounds/edit", { sound, Categories, soundCategory });
 }));
+
 //UPDATE ROUTE. Modifica o son no server. Usa post modificado con method-override. (PUT: "completo": envía un novo obxecto enteiro (se faltan datos quedan vacíos, devolve null (ej se falta name devolve name: null)).
 //PATCH: "parcial": envía só o modificado (se non se inclúen todos os datos, usa os que había antes en vez de "mandalos vacíos coma PUT)). Neste caso PUT xa que modificamos todo na form?
 router.put("/categories/:category/:id", isLoggedIn, joiValidationSounds, catchAsync(async (req, res) => {
     const { id } = req.params;
-    const soundIfAuthor = await Sound.findById(id);
-    if(!soundIfAuthor.author.equals(req.user._id)) {
-        req.flash("error", "No tienes permiso para realizar esta acción.");
-        return res.redirect(`/sounds/categories/:category/${sound._id}`);
-    }
     const sound = await Sound.findByIdAndUpdate(id, { ...req.body.sound });
-    if(!sound) {
-        req.flash("error", "El sonido que indica no existe.")
-        return res.redirect("/sounds");
-    };
     req.flash("success", "Datos del sonido modificados.");
     res.redirect(`/sounds/categories/:category/${sound._id}`);
 }));
 
 //DESTROY ROUTE. Elimina un son. Usa post modificado con method-override.
-router.delete("/categories/:category/:id", isLoggedIn, catchAsync(async (req, res) => {
+router.delete("/categories/:category/:id", isLoggedIn, isAuthor, catchAsync(async (req, res) => {
     const { id } = req.params;
     await Sound.findByIdAndDelete(id);
     req.flash("success", "Sonido eliminado.");
