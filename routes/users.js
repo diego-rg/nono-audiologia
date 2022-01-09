@@ -6,17 +6,14 @@ const catchAsync = require("../utilities/catchAsync");
 const passport = require("passport");//Authentication
 const users = require("../controllers/users")
 
-//Register
-router.get("/register", users.registerForm);
+router.route("/register")
+    .get(users.registerForm)//Register form
+    .post(catchAsync(users.newUser));//New user
 
-router.post("/register", catchAsync(users.newUser));
+router.route("/login")
+    .get(users.loginForm)//Login form
+    .post(passport.authenticate("local", { failureFlash: "Los datos introducidos no son válidos.", failureRedirect: "/login" }), users.loginUser);//Log in user
 
-//Login
-router.get("/login", users.loginForm);
-
-router.post("/login", passport.authenticate("local", { failureFlash: "Los datos introducidos no son válidos.", failureRedirect: "/login" }), users.loginUser);
-
-//Logout
-router.get("/logout", users.logoutUser);
+router.get("/logout", users.logoutUser);//Log out user
 
 module.exports = router;
