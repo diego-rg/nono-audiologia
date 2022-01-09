@@ -8,33 +8,26 @@ const joiSoundSchema = require("../validationSchemas");
 const  { isLoggedIn, joiValidationSounds, isAuthor } = require("../middleware");//Se non se garda co const =... hay que destructurar
 const sounds = require("../controllers/sounds");//reestructuramos as rutas pasándoas ao seu propio archivo en controllers
 
-//ROUTES:
-//INDEX ROUTE. Ver todos os sons
-router.get("/", catchAsync(sounds.index));//reestructuradas en controllers
+//ROUTES. Reestructuradas con .route(): une as de cada path. Solo merece a pena as que teñen varias tutas nese path
 
-//Ver todas as categorías
-router.get("/categories", catchAsync(sounds.categories));
+router.route("/")
+    .get(catchAsync(sounds.index))//INDEX ROUTE. Ver todos os sons//reestructuradas en controllers
+    .post(isLoggedIn, joiValidationSounds, catchAsync(sounds.newSound));//CREATE ROUTE. Crea un novo son no server
 
-//Ver sons de cada categoría
-router.get("/categories/:category", catchAsync(sounds.category));
+router.get("/categories", catchAsync(sounds.categories));//Ver todas as categorías
 
-//NEW ROUTE. Envía a form para crear sons
-router.get("/new", isLoggedIn, sounds.newForm);
+router.get("/categories/:category", catchAsync(sounds.category));//Ver sons de cada categoría
 
-//CREATE ROUTE. Crea un novo son no server
-router.post("/", isLoggedIn, joiValidationSounds, catchAsync(sounds.newSound));
+router.get("/new", isLoggedIn, sounds.newForm);//NEW ROUTE. Envía a form para crear sons. DEBE ir antes de ("/categories/:category/:id") senón confunde /new con /:id
 
-//SHOW ROUTE. Ver cada son
-router.get("/categories/:category/:id", catchAsync(sounds.showSound));
+router.route("/categories/:category/:id")
+    .get(catchAsync(sounds.showSound))//SHOW ROUTE. Ver cada son
+    .put(isLoggedIn, joiValidationSounds, catchAsync(sounds.editSound))//UPDATE ROUTE. Modifica o son no server.* 
+    .delete(isLoggedIn, isAuthor, catchAsync(sounds.deleteSound));//DESTROY ROUTE. Elimina un son. Usa post modificado con method-override.
 
-//EDIT ROUTE. Envía a form para editar sons
-router.get("/categories/:category/:id/edit", isLoggedIn, isAuthor, catchAsync(sounds.editForm));
-
-//UPDATE ROUTE. Modifica o son no server. Usa post modificado con method-override. (PUT: "completo": envía un novo obxecto enteiro (se faltan datos quedan vacíos, devolve null (ej se falta name devolve name: null)).
-//PATCH: "parcial": envía só o modificado (se non se inclúen todos os datos, usa os que había antes en vez de "mandalos vacíos coma PUT)). Neste caso PUT xa que modificamos todo na form?
-router.put("/categories/:category/:id", isLoggedIn, joiValidationSounds, catchAsync(sounds.editSound));
-
-//DESTROY ROUTE. Elimina un son. Usa post modificado con method-override.
-router.delete("/categories/:category/:id", isLoggedIn, isAuthor, catchAsync(sounds.deleteSound));
+router.get("/categories/:category/:id/edit", isLoggedIn, isAuthor, catchAsync(sounds.editForm));//EDIT ROUTE. Envía a form para editar sons
 
 module.exports = router;
+
+//*Usa post modificado con method-override. (PUT: "completo": envía un novo obxecto enteiro (se faltan datos quedan vacíos, devolve null (ej se falta name devolve name: null)).
+//PATCH: "parcial": envía só o modificado (se non se inclúen todos os datos, usa os que había antes en vez de "mandalos vacíos coma PUT)). Neste caso PUT xa que modificamos todo na form?
