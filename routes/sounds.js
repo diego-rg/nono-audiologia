@@ -7,9 +7,10 @@ const { Sound, Categories } = require("../models/sound");
 const joiSoundSchema = require("../validationSchemas");
 const  { isLoggedIn, joiValidationSounds, isAuthor } = require("../middleware");//Se non se garda co const =... hay que destructurar
 const sounds = require("../controllers/sounds");//reestructuramos as rutas pasándoas ao seu propio archivo en controllers
+const multer = require("multer");//Para mandar e subir fotos con forms
+const upload = multer({ dest: "uploads/" });
 
 //ROUTES. Reestructuradas con .route(): une as de cada path. Solo merece a pena as que teñen varias tutas nese path
-
 router.route("/")
     .get(catchAsync(sounds.index))//INDEX ROUTE. Ver todos os sons//reestructuradas en controllers
     .post(isLoggedIn, joiValidationSounds, catchAsync(sounds.newSound));//CREATE ROUTE. Crea un novo son no server
