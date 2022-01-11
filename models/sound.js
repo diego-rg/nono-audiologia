@@ -41,10 +41,10 @@ const SoundSchema = new Schema({
         required: true,
         enum: ["Hogar", "Naturaleza", "Conversación", "Ocio", "Lugares", "Ciudad"]
     },
-    // audio: {
-    //     url: String,
-    //     filemane: String
-    // },
+    audio: {
+        url: String,
+        filemane: String
+    },
     image: {
         url: String,
         filename: String

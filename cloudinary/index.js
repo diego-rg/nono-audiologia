@@ -11,11 +11,32 @@ const storage = new CloudinaryStorage({
     cloudinary,
     params: {
         folder: 'nono',
-        transformation: [
-            {width: 500, height: 500, crop: "fill"}
-        ],
-        allowedFormats: ['jpeg', 'png', 'jpg', "mp3"]
+        // transformation: [
+        //     {width: 500, height: 500, crop: "fill"}
+        // // ],
+        // allowedFormats: ['jpeg', 'png', 'jpg', 'mp3']
     }
 });
 
 module.exports = { cloudinary, storage }
+
+// const storageImage = new CloudinaryStorage({
+//     cloudinary,
+//     params: {
+//         folder: 'nono',
+//         transformation: [
+//             {width: 500, height: 500, crop: "fill"}
+//         ],
+//         allowedFormats: ['jpeg', 'png', 'jpg']
+//     }
+// });
+
+// const storageAudio = new CloudinaryStorage({
+//     cloudinary,
+//     params: {
+//         folder: 'nono',
+//         allowedFormats: ["mp3"]
+//     }
+// });
+
+// module.exports = { cloudinary, storageImage, storageAudio };
