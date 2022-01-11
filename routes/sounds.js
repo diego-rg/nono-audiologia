@@ -14,7 +14,7 @@ const upload = multer({ storage });//que multer almacene el coudinary
 //ROUTES. Reestructuradas con .route(): une as de cada path. Solo merece a pena as que teñen varias tutas nese path
 router.route("/")
     .get(catchAsync(sounds.index))//INDEX ROUTE. Ver todos os sons//reestructuradas en controllers
-    .post(isLoggedIn, upload.array('sound[image]'), joiValidationSounds, catchAsync(sounds.newSound));//CREATE ROUTE. Crea un novo son no server
+    .post(isLoggedIn, upload.single('sound[image]'), joiValidationSounds, catchAsync(sounds.newSound));//CREATE ROUTE. Crea un novo son no server
 
 router.get("/categories", catchAsync(sounds.categories));//Ver todas as categorías
 

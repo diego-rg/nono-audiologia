@@ -28,10 +28,11 @@ module.exports.newForm = (req, res) => {
 module.exports.newSound = async (req, res) => {
     // if(!req.body.sound) throw new ExpressError("Los datos introducidos no son válidos", 400);//Por si salta a validación da form (ej: usando postman)
     const sound = new Sound(req.body.sound);//requiere extended: true
-    sound.image = req.files.map(f => ({ url: f.path, filename: f.filename }));//Sacar a image e gardar no schema o nome e a url de cloudinary
+    sound.image.url = req.file.path;//Sacar a imaxe e gardar no schema a url en cloudinary
+    sound.image.filename = req.file.filename;//Sacar a imaxe e gardar no schema o nome en cloudinary
+    // sound.audio = req.files.map(f => ({ url: f.path, filename: f.filename }));
     sound.author = req.user._id;
     await sound.save();
-    console.log(sound)
     req.flash("success", "Se ha añadido un nuevo sonido.");//Mensaxe flash ao crear son correctamente. Hai que pasala pola páxina a onde redirixe a ruta para vela (...:id)
     res.redirect(`/sounds/categories/:category/${sound._id}`);
 }

@@ -12,9 +12,9 @@ const storage = new CloudinaryStorage({
     params: {
         folder: 'nono',
         transformation: [
-            {width: 550, height: 550, crop: "scale"}
+            {width: 500, height: 500, crop: "fill"}
         ],
-        allowedFormats: ['jpeg', 'png', 'jpg']
+        allowedFormats: ['jpeg', 'png', 'jpg', "mp3"]
     }
 });
 
