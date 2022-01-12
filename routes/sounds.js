@@ -16,8 +16,8 @@ const uploadImage = multer({ storage: storageImage });//que multer almacene el c
 router.route("/")
     .get(catchAsync(sounds.index))//INDEX ROUTE. Ver todos os sons//reestructuradas en controllers
     .post(isLoggedIn, 
-        // uploadAudio.single("sound[audio]"), 
-        uploadImage.single("sound[image]"),
+        uploadAudio.single("sound[audio]"), 
+        // uploadImage.single("sound[image]"),
         // upload.fields([{ name: 'sound[audio]', maxCount: 1 }, { name: 'sound[image]', maxCount: 1 }]), 
     joiValidationSounds, catchAsync(sounds.newSound)
     );//CREATE ROUTE. Crea un novo son no server

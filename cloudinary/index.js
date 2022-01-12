@@ -24,8 +24,9 @@ const storageAudio = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
         folder: 'nono',
-        format: 'mp4',
-        resource_type: 'video'
+        format: 'mp3',
+        resource_type: 'video',
+        allowedFormats: ['mp3'],
     }
 });
 

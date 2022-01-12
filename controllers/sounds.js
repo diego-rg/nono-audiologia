@@ -35,8 +35,8 @@ module.exports.newSound = async (req, res) => {
     // sound.audio.filename = req.files["sound[audio]"][0].filename;//Sacar a imaxe e gardar no schema o nome en cloudinary
     // sound.image.url = req.files["sound[image]"][0].path;//Sacar a imaxe e gardar no schema a url en cloudinary
     // sound.image.filename = req.files["sound[image]"][0].filename;//Sacar a imaxe e gardar no schema o nome en cloudinary
-    sound.image.url = req.file.path;//Sacar a imaxe e gardar no schema a url en cloudinary
-    sound.image.filename = req.file.filename;//Sacar a imaxe e gardar no schema o nome en cloudinary
+    // sound.image.url = req.file.path;//Sacar a imaxe e gardar no schema a url en cloudinary
+    // sound.image.filename = req.file.filename;//Sacar a imaxe e gardar no schema o nome en cloudinary
     sound.author = req.user._id;
     await sound.save();
     req.flash("success", "Se ha añadido un nuevo sonido.");//Mensaxe flash ao crear son correctamente. Hai que pasala pola páxina a onde redirixe a ruta para vela (...:id)
