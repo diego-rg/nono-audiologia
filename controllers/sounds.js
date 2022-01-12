@@ -1,4 +1,5 @@
 const { Sound, Categories } = require("../models/sound");
+const { cloudinary } = require("../cloudinary");
 
 //INDEX ROUTE. Ver todos os sons
 module.exports.index = async (req, res, next) => {
@@ -28,11 +29,14 @@ module.exports.newForm = (req, res) => {
 module.exports.newSound = async (req, res) => {
     // if(!req.body.sound) throw new ExpressError("Los datos introducidos no son válidos", 400);//Por si salta a validación da form (ej: usando postman)
     const sound = new Sound(req.body.sound);//requiere extended: true
+    console.log(req.file)
     console.log(req.files)
-    sound.image.url = req.files["sound[audio]"][0].path;//Sacar a imaxe e gardar no schema a url en cloudinary
-    sound.image.filename = req.files["sound[audio]"][0].filename;//Sacar a imaxe e gardar no schema o nome en cloudinary
-    sound.audio.url = req.files["sound[image]"][0].path;//Sacar a imaxe e gardar no schema a url en cloudinary
-    sound.audio.filename = req.files["sound[image]"][0].filename;//Sacar a imaxe e gardar no schema o nome en cloudinary
+    // sound.audio.url = req.files["sound[audio]"][0].path;//Sacar a imaxe e gardar no schema a url en cloudinary
+    // sound.audio.filename = req.files["sound[audio]"][0].filename;//Sacar a imaxe e gardar no schema o nome en cloudinary
+    // sound.image.url = req.files["sound[image]"][0].path;//Sacar a imaxe e gardar no schema a url en cloudinary
+    // sound.image.filename = req.files["sound[image]"][0].filename;//Sacar a imaxe e gardar no schema o nome en cloudinary
+    sound.image.url = req.file.path;//Sacar a imaxe e gardar no schema a url en cloudinary
+    sound.image.filename = req.file.filename;//Sacar a imaxe e gardar no schema o nome en cloudinary
     sound.author = req.user._id;
     await sound.save();
     req.flash("success", "Se ha añadido un nuevo sonido.");//Mensaxe flash ao crear son correctamente. Hai que pasala pola páxina a onde redirixe a ruta para vela (...:id)
