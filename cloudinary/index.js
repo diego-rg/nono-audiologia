@@ -7,38 +7,41 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_SECRET
 });
 
-// const storage = new CloudinaryStorage({
-//     cloudinary,
+const storage = new CloudinaryStorage({
+    cloudinary,
+    params: {
+        folder: 'nono',
+        resource_type: 'auto',
+        allowedFormats: ['jpeg', 'png', 'jpg', 'mp3'],
+        transformation: [
+            {width: 500, height: 500, crop: "fill"}
+        ]
+    }
+});
+
+module.exports = { cloudinary, storage }
+
+// const storageAudio = new CloudinaryStorage({
+//     cloudinary: cloudinary,
 //     params: {
 //         folder: 'nono',
-//         // transformation: [
-//         //     {width: 500, height: 500, crop: "fill"}
-//         // // ],
-//         // allowedFormats: ['jpeg', 'png', 'jpg', 'mp3']
+//         format: 'mp3',
+//         resource_type: 'video',
+//         allowedFormats: ['mp3'],
 //     }
 // });
 
-// module.exports = { cloudinary, storage }
+// const storageImage = new CloudinaryStorage({
+//     cloudinary: cloudinary,
+//     params: {
+//         folder: 'nono',
+//         transformation: [
+//             {width: 500, height: 500, crop: "fill"}
+//         ],
+//         format: 'jpg',
+//         resource_type: 'image',
+//         allowedFormats: ['jpeg', 'png', 'jpg']
+//     }
+// });
 
-const storageAudio = new CloudinaryStorage({
-    cloudinary: cloudinary,
-    params: {
-        folder: 'nono',
-        format: 'mp3',
-        resource_type: 'video',
-        allowedFormats: ['mp3'],
-    }
-});
-
-const storageImage = new CloudinaryStorage({
-    cloudinary: cloudinary,
-    params: {
-        folder: 'nono',
-        transformation: [
-            {width: 500, height: 500, crop: "fill"}
-        ],
-        allowedFormats: ['jpeg', 'png', 'jpg']
-    }
-});
-
-module.exports = { cloudinary, storageImage, storageAudio };
+// module.exports = { cloudinary, storageImage, storageAudio };

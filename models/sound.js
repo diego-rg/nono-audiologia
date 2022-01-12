@@ -43,7 +43,7 @@ const SoundSchema = new Schema({
     },
     audio: {
         url: String,
-        filemane: String
+        filename: String
     },
     image: {
         url: String,
