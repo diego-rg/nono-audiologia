@@ -70,7 +70,7 @@ module.exports.editSound = async (req, res) => {
     sound.image.url = req.files["sound[image]"][0].path;
     sound.image.filename = req.files["sound[image]"][0].filename;
     sound.author = req.user._id;
-    await sound.save();
+    await sound.save();//Como tamén modificamos imaxes e audio, ahora hai que engadir save, antes chegaba con findByIdAndUpdate
     req.flash("success", "Datos del sonido modificados.");
     res.redirect(`/sounds/categories/:category/${sound._id}`);
 }
