@@ -29,7 +29,6 @@ module.exports.newForm = (req, res) => {
 module.exports.newSound = async (req, res) => {
     // if(!req.body.sound) throw new ExpressError("Los datos introducidos no son válidos", 400);//Por si salta a validación da form (ej: usando postman)
     const sound = new Sound(req.body.sound);//requiere extended: true
-    console.log(req.files)
     sound.audio.url = req.files["sound[audio]"][0].path;//Gardar na db as urls e nomes en cloudinary
     sound.audio.filename = req.files["sound[audio]"][0].filename;
     sound.image.url = req.files["sound[image]"][0].path;

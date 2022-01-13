@@ -8,8 +8,8 @@ const joiSoundSchema = Joi.object({
         minInt: Joi.number().required().min(0),
         maxInt: Joi.number().required().min(0),
         category: Joi.string().valid("Hogar", "Naturaleza", "Conversación", "Ocio", "Lugares", "Ciudad"),
-        audio: Joi.any().required(),
-        image: Joi.any().required()
+        audio: Joi.any(),
+        image: Joi.any()
     }).required()
 });
 
