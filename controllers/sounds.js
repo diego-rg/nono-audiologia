@@ -1,5 +1,5 @@
 const { Sound, Categories } = require("../models/sound");
-const { cloudinary } = require("../cloudinary");
+const cloudinary = require('cloudinary').v2;
 
 //INDEX ROUTE. Ver todos os sons
 module.exports.index = async (req, res, next) => {
@@ -65,6 +65,13 @@ module.exports.editForm = async (req, res) => {//Primeiro pasar isLoggedIn para 
 module.exports.editSound = async (req, res) => {
     const { id } = req.params;
     const sound = await Sound.findByIdAndUpdate(id, { ...req.body.sound });
+    await cloudinary.uploader.destroy(sound.audio.filename, {
+        resource_type:'video', invalidate: true,
+    }, (err, result) => {
+        console.log(err, result);
+    });
+    // await cloudinary.uploader.destroy(sound.audio.filename, resource_type: {'video' });//Eliminar en Cloudinary.
+    await cloudinary.uploader.destroy(sound.image.filename);
     sound.audio.url = req.files["sound[audio]"][0].path;//Gardar na db as urls e nomes en cloudinary
     sound.audio.filename = req.files["sound[audio]"][0].filename;
     sound.image.url = req.files["sound[image]"][0].path;
