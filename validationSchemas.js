@@ -10,7 +10,7 @@ const joiSoundSchema = Joi.object({
         category: Joi.string().valid("Hogar", "Naturaleza", "Conversación", "Ocio", "Lugares", "Ciudad"),
         audio: Joi.any(),
         image: Joi.any()
-    }).required()
+    })
 });
 
 module.exports = joiSoundSchema;

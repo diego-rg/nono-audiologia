@@ -24,7 +24,7 @@ router.get("/new", isLoggedIn, sounds.newForm);//NEW ROUTE. Envía a form para c
 
 router.route("/categories/:category/:id")
     .get(catchAsync(sounds.showSound))//SHOW ROUTE. Ver cada son
-    .put(isLoggedIn, joiValidationSounds, catchAsync(sounds.editSound))//UPDATE ROUTE. Modifica o son no server.* 
+    .put(isLoggedIn, isAuthor, upload.fields([{ name: 'sound[audio]', maxCount: 1 }, { name: 'sound[image]', maxCount: 1 }]),joiValidationSounds, catchAsync(sounds.editSound))//UPDATE ROUTE. Modifica o son no server.* 
     .delete(isLoggedIn, isAuthor, catchAsync(sounds.deleteSound));//DESTROY ROUTE. Elimina un son. Usa post modificado con method-override.
 
 router.get("/categories/:category/:id/edit", isLoggedIn, isAuthor, catchAsync(sounds.editForm));//EDIT ROUTE. Envía a form para editar sons

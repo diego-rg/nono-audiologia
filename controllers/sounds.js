@@ -65,6 +65,12 @@ module.exports.editForm = async (req, res) => {//Primeiro pasar isLoggedIn para 
 module.exports.editSound = async (req, res) => {
     const { id } = req.params;
     const sound = await Sound.findByIdAndUpdate(id, { ...req.body.sound });
+    sound.audio.url = req.files["sound[audio]"][0].path;//Gardar na db as urls e nomes en cloudinary
+    sound.audio.filename = req.files["sound[audio]"][0].filename;
+    sound.image.url = req.files["sound[image]"][0].path;
+    sound.image.filename = req.files["sound[image]"][0].filename;
+    sound.author = req.user._id;
+    await sound.save();
     req.flash("success", "Datos del sonido modificados.");
     res.redirect(`/sounds/categories/:category/${sound._id}`);
 }
