@@ -8,22 +8,13 @@ const joiSoundSchema = require("../validationSchemas");
 const  { isLoggedIn, joiValidationSounds, isAuthor } = require("../middleware");//Se non se garda co const =... hay que destructurar
 const sounds = require("../controllers/sounds");//reestructuramos as rutas pasándoas ao seu propio archivo en controllers
 const multer = require("multer");//Para mandar e subir fotos con forms
-// const { storageImage, storageAudio  } = require("../cloudinary");//Almacenamento en cloudinary
-// const uploadAudio = multer({ storage: storageAudio });//que multer almacene el coudinary
-// const uploadImage = multer({ storage: storageImage });//que multer almacene el coudinary
 const { storage } = require("../cloudinary");//Almacenamento en cloudinary
 const upload = multer({ storage });
 
 //ROUTES. Reestructuradas con .route(): une as de cada path. Solo merece a pena as que teñen varias tutas nese path
 router.route("/")
     .get(catchAsync(sounds.index))//INDEX ROUTE. Ver todos os sons//reestructuradas en controllers
-    .post(isLoggedIn, 
-        // uploadAudio.fields([{ name: 'sound[audio]', maxCount: 1 }]), uploadImage.fields([{ name: 'sound[image]', maxCount: 1 }]),
-        // uploadAudio.single("sound[audio]"), 
-        // uploadImage.single("sound[image]"),
-        upload.fields([{ name: 'sound[audio]', maxCount: 1 }, { name: 'sound[image]', maxCount: 1 }]), 
-    joiValidationSounds, catchAsync(sounds.newSound)
-    );//CREATE ROUTE. Crea un novo son no server
+    .post(isLoggedIn, upload.fields([{ name: 'sound[audio]', maxCount: 1 }, { name: 'sound[image]', maxCount: 1 }]), joiValidationSounds, catchAsync(sounds.newSound));//CREATE ROUTE. Crea un novo son no server
 
 router.get("/categories", catchAsync(sounds.categories));//Ver todas as categorías
 
