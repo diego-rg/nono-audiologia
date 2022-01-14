@@ -73,8 +73,14 @@ app.use((req, res, next) => {
 app.use("/sounds", soundsRoutes);//Activamos as rutas
 app.use("/", usersRoutes);//Deixamos a ruta con / para que sea nono/register solo
 
+//Show homepage
 app.get("/", (req, res) => {
     res.render("sounds/home");
+});
+
+//Show sección sobre o proxecto
+app.get("/about", (req, res) => {
+    res.render("sounds/about");
 });
 
 //Error 404 para TODOS os path que non existen (NON conta as ids, solo path base). Debe ir ao final. COn next pasa ao siguiente
