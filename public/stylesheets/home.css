@@ -1,0 +1,21 @@
+body { 
+    background: url(/images/sound-colors.png) no-repeat center fixed;
+    font-family: 'Roboto', sans-serif;
+  }
+
+h1 {
+    font-size: 4rem;
+    font-family: 'Lato', sans-serif;
+}
+
+h1 small {
+    font-size: 1rem;
+}
+
+.bg-success {
+    background-color: #a88ece71!important;
+}
+
+a {
+    color:black!important;
+}

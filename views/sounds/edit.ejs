@@ -1,6 +1,6 @@
 <% layout("layouts/boilerplate") %>
 <section class="m-auto">
-    <h1 class="mb-4 text-center">Edita un sonido existente</h1>
+    <h2 class="mb-4 text-center">Edita un sonido existente</h2>
 
     <form action="/sounds/categories/<%=soundCategory%>/<%= sound._id %>?_method=PUT" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
         <!--Para usar DELETE EDIT con method override/NOVALIDATE para usar o validador de bootstrap.         enctype para subir imaxes--> 
