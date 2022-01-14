@@ -65,13 +65,16 @@ module.exports.editForm = async (req, res) => {//Primeiro pasar isLoggedIn para 
 module.exports.editSound = async (req, res) => {
     const { id } = req.params;
     const sound = await Sound.findByIdAndUpdate(id, { ...req.body.sound });
-    await cloudinary.uploader.destroy(sound.audio.filename, {
+    await cloudinary.uploader.destroy(sound.audio.filename, {//Eliminar mp3 de cloudinary
         resource_type:'video', invalidate: true,
     }, (err, result) => {
         console.log(err, result);
     });
-    // await cloudinary.uploader.destroy(sound.audio.filename, resource_type: {'video' });//Eliminar en Cloudinary.
-    await cloudinary.uploader.destroy(sound.image.filename);
+    await cloudinary.uploader.destroy(sound.image.filename, {//Eliminar imagen de cloudinary
+        resource_type:'image', invalidate: true,
+    }, (err, result) => {
+        console.log(err, result);
+    });
     sound.audio.url = req.files["sound[audio]"][0].path;//Gardar na db as urls e nomes en cloudinary
     sound.audio.filename = req.files["sound[audio]"][0].filename;
     sound.image.url = req.files["sound[image]"][0].path;
@@ -85,6 +88,17 @@ module.exports.editSound = async (req, res) => {
 //DESTROY ROUTE.
 module.exports.deleteSound = async (req, res) => {
     const { id } = req.params;
+    const sound = await Sound.findById(id);
+    await cloudinary.uploader.destroy(sound.audio.filename, {//Eliminar mp3 de cloudinary. Debe eliminarse primeiro en cloud e logo o propio son da db
+        resource_type:'video', invalidate: true,
+    }, (err, result) => {
+        console.log(err, result);
+    });
+    await cloudinary.uploader.destroy(sound.image.filename, {//Eliminar imagen de cloudinary
+        resource_type:'image', invalidate: true,
+    }, (err, result) => {
+        console.log(err, result);
+    });
     await Sound.findByIdAndDelete(id);
     req.flash("success", "Sonido eliminado.");
     res.redirect("/sounds");
