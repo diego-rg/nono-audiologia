@@ -16,6 +16,12 @@ h1 small {
     background-color: #a88ece71!important;
 }
 
+.btn-success {
+    background-color: #a88ece71!important;
+    color: black!important;
+    border: none;
+}
+
 a {
     color:black!important;
 }
