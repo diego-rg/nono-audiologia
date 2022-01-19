@@ -41,17 +41,17 @@ footer {
 }
 
 .animate__animated.animate__fadeIn {
-    animation-duration: 2.2s;
+    animation-duration: 2.5s;
 }
 
 .animate__animated.animate__fadeInLeft {
     animation-duration: 2s;
-    animation-delay: 0.5s;
+    animation-delay: 0.4s;
 }
 
 .list-home .animate__animated.animate__fadeInLeft {
     animation-duration: 2s;
-    animation-delay: 1s;
+    animation-delay: 0.8s;
 }
 
 .list-home {
