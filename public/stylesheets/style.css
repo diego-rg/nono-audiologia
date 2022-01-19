@@ -40,6 +40,15 @@ footer {
     font-family: 'Playfair Display', serif;
 }
 
+.animate__animated.animate__fadeIn {
+    animation-duration: 3s;
+}
+
+.animate__animated.animate__fadeInLeft {
+    animation-duration: 2s;
+    animation-delay: 0.5s;
+}
+
 @media only screen and (max-width: 992px) {
     
   }
