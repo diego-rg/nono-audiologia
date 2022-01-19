@@ -41,7 +41,7 @@ footer {
 }
 
 .animate__animated.animate__fadeIn {
-    animation-duration: 3s;
+    animation-duration: 2.2s;
 }
 
 .animate__animated.animate__fadeInLeft {
@@ -49,6 +49,20 @@ footer {
     animation-delay: 0.5s;
 }
 
+.list-home .animate__animated.animate__fadeInLeft {
+    animation-duration: 2s;
+    animation-delay: 1s;
+}
+
+.list-home {
+    list-style-type: none;
+}
+
 @media only screen and (max-width: 992px) {
-    
+    h1 {
+        font-size: 3rem;
+    }
+    .list-home {
+        font-size: 0.9rem;
+    }
   }
