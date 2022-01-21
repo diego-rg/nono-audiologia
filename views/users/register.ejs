@@ -1,6 +1,6 @@
 <% layout("layouts/boilerplate") %>
 <section class="m-auto">
-    <h2 class="mb-4">Introduce tus datos</h2>
+    <h2 class="mb-4 text-center">Introduce tus datos</h2>
 
     <form action="/register" method="POST" novalidate class="validated-form"><!--Para non usar validador estándar e usar o de bootstrap. Require función js-->
         <div class="row g-2 mb-3">
@@ -24,10 +24,10 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-success">Registro</button>
-        <button type="reset" class="btn btn-success">Limpiar</button>
+        <div class="d-flex align-items-center justify-content-evenly">
+            <button type="submit" class="btn btn-success">Registro</button>
+            <button type="reset" class="btn btn-success">Limpiar</button>
+        </div>
     </form>
 
-    <a class="link-success" href="/sounds">Sonidos</a>
-    <a class="link-success" href="/categories">Categorías</a>
 </section>
