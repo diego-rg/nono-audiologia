@@ -1,12 +1,19 @@
 <% layout("layouts/boilerplate") %>
-<div class="card m-auto" style="width: 18rem;">
-    <div class="card-header">
-        <%= soundCategory %>
+<% layout("layouts/boilerplate") %>
+<h2 class="text-center mb-4"><%= soundCategory %></h2> 
+<div class="row row-cols-auto h-75 justify-content-center align-items-center">
+    <div class="row row-cols-auto justify-content-center align-items-center">
+      <!--Loop para ver cards de todos os sons da categoría-->
+      <% for(let sound of sounds) { %>
+        <div class="col">
+          <div class="card mb-3 text-center" style="width: 9rem">
+            <img src="<%= sound.image.url %>" class="card-img-top" alt="Foto de: <%= sound.name %>">
+            <div class="card-body">
+              <h5 class="card-title"><%= sound.name %></h5>
+              <a href="/sounds/categories/<%=sound.category%>/<%= sound._id %>" class="btn btn-success">Ver datos</a>
+            </div>
+          </div>
+        </div>
+      <% }  %>
     </div>
-    <ul class="list-group list-group-flush">
-        <!--Loop para facer unha lista de enlaces aos sons nesa categoría-->
-        <% for(let sound of sounds) { %>
-            <li class="list-group-item"><a class="link-success" href="/sounds/categories/<%=soundCategory%>/<%= sound._id %>"><%= sound.name %></a></li>
-        <% }  %>
-    </ul>
 </div>
