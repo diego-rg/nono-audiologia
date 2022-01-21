@@ -18,18 +18,18 @@
             Lo sentimos, tu navegador de internet no soporta los elementos de audio.
             </audio>
         </div>
-
-        <% if(currentUser && sound.author.equals(currentUser._id)) { %> <!--Evitar que outro usuario poida eliminar. Só o autor-->
-        <form action="/sounds/categories/<%=soundCategory%>/<%= sound._id %>?_method=DELETE" method="POST">
-            <button type="submit" class="btn btn-success mb-3">Eliminar</button>
-        </form>
-        <% } %> 
-
-        <% if(currentUser && sound.author.equals(currentUser._id)) { %> <!--Evitar que outro usuario poida eliminar. Só o autor-->
-    <a class="link-success" href="/sounds/categories/<%=soundCategory%>/<%= sound._id %>/edit">Editar</a>
-        <% } %>
-    <a class="link-success" href="/sounds">Todos</a>
-    <a class="link-success" href="/sounds/categories">Categorías</a>   
+        <div class="d-flex align-items-center justify-content-evenly">
+                <% if(currentUser && sound.author.equals(currentUser._id)) { %> <!--Evitar que outro usuario poida eliminar. Só o autor-->
+                <form action="/sounds/categories/<%=soundCategory%>/<%= sound._id %>?_method=DELETE" method="POST">
+                    <button type="submit" class="btn btn-success mb-3">Eliminar</button>
+                </form>
+                <% } %> 
+                
+                <% if(currentUser && sound.author.equals(currentUser._id)) { %> <!--Evitar que outro usuario poida eliminar. Só o autor-->
+                <a class="link-success button-edit" href="/sounds/categories/<%=soundCategory%>/<%= sound._id %>/edit"><button class="btn btn-success mb-3">Editar</button></a>
+                <% } %> 
+        </div>
+         
     </section>
     <section class="col image-first">
         <img class="img-fluid" src="<%=sound.image.url%>" alt="<%= sound.name %>">
