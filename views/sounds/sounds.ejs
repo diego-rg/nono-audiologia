@@ -1,7 +1,7 @@
 <% layout("layouts/boilerplate") %>
 <h2 class="text-center mb-4">Todos los sonidos</h2> 
-<div class="row row-cols-auto h-75">
-  <div class="row row-cols-auto">
+<div class="row row-cols-auto h-75 justify-content-center align-items-center">
+  <div class="row row-cols-auto justify-content-center align-items-center">
     <!--Loop para ver cards de todos os sons da DB-->
   <% for(let sound of sounds) { %>
     <div class="col">
@@ -15,6 +15,7 @@
     </div>
   <% }  %>
   <% console.log(sounds.length) %> 
+  <% console.log(sounds) %>
   </div>
     <a class="link-success" href="/sounds/categories">Categorías</a>
     <a class="link-success" href="/sounds/new">Añadir</a>

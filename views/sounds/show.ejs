@@ -1,6 +1,6 @@
 <% layout("layouts/boilerplate") %>
-<div class="d-flex flex-row align-items-center justify-content-evenly">
-    <section>
+<div class="row row-cols-auto h-75 justify-content-center align-items-center">
+    <section class="col">
         <div class="card m-auto" style="width: 18rem;">
             <div class="card-header"><%= sound.name %></div>
             <ul class="list-group list-group-flush">
@@ -31,7 +31,7 @@
     <a class="link-success" href="/sounds">Todos</a>
     <a class="link-success" href="/sounds/categories">Categorías</a>   
     </section>
-    <section>
-        <img src="<%=sound.image.url%>" alt="<%= sound.name %>" width="500px">
+    <section class="col">
+        <img class="img-fluid" src="<%=sound.image.url%>" alt="<%= sound.name %>">
     </section>
 </div>

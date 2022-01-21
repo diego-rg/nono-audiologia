@@ -3,7 +3,7 @@ const cloudinary = require('cloudinary').v2;
 
 //INDEX ROUTE. Ver todos os sons
 module.exports.index = async (req, res, next) => {
-    const sounds = await Sound.find({}).collation({ locale: "es" }).sort({ name: "asc"});//Añadimos sort para orden alfabético e collation para que non distinga minúsculas de maiúsculas
+    const sounds = await Sound.find({}).limit(14).collation({ locale: "es" }).sort({ name: "asc"});//Añadimos sort para orden alfabético e collation para que non distinga minúsculas de maiúsculas
     res.render("sounds/sounds", { sounds });
 }
 
