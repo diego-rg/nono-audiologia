@@ -1,10 +1,18 @@
 <% layout("layouts/boilerplate") %>
-<div class="card m-auto" style="width: 18rem;">
-    <div class="card-header">Categorías</div>
-    <ul class="list-group list-group-flush">
-        <!--Loop para sacar a lista de enlaces de todas as categorías-->
-        <% for(let categ of categs) { %>
-            <li class="list-group-item"><a class="link-success" href="/sounds/categories/<%= categ %>"><%= categ %></a></li>
+<h2 class="text-center mb-4">Categorías</h2> 
+<div class="row row-cols-auto h-75 justify-content-center align-items-center">
+  <div class="row row-cols-auto justify-content-center align-items-center">
+    <!--Loop para sacar a lista de enlaces de todas as categorías-->
+    <% for(let categ of categs) { %>
+        <div class="col">
+            <div class="card mb-3 text-center" style="width: 12rem">
+            <img src="/images/<%= categ %>.jpg" class="card-img-top" alt="Foto de: <%= categ %>">
+            <div class="card-body">
+                <h5 class="card-title"><%= categ %></h5>
+                <a href="/sounds/categories/<%= categ %>" class="btn btn-success">Ver</a>
+            </div>
+            </div>
+        </div>
         <% }  %>
-    </ul>
+    </div>
 </div>
