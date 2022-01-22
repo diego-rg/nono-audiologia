@@ -1,7 +1,7 @@
 <% layout("layouts/boilerplate") %>
 <h2 class="text-center mb-4">Todos los sonidos</h2> 
-<div class="d-flex flex-column justify-content-center align-items-center py-lg-5">
-    <div class="row row-cols-auto justify-content-center align-items-center">
+<div class="d-flex flex-column justify-content-center abutton gn-items-center py-lg-5">
+    <div class="row row-cols-auto justify-content-center abutton gn-items-center">
 
       <!--Loop para ver cards de todos os sons da DB-->
       <% for(let sound of sounds) { %>
@@ -20,32 +20,32 @@
     <!--Paginación-->
     <% if (pages > 0) { %>
       <div class="row align-items-center justify-content-evenly p-3">
-        <ul class="pagination text-center">
+        <div class="text-center">
           <% if (current == 1) { %>
-              <li class="disabled"><a>First</a></li>
+            <a><button class="disabled btn btn-success">Primero</button></a>
           <% } else { %>
-              <li><a href="/sounds/?page=1">First</a></li>
+              <a href="/sounds/?page=1"><button class="btn btn-success">Primero</button></a>
           <% } %>
           <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
           <% if (i !== 1) { %>
-              <li class="disabled"><a>...</a></li>
+              <a><button class="disabled btn btn-success">...</button></a>
           <% } %>
           <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
               <% if (i == current) { %>
-                  <li class="active"><a><%= i %></a></li>
+                  <a><button class="disabled btn btn-success"><%= i %></button></a>
               <% } else { %>
-                  <li><a href="/sounds/?page=<%= i %>"><%= i %></a></li>
+                  <a href="/sounds/?page=<%= i %>"><button class="btn btn-success"><%= i %></button></a>
               <% } %>
               <% if (i == Number(current) + 4 && i < pages) { %>
-                  <li class="disabled"><a>...</a></li>
+                  <a><button class="disabled btn btn-success">...</button></a>
               <% } %>
           <% } %>
           <% if (current == pages) { %>
-              <li class="disabled"><a>Last</a></li>
+              <a><button class="disabled btn btn-success">Último</button></a>
           <% } else { %>
-              <li><a href="/sounds/?page=<%= pages %>">Last</a></li>
+              <a href="/sounds/?page=<%= pages %>"><button class="btn btn-success">Último</button></a>
           <% } %>
-      </ul>
+        </div>
       </div>
     <% } %>
 </div>
