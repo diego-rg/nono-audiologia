@@ -2,10 +2,27 @@ const { Sound, Categories } = require("../models/sound");
 const cloudinary = require('cloudinary').v2;
 const destroyFiles = require("../public/scripts/cloudinaryDestroy");//Función async para eliminar archivos
 
-//INDEX ROUTE. Ver todos os sons
+//INDEX ROUTE. Ver todos os sons.
+//Paginación:
 module.exports.index = async (req, res, next) => {
-    const sounds = await Sound.find({}).limit(14).collation({ locale: "es" }).sort({ name: "asc"});//Añadimos sort para orden alfabético e collation para que non distinga minúsculas de maiúsculas
-    res.render("sounds/sounds", { sounds });
+    let perPage = 7;
+    let page = req.query.page || 1;
+    const sounds = await Sound.find({})
+        .skip((perPage * page) - perPage)
+        .limit(perPage)
+        .collation({ locale: "es" })
+        .sort({ name: "asc"})//Añadimos sort para orden alfabético e collation para que non distinga minúsculas de maiúsculas
+        .exec(async function (err, sounds) {
+            await Sound.count().exec(function(err, count) {
+                if (err) return next(err)
+                res.render("sounds/sounds", {
+                    sounds: sounds,
+                    current: page,
+                    pages: Math.ceil(count / perPage)
+                })
+            })
+        })
+    // res.render("sounds/sounds", { sounds });
 }
 
 //Ver todas as categorías
