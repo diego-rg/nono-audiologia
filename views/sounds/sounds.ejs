@@ -1,7 +1,8 @@
 <% layout("layouts/boilerplate") %>
 <h2 class="text-center mb-4">Todos los sonidos</h2> 
-<div class="row row-cols-auto h-75 justify-content-center align-items-center">
+<div class="d-flex flex-column h-75 justify-content-center align-items-center">
     <div class="row row-cols-auto justify-content-center align-items-center">
+
       <!--Loop para ver cards de todos os sons da DB-->
       <% for(let sound of sounds) { %>
         <div class="col">
@@ -15,9 +16,11 @@
         </div>
       <% }  %>
     </div>
+
     <!--Paginación-->
     <% if (pages > 0) { %>
-      <ul class="pagination text-center">
+      <div class="row align-items-center justify-content-evenly p-3">
+        <ul class="pagination text-center">
           <% if (current == 1) { %>
               <li class="disabled"><a>First</a></li>
           <% } else { %>
@@ -43,5 +46,6 @@
               <li><a href="/sounds/?page=<%= pages %>">Last</a></li>
           <% } %>
       </ul>
-  <% } %>
+      </div>
+    <% } %>
 </div>

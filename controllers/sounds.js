@@ -5,7 +5,7 @@ const destroyFiles = require("../public/scripts/cloudinaryDestroy");//Función a
 //INDEX ROUTE. Ver todos os sons.
 //Paginación:
 module.exports.index = async (req, res, next) => {
-    let perPage = 7;
+    let perPage = 8;
     let page = req.query.page || 1;
     const sounds = await Sound.find({})
         .skip((perPage * page) - perPage)

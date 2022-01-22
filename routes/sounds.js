@@ -11,9 +11,9 @@ const multer = require("multer");//Para mandar e subir fotos con forms
 const { storage } = require("../cloudinary");//Almacenamento en cloudinary
 const upload = multer({ storage });
 
-//ROUTES. Reestructuradas con .route(): une as de cada path. Solo merece a pena as que teñen varias tutas nese path
-
+//ROUTES. Reestructuradas con .route(), en controllers, une as de cada path. Solo merece a pena as que teñen varias tutas nese path.
 router.route("/")
+    .get(catchAsync(sounds.index))//INDEX ROUTE. Ver todos os sons
     .post(isLoggedIn, upload.fields([{ name: 'sound[audio]', maxCount: 1 }, { name: 'sound[image]', maxCount: 1 }]), joiValidationSounds, catchAsync(sounds.newSound));//CREATE ROUTE. Crea un novo son no server
 
 router.get("/categories", catchAsync(sounds.categories));//Ver todas as categorías
@@ -28,9 +28,6 @@ router.route("/categories/:category/:id")
     .delete(isLoggedIn, isAuthor, catchAsync(sounds.deleteSound));//DESTROY ROUTE. Elimina un son. Usa post modificado con method-override.
 
 router.get("/categories/:category/:id/edit", isLoggedIn, isAuthor, catchAsync(sounds.editForm));//EDIT ROUTE. Envía a form para editar sons
-
-router.route("/")//INDEX ROUTE. Ver todos os sons//reestructuradas en controllers. Vai última para que :page non de conflicto con category
-    .get(catchAsync(sounds.index))
 
 module.exports = router;
 
