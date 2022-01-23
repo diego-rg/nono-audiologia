@@ -22,7 +22,6 @@ module.exports.index = async (req, res, next) => {
                 })
             })
         })
-    // res.render("sounds/sounds", { sounds });
 }
 
 //Ver todas as categorías
