@@ -4,10 +4,10 @@
         <div class="card m-auto" style="width: 18rem;">
             <div class="card-header"><%= sound.name %></div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><%= sound.minFrec %> Hz</li>
-                <li class="list-group-item"><%= sound.maxFrec %> Hz</li>
-                <li class="list-group-item"><%= sound.minInt %> dB</li>
-                <li class="list-group-item"><%= sound.maxInt %> dB</li>
+                <li class="list-group-item">Frecuencia mínima: <%= sound.minFrec %> Hz</li>
+                <li class="list-group-item">Frecuencia máxima: <%= sound.maxFrec %> Hz</li>
+                <li class="list-group-item">Intensidad mínima: <%= sound.minInt %> dB</li>
+                <li class="list-group-item">Frecuencia máxima: <%= sound.maxInt %> dB</li>
                 <li class="list-group-item"><%= sound.category %></li>
                 <li class="list-group-item">Creado por: <%= sound.author.username %></li>
             </ul>
@@ -32,6 +32,6 @@
          
     </section>
     <section class="col image-first">
-        <img class="img-fluid" src="<%=sound.image.url%>" alt="<%= sound.name %>">
+        <img class="img-fluid img-thumbnail" src="<%=sound.image.url%>" alt="<%= sound.name %>">
     </section>
 </div>
