@@ -60,8 +60,7 @@ app.use(session(sessionConfig));
 app.use(flash());
 app.use(helmet());//Máis funcións de seguridad basadas en HTTP headers
 
-//Configuración de helmet:
-//Hai que engadir crossorigin="anonymous" en todos os archivos de audio/video...e o Src na app.use de scripts, audio, img, fonts etc
+//Configuración de helmet: Hai que engadir crossorigin="anonymous" en todos os archivos de audio/video...e o Src na app.use de scripts, audio, img, fonts etc
 app.use(
     helmet.contentSecurityPolicy({
         directives: {
@@ -77,7 +76,6 @@ app.use(
         },
     })
 );
-
 
 app.use(passport.initialize());//Authentication. Despois de session
 app.use(passport.session());//Authentication. Despois de session
