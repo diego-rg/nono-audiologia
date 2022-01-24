@@ -13,7 +13,7 @@
             </ul>
         </div>
         <div>
-            <audio class="my-3" controls>
+            <audio class="my-3" crossorigin="anonymous" controls>
                 <source src="<%= sound.audio.url %>" type="audio/mpeg">
             Lo sentimos, tu navegador de internet no soporta los elementos de audio.
             </audio>
@@ -32,6 +32,6 @@
          
     </section>
     <section class="col image-first">
-        <img class="img-fluid img-thumbnail" src="<%=sound.image.url%>" alt="<%= sound.name %>">
+        <img class="img-fluid img-thumbnail" src="<%=sound.image.url%>" crossorigin="anonymous" alt="<%= sound.name %>">
     </section>
 </div>
