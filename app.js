@@ -44,11 +44,13 @@ app.use(express.static(path.join(__dirname, "public")));//Fai que a carpeta para
 app.use(mongoSanitize());//"Bloqueará" as queries que usen $ e outros símbolos que son operadores
 
 const sessionConfig = {
+    name: "session",                        //por defecto chámase connect.sid, cambiamos nome
     secret: "secretSecret",                     //Clave que debe estar nunha variable de entorno por seguridad
     resave: false,
     saveUninitialized: true,
     cookie: {
-        httpOnly: true,                         //Seguridad. Evitar que os scripts do client-side poidan acceder ás cookies protegidas
+        httpOnly: true,                         //Seguridad. Evitar que os scripts do client-side poidan acceder ás cookies protegidas (como ataques XSS)
+        // secure: true,                        //para https, solo despois do deploy
         expires: Date.now() + 1000*60*60*24*7,  //configura cando expira en milisegundos: 1000= 1seg, *60= 1 min etc
         maxAge: 1000*60*60*24*7                 //antigüedad máxima
     }

@@ -3,6 +3,9 @@
     <div class="d-flex flex-column alert alert-danger" role="alert">
         <h4 class="alert-heading text-center"><%= err.message %></h4>
         <h4 class="alert-heading text-center">Error <%= err.status %></h4>
+        <% if (process.env.NODE_ENV !== "production") { %>
+          <h4 class="alert-heading text-center"><%= err.stack %></h4>
+        <% } %> 
         <img src="/images/bug-error.svg" class="d-block m-auto py-3 img-fluid" width="500px" alt="Trabajador con un martillo delante de una pantalla gigante.">
   </div>
 </section>
