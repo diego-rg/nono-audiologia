@@ -75,4 +75,7 @@ footer {
     #audio, #image {
         font-size: 0.8rem;
     }
+    .home-warning {
+        font-size: 0.9rem;
+    }
   }
