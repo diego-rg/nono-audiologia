@@ -11,7 +11,7 @@ const flash = require("connect-flash");
 const catchAsync = require("./utilities/catchAsync");
 const ExpressError = require("./utilities/ExpressError");
 const methodOverride = require("method-override");
-const Joi = require("joi");//Non faría falta xa ao usalo e exportalo de validationSchemas
+const baseJoi = require("joi");//Non faría falta xa ao usalo e exportalo de validationSchemas
 const { Sound, Categories } = require("./models/sound");//Requerimos as dúas constantes de sound (para modelo e categorías)
 const joiSoundSchema = require("./validationSchemas");
 const soundsRoutes = require("./routes/sounds");//Importamos as rutas
@@ -19,6 +19,7 @@ const usersRoutes = require("./routes/users");
 const passport = require("passport");//Authentication
 const passportLocal = require("passport-local");//Authentication
 const User = require("./models/user");//Requerir o schema de user
+const mongoSanitize = require('express-mongo-sanitize');//Evita que se poidar usan símbolos (operators) como $ nas queries para atacar/modifica/sacar datos da nosa db dende a app
 
 mongoose.connect('mongodb://localhost:27017/nono', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -39,6 +40,8 @@ app.use(express.urlencoded({ extended: true }));//Para req.body en CREATE
 app.use(methodOverride("_method"));//Para poder crear DELETE e UPDATE/EDIT
 
 app.use(express.static(path.join(__dirname, "public")));//Fai que a carpeta para servir imágenes, scripts, audio etc sea public por defecto
+
+app.use(mongoSanitize());//"Bloqueará" as queries que usen $ e outros símbolos que son operadores
 
 const sessionConfig = {
     secret: "secretSecret",                     //Clave que debe estar nunha variable de entorno por seguridad
