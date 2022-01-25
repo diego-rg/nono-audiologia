@@ -21,10 +21,11 @@ const passportLocal = require("passport-local");//Authentication
 const User = require("./models/user");//Requerir o schema de user
 const mongoSanitize = require('express-mongo-sanitize');//Evita que se poidar usan símbolos (operators) como $ nas queries para atacar/modifica/sacar datos da nosa db dende a app
 const helmet = require("helmet");//Máis funcións de seguridad basadas en HTTP headers
-const dbUrl = process.env.DB_URL;//Para acceder aos datos de env
+const MongoStore = require('connect-mongo');//Para gardar a sesión en mongo e non na memoria
+const dbUrl = process.env.DB_URL;//Para acceder aos datos da dirección de mongoAtlas de env
 
 //'mongodb://localhost:27017/nono' db local
-mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost:27017/nono', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log("MONGO CONNECTION OPEN!")
     })
@@ -46,7 +47,9 @@ app.use(express.static(path.join(__dirname, "public")));//Fai que a carpeta para
 
 app.use(mongoSanitize());//"Bloqueará" as queries que usen $ e outros símbolos que son operadores
 
+//Sesion
 const sessionConfig = {
+    store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/nono', touchAfter: 24 * 3600 }),//A sesión só se modificará unha vez cada 24 horas se non hai cambios
     name: "session",                        //por defecto chámase connect.sid, cambiamos nome
     secret: "secretSecret",                     //Clave que debe estar nunha variable de entorno por seguridad
     resave: false,
