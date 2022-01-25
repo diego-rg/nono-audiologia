@@ -1,10 +1,11 @@
 {
   "name": "nono-audiologia",
   "version": "1.0.0",
-  "description": "",
+  "description": "base de datos de sonidos cotidianos",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",

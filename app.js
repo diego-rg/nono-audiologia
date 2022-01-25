@@ -126,6 +126,8 @@ app.use((err, req, res, next) => {
     res.status(status).render("errorTemplate", { err });
 });
 
-app.listen(3000, () => {
-    console.log("Listening on port 3000");
+//3000 para local, datos don porto en env en deploy
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Serving on port ${port}`);
 });
