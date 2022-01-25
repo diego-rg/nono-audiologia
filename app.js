@@ -51,7 +51,7 @@ app.use(mongoSanitize());//"Bloqueará" as queries que usen $ e outros símbolos
 const secret = process.env.SECRET || "secretBigSecret";
 
 const sessionConfig = {
-    store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/nono', touchAfter: 24 * 3600 }),//A sesión só se modificará unha vez cada 24 horas se non hai cambios
+    store: MongoStore.create({ mongoUrl: dbUrl, touchAfter: 24 * 3600 }),//A sesión só se modificará unha vez cada 24 horas se non hai cambios
     name: "session",                        //por defecto chámase connect.sid, cambiamos nome
     secret,                    //Clave que debe estar nunha variable de entorno por seguridad
     resave: false,
