@@ -126,8 +126,8 @@ app.use((err, req, res, next) => {
     res.status(status).render("errorTemplate", { err });
 });
 
-//3000 para local, datos don porto en env en deploy
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-    console.log(`Serving on port ${port}`);
+//3000 para local, datos don porto en env en deploy. Debe ir en maiúsculas xa que é o q usa heroku
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Serving on port ${PORT}`);
 });
