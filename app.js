@@ -21,8 +21,10 @@ const passportLocal = require("passport-local");//Authentication
 const User = require("./models/user");//Requerir o schema de user
 const mongoSanitize = require('express-mongo-sanitize');//Evita que se poidar usan símbolos (operators) como $ nas queries para atacar/modifica/sacar datos da nosa db dende a app
 const helmet = require("helmet");//Máis funcións de seguridad basadas en HTTP headers
+const dbUrl = process.env.DB_URL;//Para acceder aos datos de env
 
-mongoose.connect('mongodb://localhost:27017/nono', { useNewUrlParser: true, useUnifiedTopology: true })
+//'mongodb://localhost:27017/nono' db local
+mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log("MONGO CONNECTION OPEN!")
     })
