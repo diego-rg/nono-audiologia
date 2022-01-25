@@ -28,6 +28,19 @@ module.exports.newUser = async (req, res) => {
     }
 }
 
+//Change password
+module.exports.modifyForm = (req, res) => {
+    res.render("users/modify")
+}
+
+module.exports.modifyPassword = async (req, res) => {
+    const user = await User.findOne({ username: req.user.username });
+    await user.setPassword(req.body.password);
+    await user.save();
+    req.flash("success","Contraseña modificada correctamente.");
+    res.redirect("/")
+}
+
 //Login
 module.exports.loginForm = (req, res) => {
     res.render("users/login");

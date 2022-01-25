@@ -16,4 +16,8 @@ router.route("/login")
 
 router.get("/logout", users.logoutUser);//Log out user
 
+router.route("/modify")
+    .get(users.modifyForm)//Modificar form
+    .post(catchAsync(users.modifyPassword));//Modificar password
+
 module.exports = router;
