@@ -29,6 +29,8 @@ router.route("/categories/:category/:id")
 
 router.get("/categories/:category/:id/edit", isLoggedIn, isAuthor, catchAsync(sounds.editForm));//EDIT ROUTE. Envía a form para editar sons
 
+router.get("/search", catchAsync(sounds.searchSound));//resultado búsqueda
+
 module.exports = router;
 
 //*Usa post modificado con method-override. (PUT: "completo": envía un novo obxecto enteiro (se faltan datos quedan vacíos, devolve null (ej se falta name devolve name: null)).

@@ -1,5 +1,15 @@
 <% layout("layouts/boilerplate") %>
-<h2 class="text-center mb-4">Todos los sonidos</h2> 
+
+<!--Search-->
+<form class="row g-3 m-auto p-lg-5 py-4" action="/sounds/search" method="GET">
+  <div class="col-auto">
+    <input type="text" class="form-control" name="searchSound" id="searchSound" placeholder="Nombre del sonido">
+  </div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-success">Buscar</button>
+  </div>
+</form>
+
 <div class="d-flex flex-column justify-content-center abutton gn-items-center py-lg-5">
     <div class="row row-cols-auto justify-content-center abutton gn-items-center">
 

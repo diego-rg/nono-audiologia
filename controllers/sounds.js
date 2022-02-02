@@ -106,7 +106,7 @@ module.exports.deleteSound = async (req, res) => {
 }
 
 //SHOW. Search
-module.exports.index = async (req, res, next) => {
+module.exports.searchSound = async (req, res, next) => {
     let perPage = 8;
     let page = req.query.page || 1;
     const sounds = await Sound.find({ name : req.params })
