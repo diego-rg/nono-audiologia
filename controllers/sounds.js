@@ -108,5 +108,5 @@ module.exports.deleteSound = async (req, res) => {
 //SHOW. Search. Poderíase eliminat todo o código da paxinación se non se van facer query de moitos, agora é só de un
 module.exports.searchSound = async (req, res, next) => {
     const sound = await Sound.findOne({ name: req.query.name }).collation({ locale: 'es', strength: 1 });//collation strength 1 para que non distinga minúsculas de maiúsculas
-    res.redirect(`/sounds/categories/${sound.category}/${sound._id}`);
+    res.redirect(`/sounds/categories/${sound.category}/${sound._id}`);//rediriximos a url do sonido encontrado
 }
