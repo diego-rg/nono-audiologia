@@ -1,9 +1,16 @@
 <% layout("layouts/boilerplate") %>
-<h2 class="text-center mb-4">Todos los sonidos</h2> 
+<!--Search-->
+<form class="row g-3 m-auto p-lg-5 py-4" action="/sounds/search/" method="GET">
+  <div class="col-auto">
+    <input type="text" class="form-control" name="name" id="name" placeholder="Nombre del sonido"><!--name="name" será o match para req.query.name-->
+  </div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-success">Buscar</button>
+  </div>
+</form>
+
 <div class="d-flex flex-column justify-content-center abutton gn-items-center py-lg-5">
     <div class="row row-cols-auto justify-content-center abutton gn-items-center">
-
-      <!--Loop para ver cards de todos os sons da DB-->
       <% for(let sound of sounds) { %>
         <div class="col">
           <div class="card mb-3 text-center" style="width: 9rem">
@@ -16,36 +23,4 @@
         </div>
       <% }  %>
     </div>
-
-    <!--Paxinación-->
-    <% if (pages > 0) { %>
-      <div class="row align-items-center justify-content-evenly p-3">
-        <div class="text-center">
-          <% if (current == 1) { %>
-            <a><button class="disabled btn btn-success">Primero</button></a>
-          <% } else { %>
-              <a href="/sounds/?page=1"><button class="btn btn-success">Primero</button></a>
-          <% } %>
-          <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
-          <% if (i !== 1) { %>
-              <a><button class="disabled btn btn-success">...</button></a>
-          <% } %>
-          <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
-              <% if (i == current) { %>
-                  <a><button class="disabled btn btn-success"><%= i %></button></a>
-              <% } else { %>
-                  <a href="/sounds/?page=<%= i %>"><button class="btn btn-success"><%= i %></button></a>
-              <% } %>
-              <% if (i == Number(current) + 4 && i < pages) { %>
-                  <a><button class="disabled btn btn-success">...</button></a>
-              <% } %>
-          <% } %>
-          <% if (current == pages) { %>
-              <a><button class="disabled btn btn-success">Último</button></a>
-          <% } else { %>
-              <a href="/sounds/?page=<%= pages %>"><button class="btn btn-success">Último</button></a>
-          <% } %>
-        </div>
-      </div>
-    <% } %>
 </div>

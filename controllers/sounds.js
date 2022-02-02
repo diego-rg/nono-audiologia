@@ -105,7 +105,7 @@ module.exports.deleteSound = async (req, res) => {
     res.redirect("/sounds");
 }
 
-//SHOW. Search
+//SHOW. Search. Poderíase eliminat todo o código da paxinación se non se van facer query de moitos, agora é só de un
 module.exports.searchSound = async (req, res, next) => {
     let perPage = 8;
     let page = req.query.page || 1;
@@ -113,11 +113,11 @@ module.exports.searchSound = async (req, res, next) => {
         .skip((perPage * page) - perPage)
         .limit(perPage)
         .collation({ locale: 'es', strength: 1 })
-        .sort({ name: "asc"})//Añadimos sort para orden alfabético e collation para que non distinga minúsculas de maiúsculas
+        .sort({ name: "asc"})//Añadimos sort para orden alfabético e collation strength 1 para que non distinga minúsculas de maiúsculas
         .exec(async function (err, sounds) {
             await Sound.count().exec(function(err, count) {
                 if (err) return next(err)
-                res.render("sounds/sounds", {
+                res.render("sounds/search", {
                     sounds: sounds,
                     current: page,
                     pages: Math.ceil(count / perPage)
