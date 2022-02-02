@@ -11,7 +11,7 @@ module.exports.index = async (req, res, next) => {
         .skip((perPage * page) - perPage)
         .limit(perPage)
         .collation({ locale: "es" })
-        .sort({ name: "asc"})//Añadimos sort para orden alfabético e collation para que non distinga minúsculas de maiúsculas
+        .sort({ name: "asc"})//Añadimos sort para orden alfabético
         .exec(async function (err, sounds) {
             await Sound.count().exec(function(err, count) {
                 if (err) return next(err)
@@ -109,10 +109,10 @@ module.exports.deleteSound = async (req, res) => {
 module.exports.searchSound = async (req, res, next) => {
     let perPage = 8;
     let page = req.query.page || 1;
-    const sounds = await Sound.find({ name: "Hombre"})
+    const sounds = await Sound.find({ name: req.query.name })
         .skip((perPage * page) - perPage)
         .limit(perPage)
-        .collation({ locale: "es" })
+        .collation({ locale: 'es', strength: 1 })
         .sort({ name: "asc"})//Añadimos sort para orden alfabético e collation para que non distinga minúsculas de maiúsculas
         .exec(async function (err, sounds) {
             await Sound.count().exec(function(err, count) {
