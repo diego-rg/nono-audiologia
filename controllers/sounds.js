@@ -109,7 +109,7 @@ module.exports.deleteSound = async (req, res) => {
 module.exports.searchSound = async (req, res, next) => {
     let perPage = 8;
     let page = req.query.page || 1;
-    const sounds = await Sound.find({ name : req.params })
+    const sounds = await Sound.find({ name: "Hombre"})
         .skip((perPage * page) - perPage)
         .limit(perPage)
         .collation({ locale: "es" })
@@ -117,7 +117,7 @@ module.exports.searchSound = async (req, res, next) => {
         .exec(async function (err, sounds) {
             await Sound.count().exec(function(err, count) {
                 if (err) return next(err)
-                res.render("sounds/search", {
+                res.render("sounds/sounds", {
                     sounds: sounds,
                     current: page,
                     pages: Math.ceil(count / perPage)
