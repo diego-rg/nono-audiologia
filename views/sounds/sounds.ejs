@@ -38,13 +38,15 @@
             <a href="/sounds/?page=1"><button class="btn btn-success">Primero</button></a>
           <% } %>
 
-
-
+          
           <% let i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
-          <% if (i !== 1) { %>
-            <a href="/sounds/?page=<%= current -1 %>"><button class="btn btn-success"><i class="bi bi-arrow-left"></i></button></a>
-          <% } else { %>
+
+
+          <!--Botón anterior: Activo se a páxina actual é maior ca 1. Usamos parseInt por si acaso, en Botón seguinte toma current coma string-->
+          <% if (current == 1) { %>
             <a><button class="disabled btn btn-success"><i class="bi bi-arrow-left"></i></button></a>
+          <% } else { %>
+            <a href="/sounds/?page=<%= parseInt(current) -1 %>"><button class="btn btn-success"><i class="bi bi-arrow-left"></i></button></a>
           <% } %>
 
 
@@ -54,13 +56,19 @@
               <% } else { %>
                   <a href="/sounds/?page=<%= i %>"><button class="btn btn-success"><%= i %></button></a>
               <% } %>
-              <% if (i == Number(current) + 4 && i < pages) { %>
-                  <a><button class="disabled btn btn-success">...</button></a>
-              <% } %>
           <% } %>
 
 
 
+          <!--Botón seguinte: Activo se a páxina actual é menor ca última. Neste caso toma current como string, polo que hai que usar parseInt-->
+          <% if (current == pages) { %>
+            <a><button class="disabled btn btn-success"><i class="bi bi-arrow-right"></i></button></a>
+          <% } else { %>
+            <a href="/sounds/?page=<%= parseInt(current) + 1 %>"><button class="btn btn-success"><i class="bi bi-arrow-right"></i></button></a>
+          <% } %>
+
+
+          
           <!--Botón último: Activo se a páxina actual é menos ca última-->
           <% if (current == pages) { %>
             <a><button class=" disabled btn btn-success">Último</button></a>
