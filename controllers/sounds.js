@@ -34,6 +34,12 @@ module.exports.categories = async (req, res) => {
 module.exports.category = async (req, res) => {
     const sounds = await Sound.find({ category: req.params.category }).sort({ name: "asc"});//Añadimos sort para orden alfabético
     const soundCategory = req.params.category;//Pasamos como variable a categoría que corresponde para eseñala no correspondente ejs
+    const categs = await Categories;//esperamos ás categorías para comparar que o usuario non introduce unha que non existe
+    console.log(req.params.category)
+    if(!(categs.includes(req.params.category))) {//comparamos os params do cliente (se escribe na url) coas categorías. Se o array de categorías non a ten da erro
+        req.flash("error", "La categoría que indicas no existe.")
+        return res.redirect("/sounds/categories")
+    }
     res.render("sounds/category", { sounds, soundCategory });
 }
 
