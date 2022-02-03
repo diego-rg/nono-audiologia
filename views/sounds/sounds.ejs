@@ -31,15 +31,23 @@
     <% if (pages > 0) { %>
       <div class="row align-items-center justify-content-evenly p-3">
         <div class="text-center">
+          <!--Botón primero: Activo se a páxina actual é maior de 1-->
           <% if (current == 1) { %>
             <a><button class="disabled btn btn-success">Primero</button></a>
           <% } else { %>
-              <a href="/sounds/?page=1"><button class="btn btn-success">Primero</button></a>
+            <a href="/sounds/?page=1"><button class="btn btn-success">Primero</button></a>
           <% } %>
+
+
+
           <% let i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
           <% if (i !== 1) { %>
-              <a><button class="disabled btn btn-success">...</button></a>
+            <a href="/sounds/?page=<%= current -1 %>"><button class="btn btn-success"><i class="bi bi-arrow-left"></i></button></a>
+          <% } else { %>
+            <a><button class="disabled btn btn-success"><i class="bi bi-arrow-left"></i></button></a>
           <% } %>
+
+
           <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
               <% if (i == current) { %>
                   <a><button class="disabled btn btn-success"><%= i %></button></a>
@@ -50,10 +58,14 @@
                   <a><button class="disabled btn btn-success">...</button></a>
               <% } %>
           <% } %>
+
+
+
+          <!--Botón último: Activo se a páxina actual é menos ca última-->
           <% if (current == pages) { %>
-              <a><button class="disabled btn btn-success">Último</button></a>
+            <a><button class=" disabled btn btn-success">Último</button></a>
           <% } else { %>
-              <a href="/sounds/?page=<%= pages %>"><button class="btn btn-success">Último</button></a>
+            <a href="/sounds/?page=<%= pages %>"><button class="btn btn-success">Último</button></a>
           <% } %>
         </div>
       </div>
