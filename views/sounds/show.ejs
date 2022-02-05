@@ -8,12 +8,12 @@
                 <li class="list-group-item">Frecuencia máxima: <%= sound.maxFrec %> Hz</li>
                 <li class="list-group-item">Intensidad mínima: <%= sound.minInt %> dB</li>
                 <li class="list-group-item">Frecuencia máxima: <%= sound.maxInt %> dB</li>
-                <li class="list-group-item"><%= sound.category %></li>
+                <li class="list-group-item">Categoría: <%= sound.category %></li>
                 <li class="list-group-item">Creado por: <%= sound.author.username %></li>
             </ul>
         </div>
         <div>
-            <audio class="my-3" crossorigin="anonymous" controls>
+            <audio class="mt-5" crossorigin="anonymous" controls>
                 <source src="<%= sound.audio.url %>" type="audio/mpeg">
             Lo sentimos, tu navegador de internet no soporta los elementos de audio.
             </audio>
@@ -29,7 +29,6 @@
                 <a class="link-success button-edit" href="/sounds/categories/<%=soundCategory%>/<%= sound._id %>/edit"><button class="btn btn-success mb-3">Editar</button></a>
                 <% } %> 
         </div>
-         
     </section>
     <section class="col image-first">
         <img class="img-fluid img-thumbnail" src="<%=sound.image.url%>" crossorigin="anonymous" alt="<%= sound.name %>">
