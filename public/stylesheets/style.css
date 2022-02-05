@@ -37,6 +37,10 @@ a {
     color:black!important;
 }
 
+.navbar a:hover {
+    transform: scale(1.05);
+}
+
 footer {
     font-family: 'Playfair Display', serif;
     font-size: 1.3rem;
