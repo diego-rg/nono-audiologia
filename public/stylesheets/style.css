@@ -41,6 +41,10 @@ a {
     transform: scale(1.05);
 }
 
+.btn:hover {
+    transform: scale(1.03);
+}
+
 footer {
     font-family: 'Playfair Display', serif;
     font-size: 1.3rem;

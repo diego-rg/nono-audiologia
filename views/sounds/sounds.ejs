@@ -15,7 +15,7 @@
 
       <!--Loop para ver cards de todos os sons da DB-->
       <% for(let sound of sounds) { %>
-        <div class="col">
+        <div class="col py-lg-5">
           <div class="card mb-3 text-center" style="width: 9rem">
             <img src="<%= sound.image.url %>" class="card-img-top" crossorigin="anonymous" alt="Foto de: <%= sound.name %>">
             <div class="card-body px-1 py-3">
@@ -29,7 +29,7 @@
 
     <!--Paxinación-->
     <% if (pages > 0) { %>
-      <div class="row align-items-center justify-content-evenly p-3">
+      <div class="row align-items-center justify-content-evenly p-3 pt-lg-5">
         <div class="text-center">
           <!--Botón primero: Activo se a páxina actual é maior de 1-->
           <% if (current == 1) { %>
