@@ -22,6 +22,7 @@ const User = require("./models/user");//Requerir o schema de user
 const mongoSanitize = require('express-mongo-sanitize');//Evita que se poidar usan símbolos (operators) como $ nas queries para atacar/modifica/sacar datos da nosa db dende a app
 const helmet = require("helmet");//Máis funcións de seguridad basadas en HTTP headers
 const MongoStore = require('connect-mongo');//Para gardar a sesión en mongo e non na memoria
+const helmetDirectives = require("./utilities/helmetDirectives");
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/nono';//Para acceder aos datos da dirección de mongoAtlas de env
 
 //'mongodb://localhost:27017/nono' db local
@@ -68,21 +69,7 @@ app.use(flash());
 app.use(helmet());//Máis funcións de seguridad basadas en HTTP headers
 
 //Configuración de helmet: Hai que engadir crossorigin="anonymous" en todos os archivos de audio/video...e o Src na app.use de scripts, audio, img, fonts etc
-app.use(
-    helmet.contentSecurityPolicy({
-        directives: {
-            defaultSrc: [],
-            connectSrc: ["'self'"],
-            scriptSrc: ["'unsafe-inline'", "'self'", "https://cdn.jsdelivr.net/", "https://cdnjs.cloudflare.com"],
-            styleSrc: ["'self'", "'unsafe-inline'", "https://cdn.jsdelivr.net/", "https://cdnjs.cloudflare.com", "https://fonts.gstatic.com", "https://fonts.googleapis.com"],
-            workerSrc: ["'self'", "blob:"],
-            objectSrc: [],
-            mediaSrc: [ "'self'", "blob:", "data:", "https://res.cloudinary.com/dtevt8s36/", ],
-            imgSrc: [ "'self'", "blob:", "data:", "https://res.cloudinary.com/dtevt8s36/", ],
-            fontSrc: ["'self'", "https://fonts.gstatic.com", "https://fonts.googleapis.com", "https://cdn.jsdelivr.net/"],
-        },
-    })
-);
+app.use(helmet.contentSecurityPolicy(helmetDirectives.nonoDirectives));
 
 app.use(passport.initialize());//Authentication. Despois de session
 app.use(passport.session());//Authentication. Despois de session
