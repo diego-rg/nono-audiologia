@@ -24,13 +24,7 @@ const helmet = require("helmet");//Máis funcións de seguridad basadas en HTTP 
 const MongoStore = require('connect-mongo');//Para gardar a sesión en mongo e non na memoria
 const passportGoogle = require("passport-google-oauth2");//authentication con google
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/nono';//Para acceder aos datos da dirección de mongoAtlas de env
-<<<<<<< HEAD
 const helmetDirectives = require("./utilities/helmetDirectives");
-=======
-const googleID = process.env.GOOGLE_CLIENT_ID;
-const googleSecret = process.env.GOOGLE_CLIENT_SECRET;
-
->>>>>>> f78d2944d6f3c82714a4c255a91ea1490c9f20c4
 
 //'mongodb://localhost:27017/nono' db local
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
