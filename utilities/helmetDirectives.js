@@ -1,3 +1,4 @@
+//Config de helmet.  Hai que engadir crossorigin="anonymous" en todos os archivos de audio/video...e o Src na app.use de scripts, audio, img, fonts etc
 module.exports.nonoDirectives = {
     directives: {
         defaultSrc: [],

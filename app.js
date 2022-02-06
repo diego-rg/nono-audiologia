@@ -24,6 +24,7 @@ const helmet = require("helmet");//Máis funcións de seguridad basadas en HTTP 
 const MongoStore = require('connect-mongo');//Para gardar a sesión en mongo e non na memoria
 const helmetDirectives = require("./utilities/helmetDirectives");
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/nono';//Para acceder aos datos da dirección de mongoAtlas de env
+const helmetDirectives = require("./utilities/helmetDirectives");
 
 //'mongodb://localhost:27017/nono' db local
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -68,12 +69,24 @@ app.use(session(sessionConfig));
 app.use(flash());
 app.use(helmet());//Máis funcións de seguridad basadas en HTTP headers
 
-//Configuración de helmet: Hai que engadir crossorigin="anonymous" en todos os archivos de audio/video...e o Src na app.use de scripts, audio, img, fonts etc
+//Configuración de helmet: movida a utilitiespassport-google-oauth2
 app.use(helmet.contentSecurityPolicy(helmetDirectives.nonoDirectives));
 
 app.use(passport.initialize());//Authentication. Despois de session
 app.use(passport.session());//Authentication. Despois de session
 passport.use(new passportLocal(User.authenticate()));//Authentication. Despois de session
+passport.use(new passportGoogle({
+    clientID:     googleID ,
+    clientSecret: googleSecret,
+    callbackURL: "https://nono-audiologia.herokuapp.com/auth/google/callback",
+    passReqToCallback   : true
+  },
+  function(request, accessToken, refreshToken, profile, done) {
+    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+      return done(err, user);
+    });
+  }
+));
 passport.serializeUser(User.serializeUser());//métodos de passport
 passport.deserializeUser(User.deserializeUser());//métodos de passport
 
