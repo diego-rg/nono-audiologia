@@ -22,8 +22,15 @@ const User = require("./models/user");//Requerir o schema de user
 const mongoSanitize = require('express-mongo-sanitize');//Evita que se poidar usan símbolos (operators) como $ nas queries para atacar/modifica/sacar datos da nosa db dende a app
 const helmet = require("helmet");//Máis funcións de seguridad basadas en HTTP headers
 const MongoStore = require('connect-mongo');//Para gardar a sesión en mongo e non na memoria
+const passportGoogle = require("passport-google-oauth2");//authentication con google
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/nono';//Para acceder aos datos da dirección de mongoAtlas de env
+<<<<<<< HEAD
 const helmetDirectives = require("./utilities/helmetDirectives");
+=======
+const googleID = process.env.GOOGLE_CLIENT_ID;
+const googleSecret = process.env.GOOGLE_CLIENT_SECRET;
+
+>>>>>>> f78d2944d6f3c82714a4c255a91ea1490c9f20c4
 
 //'mongodb://localhost:27017/nono' db local
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -74,6 +81,18 @@ app.use(helmet.contentSecurityPolicy(helmetDirectives.nonoDirectives));//directi
 app.use(passport.initialize());//Authentication. Despois de session
 app.use(passport.session());//Authentication. Despois de session
 passport.use(new passportLocal(User.authenticate()));//Authentication. Despois de session
+passport.use(new passportGoogle({
+    clientID:     googleID ,
+    clientSecret: googleSecret,
+    callbackURL: "https://nono-audiologia.herokuapp.com/auth/google/callback",
+    passReqToCallback   : true
+  },
+  function(request, accessToken, refreshToken, profile, done) {
+    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+      return done(err, user);
+    });
+  }
+));
 passport.serializeUser(User.serializeUser());//métodos de passport
 passport.deserializeUser(User.deserializeUser());//métodos de passport
 
