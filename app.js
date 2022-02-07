@@ -1,5 +1,4 @@
 if (process.env.NODE_ENV !== "production") { require('dotenv').config(); }
-
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
@@ -44,7 +43,6 @@ app.use(mongoSanitize());//"Bloqueará" as queries que usen $ e outros símbolos
 
 //Sesion
 const secret = process.env.SECRET || "secretBigSecret";
-
 const sessionConfig = {
     store: MongoStore.create({ mongoUrl: dbUrl, touchAfter: 24 * 3600 }),//A sesión só se modificará unha vez cada 24 horas se non hai cambios
     name: "session",                        //por defecto chámase connect.sid, cambiamos nome
@@ -65,6 +63,7 @@ app.use(helmet());//Máis funcións de seguridad basadas en HTTP headers
 //Configuración de helmet: movida a utilitiespassport-google-oauth2
 app.use(helmet.contentSecurityPolicy(helmetDirectives.nonoDirectives));
 
+//Configuración de passport
 app.use(passport.initialize());//Authentication. Despois de session
 app.use(passport.session());//Authentication. Despois de session
 passport.use(new passportLocal(User.authenticate()));//Authentication. Despois de session
