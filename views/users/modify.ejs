@@ -1,10 +1,11 @@
 <% layout("layouts/boilerplate") %>
 <section class="m-auto">
-    <h2 class="mb-4 text-center">Cambiar contraseña</h2>
+    <h2 class="mb-4 text-center">Hola <%= userName %>!</h2>
+    <h2 class="mb-4 text-center">Cambiar mi contraseña</h2>
 
     <form action="/modify" method="POST" novalidate class="validated-form"><!--Para non usar validador estándar e usar o de bootstrap. Require función js-->
         <div class="row g-2 mb-3">
-            <label for="password" class="col-sm-4 col-form-label">Nueva Contraseña:</label>
+            <label for="password" class="col-sm-4 col-form-label">Nueva contraseña:</label>
             <div class="col-sm-8">
                 <input type="password" id="password" placeholder="**********" name="password" class="form-control" required>
             </div>

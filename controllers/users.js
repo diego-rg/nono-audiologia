@@ -30,7 +30,8 @@ module.exports.newUser = async (req, res) => {
 
 //Change password
 module.exports.modifyForm = (req, res) => {
-    res.render("users/modify")
+    const userName = req.user.username;
+    res.render("users/modify", { userName });
 }
 
 module.exports.modifyPassword = async (req, res) => {
