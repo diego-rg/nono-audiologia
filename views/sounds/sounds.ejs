@@ -49,14 +49,32 @@
             <a href="/sounds/?page=<%= Number(current) -1 %>"><button class="btn btn-success"><i class="bi bi-arrow-left"></i></button></a>
           <% } %>
 
-
-          <% for (; i <= (Number(current) + 2) && i <= pages; i++) { %>
-              <% if (i == current) { %>
-                  <a><button class="disabled btn btn-success"><%= i %></button></a>
-              <% } else { %>
-                  <a href="/sounds/?page=<%= i %>"><button class="btn btn-success"><%= i %></button></a>
+          
+          <% if (current == 1) {%><!--En páxina un que mostre os botóns 1 2 3--> 
+              <% for (; i <= (Number(current) + 2) && i <= pages; i++) { %>
+                  <% if (i == current) { %>
+                      <a><button class="disabled btn btn-success"><%= i %></button></a>
+                  <% } else { %>
+                      <a href="/sounds/?page=<%= i %>"><button class="btn btn-success"><%= i %></button></a>
+                  <% } %>
               <% } %>
-          <% } %>
+          <%} else if (current == pages) {%> <!--Na última páxina que mostre os 3 últimos botóns ( + 2 é innecesario).--> 
+              <% for (; i <= (Number(current) + 2) && i <= pages; i++) { %>
+                  <% if (i == current) { %>
+                      <a><button class="disabled btn btn-success"><%= i %></button></a>
+                  <% } else { %>
+                      <a href="/sounds/?page=<%= i %>"><button class="btn btn-success"><%= i %></button></a>
+                  <% } %>
+              <% } %>
+          <% } else { %><!--Nas páxinas intermedias que mostre só a actual, a anterior e a seguinte--> 
+              <% for (i = (Number(current) - 1); i <= (Number(current) + 1) && i <= pages; i++) { %>
+                  <% if (i == current) { %>
+                      <a><button class="disabled btn btn-success"><%= i %></button></a>
+                  <% } else { %>
+                      <a href="/sounds/?page=<%= i %>"><button class="btn btn-success"><%= i %></button></a>
+                  <% } %>
+              <% } %>
+          <% } %> 
 
 
           <!--Botón seguinte: Activo se a páxina actual é menor ca última. Neste caso toma current como string, polo que hai que usar Number ou parseInt-->
