@@ -17,4 +17,6 @@ Bootstrap: frontend e validación no client-side
 Joi: validacións no server-side
 Passport/Passport-local/Passport-local-mongoose": user authentication
 Multer-storage-cloudinary/Multer/Cloudinary: almacenamento na nube dende a app
-Dotenv: gardar keys privadas
+Dotenv: gardar variables de entorno
+Helmet: evitar vulnerabilidades como clickjacking
+Sanitize-html: evitar problemas de seguridade como XSS

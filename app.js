@@ -1,6 +1,4 @@
-if (process.env.NODE_ENV !== "production") {
-    require('dotenv').config();
-}
+if (process.env.NODE_ENV !== "production") { require('dotenv').config(); }
 
 const express = require("express");
 const path = require("path");
@@ -8,12 +6,8 @@ const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 const session = require("express-session");
 const flash = require("connect-flash");
-const catchAsync = require("./utilities/catchAsync");
 const ExpressError = require("./utilities/ExpressError");
 const methodOverride = require("method-override");
-const baseJoi = require("joi");//Non faría falta xa ao usalo e exportalo de validationSchemas
-const { Sound, Categories } = require("./models/sound");//Requerimos as dúas constantes de sound (para modelo e categorías)
-const joiSoundSchema = require("./validationSchemas");
 const soundsRoutes = require("./routes/sounds");//Importamos as rutas
 const usersRoutes = require("./routes/users");
 const passport = require("passport");//Authentication
