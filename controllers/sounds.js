@@ -1,5 +1,4 @@
 const { Sound, Categories } = require("../models/sound");
-const cloudinary = require('cloudinary').v2;
 const destroyFiles = require("../public/scripts/cloudinaryDestroy");//Función async para eliminar archivos
 
 //INDEX ROUTE. Ver todos os sons.

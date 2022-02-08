@@ -1,10 +1,6 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const router = express.Router();//En caso de ter varias rutas, e que unha requira req.params de outra, hai que especificar express.Router({ mergeParams: true })
 const catchAsync = require("../utilities/catchAsync");
-const ExpressError = require("../utilities/ExpressError");
-const { Sound, Categories } = require("../models/sound");
-const joiSoundSchema = require("../validationSchemas");
 const  { isLoggedIn, joiValidationSounds, isAuthor } = require("../middleware");//Se non se garda co const =... hay que destructurar
 const sounds = require("../controllers/sounds");//reestructuramos as rutas pasándoas ao seu propio archivo en controllers
 const multer = require("multer");//Para mandar e subir fotos con forms

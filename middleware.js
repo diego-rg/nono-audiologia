@@ -1,4 +1,4 @@
-const { Sound, Categories } = require("./models/sound");
+const { Sound } = require("./models/sound");
 const ExpressError = require("./utilities/ExpressError");
 const joiSoundSchema = require("./validationSchemas");
 
