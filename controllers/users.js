@@ -15,11 +15,9 @@ module.exports.newUser = async (req, res) => {
             req.flash("success", "Bienvenido a NoNo!");
             res.redirect("/");
         })
-    } catch(e) {//facemos un error handler extra para avisar se o nome de usuario xa está en uso e traducímolo. Facemos o mismo con mail. Refactorizar para igualar código?
-        let translatedError;
-        if( e.message === "A user with the given username is already registered") {
-            translatedError = "Error: ya existe un usuario con ese nombre.";
-            req.flash("error", translatedError);
+    } catch(e) {//facemos un error handler extra para avisar se o nome de usuario ou email xa está en uso
+        if(e.message === "A user with the given username is already registered") {
+            req.flash("error", "Error: ya existe un usuario con ese nombre.");
             res.redirect("register");
         } else if ((e.message).includes("E11000 duplicate key error collection: nono.users index: email_1 dup key:")) {
             req.flash("error", "Error: ya existe un usuario registrado con ese email.");
