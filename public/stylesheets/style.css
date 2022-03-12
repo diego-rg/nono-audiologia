@@ -1,40 +1,34 @@
 body {
-  background: url(/images/sound-colors.png) no-repeat center fixed;
+  background-color: #161a42;
   font-family: "Lato", sans-serif;
-  font-size: 1.05rem;
   min-height: 100vh;
+  color: white !important;
 }
 
 h1 {
   font-size: 4rem;
-  font-family: "Playfair Display SC", serif;
-  font-weight: 600;
 }
 
 h1 small {
   font-size: 1rem;
-  font-family: "Playfair Display", serif;
-  font-weight: 500;
 }
 
 .navbar-brand {
-  font-size: 1.35rem;
-  font-family: "Playfair Display SC", serif;
-  font-weight: 600;
+  font-size: 1.5rem;
 }
 
 .bg-success {
-  background-color: #a88ece71 !important;
+  background-color: transparent !important;
 }
 
 .btn-success {
-  background-color: #a88ece71 !important;
-  color: black !important;
+  background-color: #29317b !important;
+  color: white !important;
   border: none;
 }
 
 a {
-  color: black !important;
+  color: white !important;
 }
 
 .navbar a:hover {
@@ -43,11 +37,6 @@ a {
 
 .btn:hover {
   transform: scale(1.03);
-}
-
-footer {
-  font-family: "Playfair Display", serif;
-  font-size: 1.3rem;
 }
 
 .animate__animated.animate__fadeIn {

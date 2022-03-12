@@ -1,7 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-success px-3">
+<nav class="navbar navbar-expand-lg navbar-light bg-success px-3 mt-lg-4">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">NoNo</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse p-2" id="navbarNav">
@@ -24,21 +25,21 @@
     <!--Usamos na función de middle de app.js o método de user de passport para enseñar login/register se non logeado, ou salir se está logeado-->
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
-        <% if(!currentUser) { %> 
-        <li class="nav-item">
-          <a class="nav-link" href="/login">Conectarse</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/register">Registro</a>
-        </li>
+        <% if(!currentUser) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Conectarse</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/register">Registro</a>
+          </li>
           <% } else { %>
             <li class="nav-item">
               <a class="nav-link" href="/modify">Ajustes</a>
             </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/logout">Salir</a>
-        </li>
-        <% } %> 
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Salir</a>
+            </li>
+            <% } %>
       </ul>
     </div>
   </div>

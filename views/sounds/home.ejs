@@ -1,20 +1,22 @@
 <% layout("layouts/boilerplate") %>
-<div class="alert-danger home-warning text-center my-5">
-  IMPORTANTE: Proyecto en desarrollo (pendiente rehacer frontend y funcionalidades como email de confirmación para registro de usuario)
-</div>
-<div>
+  <div>
     <h1 class="text-center mb-5 animate__animated animate__fadeIn">NoNo <small>audiología</small></h1>
-    <p class="text-center animate__animated animate__fadeInLeft">Base de datos de sonidos cotidianos con información sobre su frencuencia e intensidad para facilitar la adaptación de ayudas auditivas.</p>
+    <p class="text-center animate__animated animate__fadeInLeft">Base de datos de sonidos cotidianos con información
+      sobre su frencuencia e intensidad para facilitar la adaptación de ayudas auditivas.</p>
     <ul class="list-home px-0 m-0 py-5">
-        <li class="text-center animate__animated animate__fadeInLeft"><i class="bi bi-check"></i> Consulta su frecuencia e intensidad</li>
-        <li class="text-center animate__animated animate__fadeInLeft"><i class="bi bi-check"></i> Ajusta la adaptación</li>
-        <li class="text-center animate__animated animate__fadeInLeft"><i class="bi bi-check"></i> Comprueba el ajuste reproduciendo el sonido</li>
-        <li class="text-center animate__animated animate__fadeInLeft"><i class="bi bi-check"></i> Regístrate y añade sonidos a la base de datos</li>
+      <li class="text-center animate__animated animate__fadeInLeft"><i class="bi bi-check"></i> Consulta su frecuencia e
+        intensidad</li>
+      <li class="text-center animate__animated animate__fadeInLeft"><i class="bi bi-check"></i> Ajusta la adaptación
+      </li>
+      <li class="text-center animate__animated animate__fadeInLeft"><i class="bi bi-check"></i> Comprueba el ajuste
+        reproduciendo el sonido</li>
+      <li class="text-center animate__animated animate__fadeInLeft"><i class="bi bi-check"></i> Regístrate y añade
+        sonidos a la base de datos</li>
     </ul>
-</div>
+  </div>
 
-<!--Search form-->
-<form class="row g-3 m-auto p-lg-5 py-4" action="/sounds/search/" method="GET">
+  <!--Search form-->
+  <form class="row g-3 m-auto p-lg-5 py-4" action="/sounds/search/" method="GET">
     <div class="col-auto">
       <input type="text" class="form-control" name="name" id="name" placeholder="Nombre del sonido">
     </div>
@@ -23,7 +25,8 @@
     </div>
   </form>
 
-<div class="alert-danger home-warning text-center my-5">
-    NoNo audiología es sólo un proyecto de desarrollo web. El autor no se hace reponsable de la exactitud o veracidad de los datos de sonidos que contiene, 
+  <!-- <div class="alert-dark home-warning text-center my-5">
+    NoNo audiología es sólo un proyecto de desarrollo web. El autor no se hace reponsable de la exactitud o veracidad de
+    los datos de sonidos que contiene,
     por lo que NO se deben usar como datos reales ningún concepto.
-</div>
+  </div> -->
