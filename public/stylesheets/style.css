@@ -1,10 +1,5 @@
 body {
-  background: rgb(199, 201, 209);
-  background: radial-gradient(
-    circle,
-    rgba(199, 201, 209, 1) 25%,
-    rgba(255, 255, 255, 1) 100%
-  );
+  background: url(/images/sound-colors.png) no-repeat center fixed;
   font-family: "Lato", sans-serif;
   font-size: 1.05rem;
   min-height: 100vh;
