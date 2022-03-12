@@ -1,9 +1,11 @@
 h1 {
   font-size: 4rem;
+  font-family: "Eczar", serif;
 }
 
 h1 small {
   font-size: 1rem;
+  font-family: "Eczar", serif;
 }
 
 .carousel img {
@@ -14,4 +16,15 @@ h1 small {
   position: relative;
   left: auto;
   right: auto;
+}
+
+.animate__animated.animate__fadeIn {
+  animation-duration: 3s;
+  animation-delay: 0.25s;
+}
+
+@media only screen and (max-width: 992px) {
+  h1 {
+    font-size: 3rem;
+  }
 }

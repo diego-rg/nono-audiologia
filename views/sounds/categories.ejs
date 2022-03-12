@@ -1,16 +1,18 @@
 <% layout("layouts/boilerplate") %>
-<h2 class="text-center mb-4">Categorías</h2> 
-<div class="row row-cols-auto justify-content-center align-items-center py-lg-5">
-    <!--Loop para ver cards de todas as categorías da DB-->
-    <% for(let categ of categs) { %>
-        <div class="col">
-            <div class="card mb-3 text-center" style="width: 11rem">
-            <img src="/images/<%= categ %>.jpg" class="card-img-top" alt="Foto de: <%= categ %>">
-            <div class="card-body">
-                <h5 class="card-title"><%= categ %></h5>
-                <a href="/sounds/categories/<%= categ %>" crossorigin="anonymous" class="btn btn-success">Ver</a>
+    <h2 class="text-center mb-4">Categorías</h2>
+    <div class="row row-cols-auto justify-content-center align-items-center py-lg-5 mb-lg-5">
+        <!--Loop para ver cards de todas as categorías da DB-->
+        <% for(let categ of categs) { %>
+            <div class="col">
+                <div class="card mb-3 text-center" style="width: 11.5rem">
+                    <img src="/images/<%= categ %>.jpg" class="card-img-top" alt="Foto de: <%= categ %>">
+                    <div class="card-body px-1 py-3">
+                        <h5 class="card-title fs-5">
+                            <%= categ %>
+                        </h5>
+                        <a href="/sounds/categories/<%= categ %>" crossorigin="anonymous" class="btn btn-dark">Ver</a>
+                    </div>
+                </div>
             </div>
-            </div>
-        </div>
-    <% }  %>
-</div>
+            <% } %>
+    </div>

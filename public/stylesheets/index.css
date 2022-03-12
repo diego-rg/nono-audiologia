@@ -1,5 +1,4 @@
 body {
-  /* background-color: #161a42; */
   background: rgb(22, 26, 66);
   background: linear-gradient(
     180deg,
@@ -10,15 +9,15 @@ body {
   );
   font-family: "Roboto", sans-serif;
   min-height: 100vh;
-  width: 75vw;
+  width: 77vw;
   color: white;
   font-size: 1.1rem;
 }
 
-.btn-success {
+.btn-dark {
   background-color: #374091 !important;
   color: white !important;
-  border: none;
+  border: 1px solid black;
 }
 
 a {
@@ -27,11 +26,15 @@ a {
 
 .btn:hover {
   transform: scale(1.03);
+  border: 1px solid black;
 }
 
-.animate__animated.animate__fadeIn {
-  animation-duration: 3s;
-  animation-delay: 0.25s;
+.card {
+  background-color: rgba(255, 255, 255, 0.616);
+}
+
+.card-title {
+  color: black;
 }
 
 @media only screen and (max-width: 992px) {
@@ -41,9 +44,6 @@ a {
   }
   main {
     width: 95vw;
-  }
-  h1 {
-    font-size: 3rem;
   }
   .image-first {
     order: -1;
