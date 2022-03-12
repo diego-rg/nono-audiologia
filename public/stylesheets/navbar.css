@@ -1,0 +1,7 @@
+.navbar-brand {
+  font-size: 2rem;
+}
+
+.navbar a:hover {
+  transform: scale(1.05);
+}
