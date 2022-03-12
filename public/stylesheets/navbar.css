@@ -5,3 +5,9 @@
 .navbar a:hover {
   transform: scale(1.05);
 }
+
+@media only screen and (max-width: 992px) {
+  .navbar {
+    background-color: black;
+  }
+}

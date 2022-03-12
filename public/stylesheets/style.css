@@ -1,5 +1,12 @@
 body {
-  background-color: #161a42;
+  /* background-color: #161a42; */
+  background: rgb(22, 26, 66);
+  background: linear-gradient(
+    0deg,
+    rgba(22, 26, 66, 1) 25%,
+    rgba(101, 105, 153, 1) 75%,
+    rgba(255, 255, 255, 1) 100%
+  );
   font-family: "Roboto", sans-serif;
   min-height: 100vh;
   width: 75vw;
@@ -30,32 +37,20 @@ a {
 }
 
 .animate__animated.animate__fadeIn {
-  animation-duration: 2.5s;
-}
-
-.animate__animated.animate__fadeInLeft {
-  animation-duration: 2s;
-  animation-delay: 0.4s;
-}
-
-.list-home .animate__animated.animate__fadeInLeft {
-  animation-duration: 2s;
-  animation-delay: 0.8s;
-}
-
-.list-home {
-  list-style-type: none;
+  animation-duration: 3s;
+  animation-delay: 0.25s;
 }
 
 @media only screen and (max-width: 992px) {
   body {
     width: 100vw !important;
+    font-size: 1rem;
+  }
+  main {
+    width: 95vw;
   }
   h1 {
     font-size: 3rem;
-  }
-  .list-home {
-    font-size: 0.9rem;
   }
   .image-first {
     order: -1;

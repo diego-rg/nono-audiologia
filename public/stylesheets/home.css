@@ -1,0 +1,9 @@
+.carousel img {
+  height: 25vh;
+}
+
+.carousel-caption {
+  position: relative;
+  left: auto;
+  right: auto;
+}

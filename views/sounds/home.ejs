@@ -1,22 +1,46 @@
 <% layout("layouts/boilerplate") %>
+  <!--Title-->
   <div>
     <h1 class="text-center mb-5 animate__animated animate__fadeIn">NoNo <small>audiología</small></h1>
-    <p class="text-center animate__animated animate__fadeInLeft">Base de datos de sonidos cotidianos con información
+    <p class="text-center animate__animated animate__fadeIn">Base de datos de sonidos cotidianos con información
       sobre su frencuencia e intensidad para facilitar la adaptación de ayudas auditivas.</p>
-    <ul class="list-home px-0 m-0 py-5">
-      <li class="text-center animate__animated animate__fadeInLeft"><i class="bi bi-check"></i> Consulta su frecuencia e
-        intensidad</li>
-      <li class="text-center animate__animated animate__fadeInLeft"><i class="bi bi-check"></i> Ajusta la adaptación
-      </li>
-      <li class="text-center animate__animated animate__fadeInLeft"><i class="bi bi-check"></i> Comprueba el ajuste
-        reproduciendo el sonido</li>
-      <li class="text-center animate__animated animate__fadeInLeft"><i class="bi bi-check"></i> Regístrate y añade
-        sonidos a la base de datos</li>
-    </ul>
+  </div>
+
+  <!--Carousel-->
+  <div id="carouselNoNo" class="carousel slide my-5" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="/images/buscando.svg" class="d-block w-100" alt="Dibujo de una mujer buscando.">
+        <div class="carousel-caption mt-4">
+          <p><i class="bi bi-check"></i> Busca sonidos en nuestra base de datos o regístrate y créalos.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="/images/datos.svg" class="d-block w-100" alt="Dibujo de una persona mostrando datos.">
+        <div class="carousel-caption mt-4">
+          <p><i class="bi bi-check"></i> Consulta su frecuencia e
+            intensidad y ajusta la adaptación.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="/images/sonido-musica.svg" class="d-block w-100"
+          alt="Dibujo de un personaje ficticio escuchando música.">
+        <div class="carousel-caption mt-4">
+          <p><i class="bi bi-check"></i> Comprueba el ajuste
+            reproduciendo el sonido con el paciente.</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselNoNo" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselNoNo" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
   </div>
 
   <!--Search form-->
-  <form class="row g-3 m-auto p-lg-5 py-4" action="/sounds/search/" method="GET">
+  <form class="row g-3 m-auto pb-5" action="/sounds/search/" method="GET">
     <div class="col-auto">
       <input type="text" class="form-control" name="name" id="name" placeholder="Nombre del sonido">
     </div>
