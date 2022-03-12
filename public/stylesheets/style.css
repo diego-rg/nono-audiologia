@@ -1,89 +1,95 @@
-body { 
-    background: url(/images/sound-colors.png) no-repeat center fixed;
-    font-family: 'Lato', sans-serif;
-    font-size: 1.05rem;
-    min-height: 100vh;
-  }
+body {
+  background: rgb(199, 201, 209);
+  background: radial-gradient(
+    circle,
+    rgba(199, 201, 209, 1) 25%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  font-family: "Lato", sans-serif;
+  font-size: 1.05rem;
+  min-height: 100vh;
+}
 
 h1 {
-    font-size: 4rem;
-    font-family: 'Playfair Display SC', serif;
-    font-weight: 600;
+  font-size: 4rem;
+  font-family: "Playfair Display SC", serif;
+  font-weight: 600;
 }
 
 h1 small {
-    font-size: 1rem;
-    font-family: 'Playfair Display', serif;
-    font-weight: 500;
+  font-size: 1rem;
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
 }
 
 .navbar-brand {
-    font-size: 1.35rem;
-    font-family: 'Playfair Display SC', serif;
-    font-weight: 600;
+  font-size: 1.35rem;
+  font-family: "Playfair Display SC", serif;
+  font-weight: 600;
 }
 
 .bg-success {
-    background-color: #a88ece71!important;
+  background-color: #a88ece71 !important;
 }
 
 .btn-success {
-    background-color: #a88ece71!important;
-    color: black!important;
-    border: none;
+  background-color: #a88ece71 !important;
+  color: black !important;
+  border: none;
 }
 
 a {
-    color:black!important;
+  color: black !important;
 }
 
 .navbar a:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .btn:hover {
-    transform: scale(1.03);
+  transform: scale(1.03);
 }
 
 footer {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
+  font-family: "Playfair Display", serif;
+  font-size: 1.3rem;
 }
 
 .animate__animated.animate__fadeIn {
-    animation-duration: 2.5s;
+  animation-duration: 2.5s;
 }
 
 .animate__animated.animate__fadeInLeft {
-    animation-duration: 2s;
-    animation-delay: 0.4s;
+  animation-duration: 2s;
+  animation-delay: 0.4s;
 }
 
 .list-home .animate__animated.animate__fadeInLeft {
-    animation-duration: 2s;
-    animation-delay: 0.8s;
+  animation-duration: 2s;
+  animation-delay: 0.8s;
 }
 
 .list-home {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 @media only screen and (max-width: 992px) {
-    h1 {
-        font-size: 3rem;
-    }
-    .list-home {
-        font-size: 0.9rem;
-    }
-    .image-first {
-        order: -1;
-        margin-bottom: 1rem;
-        padding: 2.5rem;
-    }
-    #audio, #image {
-        font-size: 0.8rem;
-    }
-    .home-warning {
-        font-size: 0.9rem;
-    }
+  h1 {
+    font-size: 3rem;
   }
+  .list-home {
+    font-size: 0.9rem;
+  }
+  .image-first {
+    order: -1;
+    margin-bottom: 1rem;
+    padding: 2.5rem;
+  }
+  #audio,
+  #image {
+    font-size: 0.8rem;
+  }
+  .home-warning {
+    font-size: 0.9rem;
+  }
+}
