@@ -37,6 +37,10 @@ a {
   color: black;
 }
 
+h5 {
+  font-size: 1.15rem;
+}
+
 @media only screen and (max-width: 992px) {
   body {
     width: 100vw !important;

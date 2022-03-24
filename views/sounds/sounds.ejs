@@ -1,10 +1,10 @@
 <% layout("layouts/boilerplate") %>
   <!--Search form-->
   <form class="row g-3 m-auto py-4" action="/sounds/search/" method="GET">
-    <div class="col-auto">
+    <div class="col-auto m-auto pb-sm-0 pb-3">
       <input type="text" class="form-control" name="name" id="name" placeholder="Nombre del sonido">
     </div>
-    <div class="col-auto">
+    <div class="col-auto m-auto">
       <button type="submit" class="btn btn-dark">Buscar</button>
     </div>
   </form>
@@ -15,11 +15,11 @@
       <!--Loop para ver cards de todos os sons da DB-->
       <% for(let sound of sounds) { %>
         <div class="col py-lg-4">
-          <div class="card mb-3 text-center" style="width: 11.5rem">
+          <div class="card mb-3 text-center" style="width: 11rem">
             <img src="<%= sound.image.url %>" class="card-img-top" crossorigin="anonymous"
               alt="Foto de: <%= sound.name %>">
-            <div class="card-body px-1 py-3">
-              <h5 class="card-title fs-5">
+            <div class="card-body px-1 py-2">
+              <h5 class="card-title">
                 <%= sound.name %>
               </h5>
               <a href="/sounds/categories/<%=sound.category%>/<%= sound._id %>" class="btn btn-dark">Ver datos</a>
