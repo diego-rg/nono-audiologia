@@ -49,11 +49,6 @@ h5 {
   main {
     width: 95vw;
   }
-  .image-first {
-    order: -1;
-    margin-bottom: 1rem;
-    padding: 2.5rem;
-  }
   #audio,
   #image {
     font-size: 0.8rem;
