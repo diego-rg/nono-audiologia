@@ -6,8 +6,8 @@
             class="validated-form" enctype="multipart/form-data">
             <!--Para usar DELETE EDIT con method override/NOVALIDATE para usar o validador de bootstrap.                                    enctype para subir imaxes-->
             <div class="row mb-3">
-                <label for="name" class="col-sm-2 col-form-label">Nombre:</label>
-                <div class="col-sm-10">
+                <label for="name" class="col-sm-4 col-form-label">Nombre:</label>
+                <div class="col-sm-8">
                     <input type="text" id="name" placeholder="Sonido" name="sound[name]" class="form-control" required
                         value="<%= sound.name %>">
                     <div class="valid-feedback">Válido!</div>
@@ -15,8 +15,8 @@
             </div>
 
             <div class="row g-2 mb-3">
-                <label for="minFrec" class="col-sm-4 col-form-label">Frecuencia mínima:</label>
-                <div class="col-sm-8">
+                <label for="minFrec" class="col-sm-6 col-form-label">Frecuencia mínima:</label>
+                <div class="col-sm-6">
                     <input type="number" min="20" max="20000" id="minFrec" placeholder="dB" name="sound[minFrec]"
                         class="form-control" required value="<%= sound.minFrec %>">
                     <div class="invalid-feedback">El valor de la frecuencia debe estar entre 20 y 20.000 Hz</div>
@@ -24,8 +24,8 @@
             </div>
 
             <div class="row g-2 mb-3">
-                <label for="maxFrec" class="col-sm-4 col-form-label">Frecuencia máxima:</label>
-                <div class="col-sm-8">
+                <label for="maxFrec" class="col-sm-6 col-form-label">Frecuencia máxima:</label>
+                <div class="col-sm-6">
                     <input type="number" min="20" max="20000" id="maxFrec" placeholder="dB" name="sound[maxFrec]"
                         class="form-control" required value="<%= sound.maxFrec %>">
                     <div class="invalid-feedback">El valor de la frecuencia debe estar entre 20 y 20.000 Hz</div>
@@ -33,8 +33,8 @@
             </div>
 
             <div class="row g-2 mb-3">
-                <label for="minInt" class="col-sm-4 col-form-label">Intensidad mínima:</label>
-                <div class="col-sm-8">
+                <label for="minInt" class="col-sm-6 col-form-label">Intensidad mínima:</label>
+                <div class="col-sm-6">
                     <input type="number" min="0" max="200" id="minInt" placeholder="Hz" name="sound[minInt]"
                         class="form-control" required value="<%= sound.minInt %>">
                     <div class="invalid-feedback">El valor de la intensidad debe estar entre 0 y 200 dB</div>
@@ -42,8 +42,8 @@
             </div>
 
             <div class="row g-2 mb-3">
-                <label for="maxInt" class="col-sm-4 col-form-label">Intensidad máxima:</label>
-                <div class="col-sm-8">
+                <label for="maxInt" class="col-sm-6 col-form-label">Intensidad máxima:</label>
+                <div class="col-sm-6">
                     <input type="number" min="0" max="200" id="maxInt" placeholder="Hz" name="sound[maxInt]"
                         class="form-control" required value="<%= sound.maxInt %>">
                     <div class="invalid-feedback">El valor de la intensidad debe estar entre 0 y 200 dB</div>
@@ -51,8 +51,8 @@
             </div>
 
             <div class="row mb-3">
-                <label for="category" class="col-sm-2 col-form-label">Categoría:</label>
-                <div class="col-sm-10">
+                <label for="category" class="col-sm-4 col-form-label">Categoría:</label>
+                <div class="col-sm-8">
                     <select id="category" name="sound[category]" class="form-select" required>
                         <option disabled selected value>Selecciona la categoría</option>
                         <% for(c=0; c < Categories.length; c++) { %>
@@ -82,7 +82,7 @@
                 </div>
             </div>
 
-            <div class="d-flex align-items-center justify-content-evenly pb-3">
+            <div class="d-flex align-items-center justify-content-evenly p-3">
                 <button type="submit" class="btn btn-dark">Guardar</button>
                 <button type="reset" class="btn btn-dark">Limpiar</button>
             </div>
