@@ -1,6 +1,6 @@
 # nono-audiologia
 
-Proyecto fullstack de una base de datos de sonidos para audiología
+Proyecto fullstack de audiología
 
 nono-audiologia.herokuapp.com/
 
