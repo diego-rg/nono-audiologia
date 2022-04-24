@@ -13,15 +13,13 @@ const soundsRoutes = require("./routes/sounds"); //Importamos as rutas
 const usersRoutes = require("./routes/users");
 const passport = require("passport"); //Authentication
 const passportLocal = require("passport-local"); //Authentication
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require("./models/user"); //Requerir o schema de user
 const mongoSanitize = require("express-mongo-sanitize"); //Evita que se poidar usan símbolos (operators) como $ nas queries para atacar/modifica/sacar datos da nosa db dende a app
 const helmet = require("helmet"); //Máis funcións de seguridad basadas en HTTP headers
 const MongoStore = require("connect-mongo"); //Para gardar a sesión en mongo e non na memoria
 const helmetDirectives = require("./utilities/helmetDirectives");
+const googleOauthConfig = require("./public/scripts/googleOauthConfig");
 const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/nono"; //Para acceder aos datos da dirección de mongoAtlas de env
-const googleId = process.env.GOOGLE_CLIENT_ID;
-const googleSecret = process.env.GOOGLE_CLIENT_SECRET;
 
 //'mongodb://localhost:27017/nono' db local
 mongoose
@@ -73,20 +71,7 @@ app.use(helmet.contentSecurityPolicy(helmetDirectives.nonoDirectives));
 app.use(passport.initialize()); //Authentication. Despois de session
 app.use(passport.session()); //Authentication. Despois de session
 passport.use(new passportLocal(User.authenticate())); //Authentication. Despois de session
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: googleId,
-      clientSecret: googleSecret,
-      callbackURL: "http://localhost:3000/auth/google/callback",
-    },
-    function (accessToken, refreshToken, profile, cb) {
-      User.findOrCreate({ googleId: profile.id }, function (err, user) {
-        return cb(err, user);
-      });
-    }
-  )
-);
+passport.use(googleOauthConfig);
 passport.serializeUser(User.serializeUser()); //métodos de passport
 passport.deserializeUser(User.deserializeUser()); //métodos de passport
 
