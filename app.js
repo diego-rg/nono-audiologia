@@ -105,7 +105,7 @@ app.use((req, res, next) => {
 app.use("/sounds", soundsRoutes); //Activamos as rutas
 app.use("/", usersRoutes); //Deixamos a ruta con / para que sea nono/register solo
 
-//Google
+//Google OAuth 2.0
 app.get(
   "/auth/google",
   passport.authenticate("google", { scope: ["profile"] })
