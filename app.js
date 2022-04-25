@@ -70,8 +70,8 @@ app.use(helmet.contentSecurityPolicy(helmetDirectives.nonoDirectives));
 //Configuración de passport
 app.use(passport.initialize()); //Authentication. Despois de session
 app.use(passport.session()); //Authentication. Despois de session
+passport.use(googleOauthConfig); //Authentication con GoogleOauth. Configuración en scripts
 passport.use(new passportLocal(User.authenticate())); //Authentication. Despois de session
-passport.use(googleOauthConfig);
 passport.serializeUser(User.serializeUser()); //métodos de passport
 passport.deserializeUser(User.deserializeUser()); //métodos de passport
 

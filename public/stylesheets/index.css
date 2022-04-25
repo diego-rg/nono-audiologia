@@ -20,8 +20,20 @@ body {
   border: 1px solid black;
 }
 
+.btn-google {
+  background-color: #4285f4 !important;
+  border: 2px solid #4285f4 !important;
+}
+.google--logo {
+  height: 40px;
+  width: 40px;
+  background-image: url("../images/google-logo.svg");
+  background-size: contain;
+}
+
 a {
   color: white !important;
+  text-decoration: none;
 }
 
 .btn:hover {
