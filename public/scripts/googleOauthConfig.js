@@ -9,7 +9,7 @@ const googleOauthConfig = new GoogleStrategy(
   {
     clientID: googleId,
     clientSecret: googleSecret,
-    callbackURL: "http://localhost:3000/auth/google/callback",
+    callbackURL: "https://nono-audiologia.herokuapp.com/google/callback",
     scope: [
       "https://www.googleapis.com/auth/userinfo.profile",
       "https://www.googleapis.com/auth/userinfo.email",
@@ -17,6 +17,29 @@ const googleOauthConfig = new GoogleStrategy(
   },
   function (accessToken, refreshToken, profile, callback) {
     console.log(profile.emails[0].value);
+    User.findOne(
+      {
+        googleId: profile.id,
+      },
+      function (err, user) {
+        if (err) {
+          return callback(err);
+        }
+        if (!user) {
+          user = new User({
+            username: profile.displayName,
+            googleId: profile.id,
+            email: profile.emails[0].value,
+          });
+          user.save(function (err) {
+            if (err) console.log(err);
+            return callback(err, user);
+          });
+        } else {
+          return callback(err, user);
+        }
+      }
+    );
   }
 );
 

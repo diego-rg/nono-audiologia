@@ -18,7 +18,7 @@ const UserSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  googleID: { type: String },
+  googleId: { type: String },
 });
 
 UserSchema.plugin(passportLocalMongoose);
