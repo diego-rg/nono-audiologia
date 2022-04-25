@@ -10,24 +10,13 @@ const googleOauthConfig = new GoogleStrategy(
     clientID: googleId,
     clientSecret: googleSecret,
     callbackURL: "http://localhost:3000/auth/google/callback",
-    scope: ["profile", "https://www.googleapis.com/auth/userinfo.email"],
+    scope: [
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/userinfo.email",
+    ],
   },
-  async function (accessToken, refreshToken, profile, cb) {
-    const userExists = await User.findOne({ googleid: profile.id });
-    if (userExists) {
-      cb(null, userExists);
-    } else {
-      const user = new User({
-        name: profile.displayName,
-        googleid: profile.id,
-      })
-      const registeredUser = await User.register(user);
-    req.login(registeredUser, (err) => {
-      if (err) return next(err);
-      req.flash("success", "Bienvenido a NoNo!");
-      res.redirect("/");
-    });
-    }
+  function (accessToken, refreshToken, profile, callback) {
+    console.log(profile.emails[0].value);
   }
 );
 
