@@ -1,3 +1,21 @@
+.navbar-menu {
+  flex-direction: column !important;
+}
+
+.nabvar-nav--vertical {
+  flex-direction: column !important;
+}
+
+.navbar-collapse {
+  align-items: flex-end !important;
+}
+
+.navbar {
+  min-width: 250px;
+  background: silver;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 .navbar-brand {
   font-size: 2rem;
 }
@@ -7,7 +25,10 @@
 }
 
 @media only screen and (max-width: 992px) {
-  .navbar {
-    background-color: black;
+  .navbar-menu {
+    flex-direction: row !important;
+  }
+  .logo {
+    max-width: 35px;
   }
 }

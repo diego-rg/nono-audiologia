@@ -1,17 +1,11 @@
 body {
-  background: rgb(22, 26, 66);
-  background: linear-gradient(
-    180deg,
-    rgba(22, 26, 66, 1) 10%,
-    rgba(101, 105, 153, 1) 35%,
-    rgba(101, 105, 153, 1) 65%,
-    rgba(22, 26, 66, 1) 90%
-  );
+  background: lightgrey;
   font-family: "Roboto", sans-serif;
   min-height: 100vh;
-  width: 77vw;
-  color: white;
   font-size: 1.1rem;
+  display: flex;
+  margin: auto;
+  flex-direction: row;
 }
 
 .btn-dark {
@@ -32,7 +26,7 @@ body {
 }
 
 a {
-  color: white !important;
+  color: black !important;
   text-decoration: none;
 }
 
@@ -57,6 +51,7 @@ h5 {
   body {
     width: 100vw !important;
     font-size: 1rem;
+    flex-direction: column !important;
   }
   main {
     width: 95vw;
