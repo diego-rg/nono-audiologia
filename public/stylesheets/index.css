@@ -8,6 +8,10 @@ body {
   flex-direction: row;
 }
 
+.main-container {
+  min-height: 100vh;
+}
+
 .btn-dark {
   background-color: #374091 !important;
   color: white !important;
