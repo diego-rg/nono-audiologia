@@ -1,5 +1,6 @@
 body {
-  background-color: white;
+  background: url(../images/background-spray.png);
+  background-position: center;
   font-family: "Montserrat", sans-serif;
   min-height: 100vh;
   display: flex;
@@ -14,7 +15,7 @@ body {
 }
 
 .btn-dark {
-  background-color: transparent !important;
+  background-color: white !important;
   color: black;
   border: 1px solid black;
 }
@@ -22,6 +23,7 @@ body {
 .btn-google {
   background-color: #4285f4 !important;
   border: 2px solid #4285f4 !important;
+  color: white;
 }
 .google--logo {
   height: 40px;
