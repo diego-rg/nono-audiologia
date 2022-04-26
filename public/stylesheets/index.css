@@ -9,12 +9,14 @@ body {
 }
 
 .main-container {
+  width: 80vw;
   min-height: 100vh;
+  align-self: center;
 }
 
 .btn-dark {
-  background-color: #374091 !important;
-  color: white !important;
+  background-color: transparent !important;
+  color: black;
   border: 1px solid black;
 }
 
@@ -35,8 +37,13 @@ a {
 }
 
 .btn:hover {
+  color: black;
   transform: scale(1.02);
   border: 1px solid black;
+}
+
+.disabled {
+  color: black !important;
 }
 
 .card {
@@ -63,5 +70,9 @@ h5 {
   #audio,
   #image {
     font-size: 0.8rem;
+  }
+  .main-container {
+    width: 100vw;
+    min-height: 100vh;
   }
 }
