@@ -1,8 +1,7 @@
 body {
-  background: #f8f9fb;
+  background-color: white;
   font-family: "Montserrat", sans-serif;
   min-height: 100vh;
-  font-size: 1.1rem;
   display: flex;
   margin: auto;
   flex-direction: row;
