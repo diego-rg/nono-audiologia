@@ -10,10 +10,17 @@
   align-items: flex-end !important;
 }
 
+.logo {
+  max-width: 100%;
+}
+
 .navbar {
-  min-width: 250px;
-  background: silver;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background: #f8f9fb;
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+}
+
+.navbar a {
+  text-transform: uppercase;
 }
 
 .navbar-brand {

@@ -1,15 +1,15 @@
 h1 {
-  font-size: 4rem;
-  font-family: "Eczar", serif;
+  font-size: 5rem;
+  font-family: "Montserrat", sans-serif;
 }
 
 h1 small {
   font-size: 1rem;
-  font-family: "Eczar", serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .carousel img {
-  height: 25vh;
+  height: 35vh;
 }
 
 .carousel-caption {

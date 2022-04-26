@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light p-lg-0 py-2">
-  <div class="container-fluid navbar-menu h-100 p-lg-5">
+  <div class="container-fluid navbar-menu h-100 p-lg-4 align-items-start">
     <a class="navbar-brand p-0 m-0 d-flex" href="/"><img class="logo" src="/images/logo-nono.png"
         alt="Logo de NoNo Audiología"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse p-2" id="navbarNav">
+    <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav nabvar-nav--vertical">
         <li class="nav-item">
           <a class="nav-link" href="/sounds/?page=1">Sonidos</a>
@@ -25,7 +25,7 @@
 
     <!--Usamos na función de middle de app.js o método de user de passport para enseñar login/register se non logeado, ou salir se está logeado-->
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav nabvar-nav--vertical">
         <% if(!currentUser) { %>
           <li class="nav-item">
             <a class="nav-link" href="/login">Conectarse</a>

@@ -1,6 +1,6 @@
 body {
-  background: lightgrey;
-  font-family: "Roboto", sans-serif;
+  background: #f8f9fb;
+  font-family: "Montserrat", sans-serif;
   min-height: 100vh;
   font-size: 1.1rem;
   display: flex;
@@ -35,7 +35,7 @@ a {
 }
 
 .btn:hover {
-  transform: scale(1.03);
+  transform: scale(1.02);
   border: 1px solid black;
 }
 
