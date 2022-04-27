@@ -1,6 +1,10 @@
 .navbar {
   background: #0e7dd5;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 10px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
 }
 
 .navbar li {

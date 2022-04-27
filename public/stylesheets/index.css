@@ -11,7 +11,7 @@ body {
 }
 
 .main-container {
-  width: 80vw;
+  width: calc(100% - 432px);
   min-height: 100vh;
   align-self: center;
 }
