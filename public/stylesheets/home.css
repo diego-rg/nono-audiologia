@@ -1,13 +1,13 @@
 h1 {
   font-size: 5rem;
-  font-weight: 600;
-  font-family: "Montserrat", sans-serif;
-  color: #2f2e41;
+  font-family: "Quattrocento", serif;
+  color: white;
 }
 
 h1 small {
   font-size: 1rem;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Quattrocento", serif;
+  font-weight: 300;
 }
 
 .carousel img {

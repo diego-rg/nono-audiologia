@@ -1,5 +1,5 @@
 .navbar {
-  background: #eaeff2;
+  background: #0e7dd5;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 10px;
 }
 
@@ -20,13 +20,14 @@
 }
 
 .navbar a {
+  font-family: "Quattrocento", serif;
   text-transform: uppercase;
   padding: 5px;
 }
 
 .navbar-collapse a:hover {
-  background-color: #d3dfe4;
-  text-decoration: underline;
+  background-color: #0d6dbd;
+  transform: scale(1.02);
 }
 
 @media only screen and (max-width: 992px) {

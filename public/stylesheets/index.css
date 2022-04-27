@@ -1,11 +1,13 @@
 body {
-  background: url(../images/background-spray.png);
+  background: #1e313a;
   background-position: center;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Lora", serif;
   min-height: 100vh;
   display: flex;
   margin: auto;
   flex-direction: row;
+  color: white;
+  font-size: 1.05rem;
 }
 
 .main-container {
@@ -33,7 +35,7 @@ body {
 }
 
 a {
-  color: black !important;
+  color: white !important;
   text-decoration: none;
 }
 
