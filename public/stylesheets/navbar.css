@@ -35,6 +35,10 @@
 }
 
 @media only screen and (max-width: 992px) {
+  .navbar {
+    position: static;
+    height: auto;
+  }
   .navbar-menu {
     flex-direction: row !important;
   }

@@ -10,19 +10,14 @@ h1 small {
   font-weight: 300;
 }
 
-.carousel img {
-  height: 35vh;
+.col-dark {
+  background: #1e313a;
+  height: 50vh;
 }
 
-.carousel-caption {
-  position: relative;
-  left: auto;
-  right: auto;
-}
-
-.animate__animated.animate__fadeIn {
-  animation-duration: 3s;
-  animation-delay: 0.25s;
+.col-light {
+  background: #0e7dd5;
+  height: 50vh;
 }
 
 @media only screen and (max-width: 992px) {

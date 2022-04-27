@@ -11,9 +11,15 @@ body {
 }
 
 .main-container {
-  width: calc(100% - 432px);
+  background-color: green;
+  width: 100%;
   min-height: 100vh;
-  align-self: center;
+}
+
+.content-container {
+  width: calc(100% - 480px);
+  max-width: calc(100% - 480px);
+  background-color: red;
 }
 
 .btn-dark {
@@ -77,5 +83,10 @@ h5 {
   .main-container {
     width: 100vw;
     min-height: 100vh;
+  }
+  .content-container {
+    width: 100%;
+    max-width: 100%;
+    background-color: red;
   }
 }

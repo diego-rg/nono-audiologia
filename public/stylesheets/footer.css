@@ -1,0 +1,38 @@
+footer {
+  background: #1e313a;
+  box-shadow: rgba(0, 0, 0, 0.35) 10px 10px 10px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+footer span {
+  writing-mode: vertical-lr;
+  transform: scale(-1);
+}
+
+footer a {
+  transform: rotate(270deg);
+}
+
+@media only screen and (max-width: 992px) {
+  footer {
+    position: static;
+    height: auto;
+    width: auto;
+    flex-direction: row;
+  }
+  footer span {
+    writing-mode: horizontal-tb;
+    transform: none;
+  }
+  footer a {
+    transform: none;
+  }
+}
