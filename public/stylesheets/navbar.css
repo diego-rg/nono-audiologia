@@ -22,7 +22,9 @@
 }
 
 .navbar a {
-  font-family: "Quattrocento", serif;
+  font-family: "League Spartan", sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1rem;
   text-transform: uppercase;
   padding: 5px;
 }
@@ -43,6 +45,9 @@
   }
   .navbar-menu {
     flex-direction: row !important;
+  }
+  .navbar a {
+    font-size: inherit;
   }
   .logo {
     max-width: 35px;

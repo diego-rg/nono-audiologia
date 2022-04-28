@@ -1,8 +1,9 @@
 body {
   background: pink;
   color: white;
-  font-family: "Lora", serif;
+  font-family: "Libre Baskerville", serif;
   display: flex;
+  font-size: 0.95rem;
 }
 
 .app-container {
