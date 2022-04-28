@@ -1,6 +1,7 @@
 .card-header {
   color: black;
   background-color: transparent;
+  font-size: 1.4rem;
 }
 
 @media only screen and (max-width: 991px) {
