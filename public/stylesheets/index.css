@@ -1,17 +1,15 @@
 body {
-  background: pink;
+  background: #0e7dd5;
   color: white;
   font-family: "League Spartan", sans-serif;
   display: flex;
 }
 
 .app-container {
-  background-color: green;
   max-height: 100vh;
 }
 
 main {
-  background: #1e313a;
   height: 100vh;
   overflow: scroll;
 }
