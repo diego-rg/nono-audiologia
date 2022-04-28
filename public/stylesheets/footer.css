@@ -1,6 +1,5 @@
 footer {
   background: #1e313a;
-  box-shadow: rgba(0, 0, 0, 0.35) 10px 10px 10px;
   height: 100vh;
   display: flex;
   flex-direction: column;
