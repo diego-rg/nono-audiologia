@@ -1,25 +1,13 @@
 body {
-  background: #1e313a;
-  background-position: center;
-  font-family: "Lora", serif;
-  min-height: 100vh;
-  display: flex;
-  margin: auto;
-  flex-direction: row;
+  background: pink;
   color: white;
-  font-size: 1.05rem;
+  font-family: "Lora", serif;
 }
 
-.main-container {
+.app-container {
   background-color: green;
-  width: 100%;
-  min-height: 100vh;
-}
-
-.content-container {
-  width: calc(100% - 480px);
-  max-width: calc(100% - 480px);
-  background-color: red;
+  max-width: 100vw;
+  max-height: 100vh;
 }
 
 .btn-dark {
@@ -33,6 +21,7 @@ body {
   border: 2px solid #4285f4 !important;
   color: white;
 }
+
 .google--logo {
   height: 40px;
   width: 40px;
@@ -59,34 +48,9 @@ a {
   background-color: rgba(255, 255, 255, 0.616);
 }
 
-.card-title {
-  color: black;
-}
-
-h5 {
-  font-size: 1.15rem;
-}
-
-@media only screen and (max-width: 992px) {
-  body {
-    width: 100vw !important;
-    font-size: 1rem;
-    flex-direction: column !important;
-  }
-  main {
-    width: 95vw;
-  }
+@media only screen and (max-width: 991px) {
   #audio,
   #image {
     font-size: 0.8rem;
-  }
-  .main-container {
-    width: 100vw;
-    min-height: 100vh;
-  }
-  .content-container {
-    width: 100%;
-    max-width: 100%;
-    background-color: red;
   }
 }

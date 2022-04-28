@@ -1,11 +1,7 @@
 footer {
   background: #1e313a;
   box-shadow: rgba(0, 0, 0, 0.35) 10px 10px 10px;
-  position: fixed;
-  right: 0;
-  top: 0;
   height: 100vh;
-  width: 240px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,7 +17,7 @@ footer a {
   transform: rotate(270deg);
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 991px) {
   footer {
     position: static;
     height: auto;

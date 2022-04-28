@@ -1,9 +1,6 @@
 .navbar {
   background: #0e7dd5;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 10px;
-  position: fixed;
-  left: 0;
-  top: 0;
   height: 100vh;
 }
 
@@ -34,9 +31,8 @@
   transform: scale(1.02);
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 991px) {
   .navbar {
-    position: static;
     height: auto;
   }
   .navbar-menu {
