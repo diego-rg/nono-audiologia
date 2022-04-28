@@ -1,0 +1,9 @@
+.create-container {
+  max-width: 50%;
+}
+
+@media only screen and (max-width: 991px) {
+  .create-container {
+    max-width: 84vw;
+  }
+}

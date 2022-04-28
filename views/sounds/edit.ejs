@@ -1,5 +1,5 @@
 <% layout("layouts/boilerplate") %>
-    <section class="m-auto">
+    <section class="m-auto create-container">
         <h2 class="mb-4 text-center">Edita un sonido existente</h2>
 
         <form action="/sounds/categories/<%=soundCategory%>/<%= sound._id %>?_method=PUT" method="POST" novalidate
@@ -82,7 +82,7 @@
                 </div>
             </div>
 
-            <div class="d-flex align-items-center justify-content-evenly p-3">
+            <div class="d-flex align-items-center justify-content-between py-3">
                 <button type="submit" class="btn btn-dark">Guardar</button>
                 <button type="reset" class="btn btn-dark">Limpiar</button>
             </div>

@@ -1,7 +1,8 @@
 <% layout("layouts/boilerplate") %>
     <section class="m-auto user-container">
-        <h2 class="mb-5 text-center">Bienvenido <%= userName %>!</h2>
-        <h2 class="m-4 text-center">Cambiar mi contraseña</h2>
+        <h2 class="mb-4 text-center">Bienvenido <%= userName %>
+        </h2>
+        <h2 class="m-4 text-center">Cambiar contraseña</h2>
 
         <form action="/modify" method="POST" novalidate class="validated-form">
             <!--Para non usar validador estándar e usar o de bootstrap. Require función js-->

@@ -67,6 +67,10 @@ a {
   top: 10vh;
 }
 
+select {
+  font-family: "Libre Baskerville", serif;
+}
+
 @media only screen and (max-width: 991px) {
   body {
     display: inherit;
