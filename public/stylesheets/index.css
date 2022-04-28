@@ -10,15 +10,26 @@ body {
   max-height: 100vh;
 }
 
+.main-container {
+  background: #1e313a;
+  height: 100vh;
+  overflow: scroll;
+}
+
 .btn-dark {
-  background-color: white !important;
-  color: black;
-  border: 1px solid black;
+  background-color: #0e7dd5 !important;
+  color: white !important;
+  border: none;
+  font-family: "Libre Baskerville", serif;
+}
+
+input {
+  font-family: "Libre Baskerville", serif;
 }
 
 .btn-google {
-  background-color: #4285f4 !important;
-  border: 2px solid #4285f4 !important;
+  background-color: #0e7dd5 !important;
+  border: 2px solid #0e7dd5 !important;
   color: white;
 }
 
@@ -35,25 +46,30 @@ a {
 }
 
 .btn:hover {
-  color: black;
   transform: scale(1.02);
-  border: 1px solid black;
-}
-
-.disabled {
-  color: black !important;
 }
 
 .card {
-  background-color: rgba(255, 255, 255, 0.616);
+  background-color: white;
+}
+
+.card-title {
+  color: #1e313a;
 }
 
 @media only screen and (max-width: 991px) {
   body {
     display: inherit;
   }
+  .main-container {
+    overflow: inherit;
+    height: auto;
+  }
   #audio,
   #image {
     font-size: 0.8rem;
+  }
+  .btn-hidden-sm {
+    display: none;
   }
 }
