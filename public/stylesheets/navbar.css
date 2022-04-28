@@ -2,6 +2,7 @@
   background: #0e7dd5;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 10px;
   height: 100vh;
+  width: 250px;
 }
 
 .navbar li {
@@ -31,9 +32,14 @@
   transform: scale(1.02);
 }
 
+.logo {
+  max-width: 100%;
+}
+
 @media only screen and (max-width: 991px) {
   .navbar {
     height: auto;
+    width: auto;
   }
   .navbar-menu {
     flex-direction: row !important;
