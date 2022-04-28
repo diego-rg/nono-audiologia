@@ -1,133 +1,124 @@
 <% layout("layouts/boilerplate") %>
-
-  <div class="container-fluid main-container py-4">
-    <div class="row align-items-center justify-content-center h-100 d-flex flex-column">
-      <div class="col">
-        <h2 class="text-center">Todos los sonidos</h2>
-
-        <!--Search form-->
-        <form class="row align-items-center justify-content-center d-flex flex-row my-4" action="/sounds/search/"
-          method="GET">
-          <div class="col-auto">
-            <input type="text" class="form-control" name="name" id="name" placeholder="Nombre del sonido">
-          </div>
-          <div class="col-auto">
-            <button type="submit" class="btn btn-dark">Buscar</button>
-          </div>
-        </form>
+  <div class="col col-12">
+    <h2 class="text-center">Todos los sonidos</h2>
+    <!--Search form-->
+    <form class="row align-items-center justify-content-center d-flex flex-row my-3" action="/sounds/search/"
+      method="GET">
+      <div class="col-auto">
+        <input type="text" class="form-control" name="name" id="name" placeholder="Nombre del sonido">
       </div>
-      <div class="col">
+      <div class="col-auto">
+        <button type="submit" class="btn btn-dark">Buscar</button>
+      </div>
+    </form>
+  </div>
 
-        <div class="d-flex flex-column justify-content-center align-items-center py-lg-4">
-          <div class="row row-cols-auto justify-content-center align-items-center">
-            <!--Loop para ver cards de todos os sons da DB-->
-            <% for(let sound of sounds) { %>
-              <div class="col py-lg-4">
-                <div class="card mb-3 text-center" style="width: 9rem">
-                  <img src="<%= sound.image.url %>" class="card-img-top" crossorigin="anonymous"
-                    alt="Foto de: <%= sound.name %>">
-                  <div class="card-body px-1 py-2">
-                    <h5 class="card-title">
-                      <%= sound.name %>
-                    </h5>
-                    <a href="/sounds/categories/<%=sound.category%>/<%= sound._id %>" class="btn btn-dark">Ver datos</a>
-                  </div>
-                </div>
-              </div>
-              <% } %>
-          </div>
-
-          <!--Paxinación-->
-          <% if (pages> 0) { %>
-            <div class="row align-items-center justify-content-evenly p-3 pt-lg-5">
-              <div class="text-center">
-                <!--Botón primero: Activo se a páxina actual é maior de 1-->
-                <% if (current==1) { %>
-                  <a><button class="disabled btn btn-dark">Primero</button></a>
-                  <% } else { %>
-                    <a href="/sounds/?page=1"><button class="btn btn-dark">Primero</button></a>
-                    <% } %>
-
-                      <% let i=(Number(current)> 3 ? Number(current) - 2 : 1) %>
-
-                        <!--Botón anterior: Activo se a páxina actual é maior ca 1. Usamos Number ou parseInt por si acaso, en Botón seguinte toma current coma string-->
-                        <% if (current==1) { %>
-                          <a><button class="disabled btn btn-dark btn-hidden-sm"><i
-                                class="bi bi-arrow-left"></i></button></a>
-                          <% } else { %>
-                            <a href="/sounds/?page=<%= Number(current) -1 %>"><button
-                                class="btn btn-dark btn-hidden-sm"><i class="bi bi-arrow-left"></i></button></a>
-                            <% } %>
-
-                              <!--Numeración das páxinas-->
-                              <% if (current==1) {%>
-                                <!--En páxina un que mostre os botóns 1 2 3-->
-                                <% for (; i <=(Number(current) + 2) && i <=pages; i++) { %>
-                                  <% if (i==current) { %>
-                                    <a><button class="disabled btn btn-dark">
-                                        <%= i %>
-                                      </button></a>
-                                    <% } else { %>
-                                      <a href="/sounds/?page=<%= i %>"><button class="btn btn-dark">
-                                          <%= i %>
-                                        </button></a>
-                                      <% } %>
-                                        <% } %>
-                                          <%} else if (current==pages) {%>
-                                            <!--Na última páxina que mostre os 3 últimos botóns ( + 2 é innecesario).-->
-                                            <% for (; i <=(Number(current) + 2) && i <=pages; i++) { %>
-                                              <% if (i==current) { %>
-                                                <a><button class="disabled btn btn-dark">
-                                                    <%= i %>
-                                                  </button></a>
-                                                <% } else { %>
-                                                  <a href="/sounds/?page=<%= i %>"><button class="btn btn-dark">
-                                                      <%= i %>
-                                                    </button></a>
-                                                  <% } %>
-                                                    <% } %>
-                                                      <% } else { %>
-                                                        <!--Nas páxinas intermedias que mostre só a actual, a anterior e a seguinte-->
-                                                        <% for (i=(Number(current) - 1); i <=(Number(current) + 1) && i
-                                                          <=pages; i++) { %>
-                                                          <% if (i==current) { %>
-                                                            <a><button class="disabled btn btn-dark">
-                                                                <%= i %>
-                                                              </button></a>
-                                                            <% } else { %>
-                                                              <a href="/sounds/?page=<%= i %>"><button
-                                                                  class="btn btn-dark">
-                                                                  <%= i %>
-                                                                </button></a>
-                                                              <% } %>
-                                                                <% } %>
-                                                                  <% } %>
-
-                                                                    <!--Botón seguinte: Activo se a páxina actual é menor ca última. Neste caso toma current como string, polo que hai que usar Number ou parseInt-->
-                                                                    <% if (current==pages) { %>
-                                                                      <a><button
-                                                                          class="disabled btn btn-dark btn-hidden-sm"><i
-                                                                            class="bi bi-arrow-right"></i></button></a>
-                                                                      <% } else { %>
-                                                                        <a
-                                                                          href="/sounds/?page=<%= Number(current) + 1 %>"><button
-                                                                            class="btn btn-dark btn-hidden-sm"><i
-                                                                              class="bi bi-arrow-right"></i></button></a>
-                                                                        <% } %>
-
-                                                                          <!--Botón último: Activo se a páxina actual é menos ca última-->
-                                                                          <% if (current==pages) { %>
-                                                                            <a><button
-                                                                                class=" disabled btn btn-dark">Último</button></a>
-                                                                            <% } else { %>
-                                                                              <a href="/sounds/?page=<%= pages %>"><button
-                                                                                  class="btn btn-dark">Último</button></a>
-                                                                              <% } %>
+  <div class="col col-12">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <div class="row row-cols-auto justify-content-center align-items-center">
+        <!--Loop para ver cards de todos os sons da DB-->
+        <% for(let sound of sounds) { %>
+          <div class="col">
+            <div class="card mb-3 text-center" style="width: 9rem">
+              <img src="<%= sound.image.url %>" class="card-img-top" crossorigin="anonymous"
+                alt="Foto de: <%= sound.name %>">
+              <div class="card-body px-1 py-2">
+                <h5 class="card-title">
+                  <%= sound.name %>
+                </h5>
+                <a href="/sounds/categories/<%=sound.category%>/<%= sound._id %>" class="btn btn-dark">Ver datos</a>
               </div>
             </div>
-            <% } %>
-        </div>
+          </div>
+          <% } %>
       </div>
 
+      <!--Paxinación-->
+      <% if (pages> 0) { %>
+        <div class="row align-items-center justify-content-evenly p-3 pt-lg-5">
+          <div class="text-center">
+            <!--Botón primero: Activo se a páxina actual é maior de 1-->
+            <% if (current==1) { %>
+              <a><button class="disabled btn btn-dark">Primero</button></a>
+              <% } else { %>
+                <a href="/sounds/?page=1"><button class="btn btn-dark">Primero</button></a>
+                <% } %>
+
+                  <% let i=(Number(current)> 3 ? Number(current) - 2 : 1) %>
+
+                    <!--Botón anterior: Activo se a páxina actual é maior ca 1. Usamos Number ou parseInt por si acaso, en Botón seguinte toma current coma string-->
+                    <% if (current==1) { %>
+                      <a><button class="disabled btn btn-dark btn-hidden-sm"><i
+                            class="bi bi-arrow-left"></i></button></a>
+                      <% } else { %>
+                        <a href="/sounds/?page=<%= Number(current) -1 %>"><button class="btn btn-dark btn-hidden-sm"><i
+                              class="bi bi-arrow-left"></i></button></a>
+                        <% } %>
+
+                          <!--Numeración das páxinas-->
+                          <% if (current==1) {%>
+                            <!--En páxina un que mostre os botóns 1 2 3-->
+                            <% for (; i <=(Number(current) + 2) && i <=pages; i++) { %>
+                              <% if (i==current) { %>
+                                <a><button class="disabled btn btn-dark">
+                                    <%= i %>
+                                  </button></a>
+                                <% } else { %>
+                                  <a href="/sounds/?page=<%= i %>"><button class="btn btn-dark">
+                                      <%= i %>
+                                    </button></a>
+                                  <% } %>
+                                    <% } %>
+                                      <%} else if (current==pages) {%>
+                                        <!--Na última páxina que mostre os 3 últimos botóns ( + 2 é innecesario).-->
+                                        <% for (; i <=(Number(current) + 2) && i <=pages; i++) { %>
+                                          <% if (i==current) { %>
+                                            <a><button class="disabled btn btn-dark">
+                                                <%= i %>
+                                              </button></a>
+                                            <% } else { %>
+                                              <a href="/sounds/?page=<%= i %>"><button class="btn btn-dark">
+                                                  <%= i %>
+                                                </button></a>
+                                              <% } %>
+                                                <% } %>
+                                                  <% } else { %>
+                                                    <!--Nas páxinas intermedias que mostre só a actual, a anterior e a seguinte-->
+                                                    <% for (i=(Number(current) - 1); i <=(Number(current) + 1) && i
+                                                      <=pages; i++) { %>
+                                                      <% if (i==current) { %>
+                                                        <a><button class="disabled btn btn-dark">
+                                                            <%= i %>
+                                                          </button></a>
+                                                        <% } else { %>
+                                                          <a href="/sounds/?page=<%= i %>"><button class="btn btn-dark">
+                                                              <%= i %>
+                                                            </button></a>
+                                                          <% } %>
+                                                            <% } %>
+                                                              <% } %>
+
+                                                                <!--Botón seguinte: Activo se a páxina actual é menor ca última. Neste caso toma current como string, polo que hai que usar Number ou parseInt-->
+                                                                <% if (current==pages) { %>
+                                                                  <a><button
+                                                                      class="disabled btn btn-dark btn-hidden-sm"><i
+                                                                        class="bi bi-arrow-right"></i></button></a>
+                                                                  <% } else { %>
+                                                                    <a href="/sounds/?page=<%= Number(current) + 1 %>"><button
+                                                                        class="btn btn-dark btn-hidden-sm"><i
+                                                                          class="bi bi-arrow-right"></i></button></a>
+                                                                    <% } %>
+
+                                                                      <!--Botón último: Activo se a páxina actual é menos ca última-->
+                                                                      <% if (current==pages) { %>
+                                                                        <a><button
+                                                                            class=" disabled btn btn-dark">Último</button></a>
+                                                                        <% } else { %>
+                                                                          <a href="/sounds/?page=<%= pages %>"><button
+                                                                              class="btn btn-dark">Último</button></a>
+                                                                          <% } %>
+          </div>
+        </div>
+        <% } %>
     </div>
   </div>

@@ -10,10 +10,14 @@ body {
   max-height: 100vh;
 }
 
-.main-container {
+main {
   background: #1e313a;
   height: 100vh;
   overflow: scroll;
+}
+
+main::-webkit-scrollbar {
+  display: none;
 }
 
 .btn-dark {
@@ -61,9 +65,10 @@ a {
   body {
     display: inherit;
   }
-  .main-container {
+  main {
     overflow: inherit;
     height: auto;
+    min-height: 100vh;
   }
   #audio,
   #image {
