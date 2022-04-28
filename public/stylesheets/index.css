@@ -38,8 +38,8 @@ input {
 }
 
 .google--logo {
-  height: 40px;
-  width: 40px;
+  height: 36px;
+  width: 36px;
   background-image: url("../images/google-logo.svg");
   background-size: contain;
 }
@@ -61,6 +61,12 @@ a {
   color: #1e313a;
 }
 
+.alert-dismissible {
+  max-width: 1000px;
+  position: absolute;
+  top: 10vh;
+}
+
 @media only screen and (max-width: 991px) {
   body {
     display: inherit;
@@ -76,5 +82,9 @@ a {
   }
   .btn-hidden-sm {
     display: none;
+  }
+  .alert-dismissible {
+    max-width: 84%;
+    position: relative;
   }
 }

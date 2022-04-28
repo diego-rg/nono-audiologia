@@ -1,6 +1,6 @@
 <% layout("layouts/boilerplate") %>
-    <section class="m-auto">
-        <h1 class="mb-5 text-center">Hola <%= userName %>!</h1>
+    <section class="m-auto user-container">
+        <h2 class="mb-5 text-center">Bienvenido <%= userName %>!</h2>
         <h2 class="m-4 text-center">Cambiar mi contraseña</h2>
 
         <form action="/modify" method="POST" novalidate class="validated-form">
@@ -13,7 +13,7 @@
                 </div>
             </div>
 
-            <div class="d-flex align-items-center justify-content-evenly p-3">
+            <div class="d-flex align-items-center justify-content-between py-3">
                 <button type="submit" class="btn btn-dark">Guardar</button>
                 <button type="reset" class="btn btn-dark">Limpiar</button>
             </div>
