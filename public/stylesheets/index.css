@@ -1,9 +1,8 @@
 body {
   background: pink;
   color: white;
-  font-family: "Libre Baskerville", serif;
+  font-family: "League Spartan", sans-serif;
   display: flex;
-  font-size: 0.95rem;
 }
 
 .app-container {
