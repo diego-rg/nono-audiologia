@@ -7,9 +7,17 @@
         <form action="/modify" method="POST" novalidate class="validated-form">
             <!--Para non usar validador estándar e usar o de bootstrap. Require función js-->
             <div class="row g-2 mb-3">
+                <label for="password" class="col-sm-6 col-form-label">Contraseña actual:</label>
+                <div class="col-sm-6">
+                    <input type="password" id="oldPassword" placeholder="**********" name="oldPassword"
+                        class="form-control" required>
+                </div>
+            </div>
+
+            <div class="row g-2 mb-3">
                 <label for="password" class="col-sm-6 col-form-label">Nueva contraseña:</label>
                 <div class="col-sm-6">
-                    <input type="password" id="password" placeholder="**********" name="password" class="form-control"
+                    <input type="password" id="newPassword" placeholder="**********" name="newPassword" class="form-control"
                         required>
                 </div>
             </div>

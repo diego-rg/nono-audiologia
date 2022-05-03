@@ -46,10 +46,16 @@ module.exports.modifyForm = (req, res) => {
 
 module.exports.modifyPassword = async (req, res) => {
   const user = await User.findOne({ username: req.user.username });
-  await user.setPassword(req.body.password);
-  await user.save();
-  req.flash("success", "Contraseña modificada correctamente.");
-  res.redirect("/");
+  await user
+    .changePassword(req.body.oldPassword, req.body.newPassword)
+    .then(() => {
+      req.flash("success", "Contraseña modificada correctamente.");
+      res.redirect("/modify");
+    })
+    .catch((err) => {
+      req.flash("error", "La contraseña actual no es correcta.");
+      res.redirect("/modify");
+    });
 };
 
 //Login

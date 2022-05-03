@@ -23,7 +23,7 @@ module.exports.joiValidationSounds = (req, res, next) => {
     };
 };
 
-//Sacamos a comprobación de estar logeado para middle. Nas tutas, primeiro pasar isLoggedIn para comprobar e ter acceso a user, e logo isAuthor
+//Sacamos a comprobación de estar logeado para middle. Nas rutas, primeiro pasar isLoggedIn para comprobar e ter acceso a user, e logo isAuthor
 module.exports.isAuthor = async(req, res, next) => {
     const sound = await Sound.findById(req.params.id);
     if(!sound.author.equals(req.user._id)) {//Evitar que poidan editar sin ser autores
