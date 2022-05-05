@@ -6,16 +6,11 @@ body {
 }
 
 .app-container {
-  max-height: 100vh;
+  min-height: 100vh;
 }
 
 main {
-  height: 100vh;
-  overflow: scroll;
-}
-
-main::-webkit-scrollbar {
-  display: none;
+  min-height: 100vh;
 }
 
 .btn-dark {
@@ -73,11 +68,6 @@ select {
   body {
     display: inherit;
   }
-  main {
-    overflow: inherit;
-    height: auto;
-    min-height: 100vh;
-  }
   #audio,
   #image {
     font-size: 0.8rem;
@@ -87,6 +77,5 @@ select {
   }
   .alert-dismissible {
     max-width: 84%;
-    position: relative;
   }
 }
