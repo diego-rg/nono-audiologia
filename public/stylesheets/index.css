@@ -60,7 +60,7 @@ a {
 }
 
 .alert-dismissible {
-  max-width: 1000px;
+  max-width: 750px;
   position: absolute;
   top: 10vh;
 }
