@@ -9,7 +9,7 @@ const googleOauthConfig = new GoogleStrategy(
   {
     clientID: googleId,
     clientSecret: googleSecret,
-    callbackURL: "https://nono-audiologia.up.railway.app/auth/google/callback",
+    callbackURL: "https://nono-audiologia.onrender.com/auth/google/callback",
     scope: [
       "https://www.googleapis.com/auth/userinfo.profile",
       "https://www.googleapis.com/auth/userinfo.email",
